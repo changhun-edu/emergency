@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>긴급사안 대응 매뉴얼 V4</title>
+    <style>
+        body { font-family: 'Malgun Gothic', sans-serif; background-color: #f0f2f5; padding: 15px; color: #333; line-height: 1.6; }
+        .container { max-width: 700px; margin: 0 auto; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        h1 { color: #d32f2f; text-align: center; font-size: 22px; margin-bottom: 20px; border-bottom: 3px solid #d32f2f; padding-bottom: 10px; }
+        
+        .info-box { padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+        .info-box h3 { margin: 0 0 10px 0; font-size: 16px; }
+        .info-box ul { margin: 0; padding-left: 20px; font-size: 14px; }
+
+        .emergency-types { background-color: #fff3e0; border: 1px solid #ffcc80; }
+        .emergency-types h3 { color: #e65100; }
+
+        .principles { background-color: #fff5f5; border: 1px solid #feb2b2; }
+        .principles h3 { color: #c53030; }
+
+        .task-item { border: 1px solid #e2e8f0; margin-bottom: 15px; border-radius: 8px; overflow: hidden; background: #fff; }
+        .task-header { padding: 15px; display: flex; align-items: flex-start; background: #f8fafc; cursor: pointer; }
+        .task-header:hover { background: #f1f5f9; }
+        
+        input[type="checkbox"] { transform: scale(1.4); margin-right: 15px; margin-top: 5px; }
+        
+        .task-info { flex-grow: 1; }
+        .task-title { font-weight: bold; font-size: 16px; color: #2d3748; display: block; }
+        .task-manager { font-size: 13px; color: #e53e3e; font-weight: 600; margin-top: 4px; display: block; }
+        
+        .detail-btn { background: #4a5568; color: white; border: none; padding: 5px 10px; border-radius: 4px; font-size: 12px; cursor: pointer; margin-left: 10px; white-space: nowrap; }
+        
+        .task-details { display: none; padding: 15px; background: #fff; border-top: 1px solid #e2e8f0; font-size: 14px; color: #4a5568; }
+        .task-details.show { display: block; }
+        .task-details ul { margin: 0; padding-left: 20px; }
+        .task-details li { margin-bottom: 5px; }
+
+        .completed .task-title { text-decoration: line-through; color: #a0aec0; }
+        .completed { background: #f0fff4 !important; opacity: 0.8; }
+
+        .progress-container { width: 100%; background: #edf2f7; border-radius: 10px; height: 25px; margin-bottom: 20px; position: relative; overflow: hidden; }
+        .progress-bar { height: 100%; background: #48bb78; width: 0%; transition: width 0.3s ease; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 13px; }
+
+        /* 저작자 표시 (드러나지 않게 설정) */
+        .footer { text-align: right; font-size: 10px; color: #cbd5e0; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🚨 긴급사안 대응 절차 및 요령</h1>
+
+    <div class="info-box emergency-types">
+        <h3>[긴급 사안 4가지 범위]</h3>
+        <ul>
+            <li>안전(교통)사고로 인한 중대 피해</li>
+            <li>자살(시도) 및 자해로 인한 응급상황</li>
+            <li>각종 폭력 및 범죄로 인한 중대 피해</li>
+            <li>기타 이유로 생명·신체에 위험 발생</li>
+        </ul>
+    </div>
+
+    <div class="info-box principles">
+        <h3>[대응 기본 원칙]</h3>
+        <ul>
+            <li>생명·안전 최우선 / 신속성 우선 (완전성보다 신속)</li>
+            <li>역할 분담 및 중복 수행 가능</li>
+            <li>사실 기반 대응 (추측 금지)</li>
+            <li>피해자 중심 (2차 피해 방지, 의사 존중)</li>
+        </ul>
+    </div>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar">0% 완료</div>
+    </div>
+
+    <div id="taskList"></div>
+
+    <div class="footer">
+        만든이 최창훈, 만든날짜 2026.4.13.
+    </div>
+</div>
+
+<script>
+    const tasks = [
+        {
+            title: "① 피해자 상태 확인",
+            manager: "보건교사, 담임교사, 특수교사 (응급대응팀)",
+            details: [
+                "응급조치 및 병원 이송을 위한 1차 확인",
+                "병원 이송 후 진단 및 소견 확인",
+                "교외 사안의 경우 외부 기관과 협조",
+                "119 호출 및 초기 응급처치 실시"
+            ]
+        },
+        {
+            title: "② 가해자와 분리 및 피해자 보호",
+            manager: "학생부장, 학년부장, 담임교사, 상담사 (학생관리팀)",
+            details: [
+                "가해자와 즉시 분리 조치",
+                "유선, 온라인 접촉도 엄격히 통제 및 유의",
+                "가해자 상태 확인 지속 및 필요시 외부 기관 협조"
+            ]
+        },
+        {
+            title: "③ 병원 동행 이송",
+            manager: "보건교사, 담임교사, 특수교사 (응급대응팀)",
+            details: [
+                "교직원이 병원까지 동행 이송 후 가족에게 인계",
+                "병원 내 학생·가족 조력 역할 유지 및 교대 인력 준비",
+                "담당 교직원의 복무 처리 (교감 지원)"
+            ]
+        },
+        {
+            title: "④ 가족 연락",
+            manager: "보건교사, 담임교사, 특수교사 (응급대응팀)",
+            details: [
+                "사실에 기반한 정확한 내용 전달",
+                "가족의 의사를 최대한 존중하여 인계 절차 진행"
+            ]
+        },
+        {
+            title: "⑤ 역할 분배 및 소통 체계 마련",
+            manager: "교장(총괄), 교감(운영 관리)",
+            details: [
+                "각 조치의 선후를 고정하지 않고 상황에 맞춰 신속 진행",
+                "중복 역할 수행 가능, 교대 인원 미리 확보",
+                "사안 종료 시까지 연락망과 보고 체계 확실히 유지"
+            ]
+        },
+        {
+            title: "⑥ 사안 전파 통제",
+            manager: "학생관리팀, 협력지원팀 (언론대응창구 지정)",
+            details: [
+                "사안 전파 통제 및 공식 안내 창구 단일화",
+                "추측성 정보 확산 방지 및 2차 피해 차단 최우선",
+                "언론 대응 지원 (교감 및 행정실장 등)"
+            ]
+        },
+        {
+            title: "⑦ 안정화 조치 (학생·가족·교직원)",
+            manager: "학생관리팀, 협력지원팀 (교무/행정)",
+            details: [
+                "현장 통제 및 목격자 파악, 안정 조치 우선",
+                "교우 및 동료의 심리·정서적 상태 점검 지원",
+                "재학·재직 중인 가족 파악 및 상태 점검"
+            ]
+        },
+        {
+            title: "⑧ 1차 경위 조사",
+            manager: "학생부장, 상담교사, 생활지도 교사 (조사기록팀)",
+            details: [
+                "완벽성보다는 신속성 위주로 진행 (추후 보완)",
+                "진술자의 심리 상태를 고려하여 신중히 진행",
+                "사건 배경 및 사전 상황 조사, CCTV 등 증거 확보"
+            ]
+        },
+        {
+            title: "⑨ 교육(지원)청 긴급 보고",
+            manager: "학생부장, 상담교사, 생활지도 교사 (조사기록팀)",
+            details: [
+                "보고 체계 엄수: 학교 → 교육지원청 → 교육청 → 교육부 (또는 학교 → 교육청)",
+                "주요 목적은 '사안 처리 지원'을 위한 정보 제공",
+                "사안별(성 관련, 장애 학생 등) 담당 부서 확인 후 보고"
+            ]
+        }
+    ];
+
+    const taskListElement = document.getElementById('taskList');
+    const progressBar = document.getElementById('progressBar');
+
+    function renderTasks() {
+        tasks.forEach((task, index) => {
+            const item = document.createElement('div');
+            item.className = 'task-item';
+            item.innerHTML = `
+                <div class="task-header" onclick="toggleDetails(${index})">
+                    <input type="checkbox" id="check-${index}" onclick="event.stopPropagation(); updateProgress(${index});">
+                    <div class="task-info">
+                        <span class="task-title">${task.title}</span>
+                        <span class="task-manager">담당: ${task.manager}</span>
+                    </div>
+                    <button class="detail-btn">상세 보기</button>
+                </div>
+                <div class="task-details" id="details-${index}">
+                    <ul>
+                        ${task.details.map(d => `<li>${d}</li>`).join('')}
+                    </ul>
+                </div>
+            `;
+            taskListElement.appendChild(item);
+        });
+    }
+
+    window.toggleDetails = function(index) {
+        const detailBox = document.getElementById(`details-${index}`);
+        detailBox.classList.toggle('show');
+    };
+
+    window.updateProgress = function(index) {
+        const checkbox = document.getElementById(`check-${index}`);
+        const header = checkbox.closest('.task-item');
+        
+        if (checkbox.checked) {
+            header.classList.add('completed');
+        } else {
+            header.classList.remove('completed');
+        }
+
+        const total = tasks.length;
+        const checked = document.querySelectorAll('input[type="checkbox"]:checked').length;
+        const percent = Math.round((checked / total) * 100);
+        
+        progressBar.style.width = percent + '%';
+        progressBar.textContent = percent + '% 완료';
+    };
+
+    renderTasks();
+</script>
+
+</body>
+</html>
