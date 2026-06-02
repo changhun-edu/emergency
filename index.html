@@ -1,223 +1,710 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>긴급사안 대응 매뉴얼 V5</title>
-    <style>
-        body { font-family: 'Malgun Gothic', sans-serif; background-color: #f0f2f5; padding: 15px; color: #333; line-height: 1.6; }
-        .container { max-width: 700px; margin: 0 auto; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        h1 { color: #d32f2f; text-align: center; font-size: 22px; margin-bottom: 20px; border-bottom: 3px solid #d32f2f; padding-bottom: 10px; }
-        
-        .info-box { padding: 15px; border-radius: 8px; margin-bottom: 20px; }
-        .info-box h3 { margin: 0 0 10px 0; font-size: 16px; }
-        .info-box ul { margin: 0; padding-left: 20px; font-size: 14px; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>학교 안전 대응 지원 시스템</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #c0392b; --red-dark: #922b21; --orange: #e67e22; --orange-light: #fdebd0;
+    --blue: #1a5276; --blue-mid: #2980b9; --blue-light: #d6eaf8;
+    --green: #1e8449; --green-light: #d5f5e3;
+    --gray: #566573; --gray-light: #eaecee; --bg: #f4f6f8;
+    --text: #1c2833; --border: #d5d8dc;
+    --shadow: 0 2px 12px rgba(0,0,0,0.10); --shadow-lg: 0 6px 28px rgba(0,0,0,0.13);
+    --fs-base: 16px; --fs-sm: 14px; --fs-xs: 13px; --fs-lg: 18px; --fs-xl: 20px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: var(--fs-base); line-height: 1.65; }
 
-        .emergency-types { background-color: #fff3e0; border: 1px solid #ffcc80; }
-        .emergency-types h3 { color: #e65100; }
+  /* HEADER */
+  header { background: var(--red-dark); color: white; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; height: 68px; position: sticky; top: 0; z-index: 100; box-shadow: 0 3px 10px rgba(0,0,0,0.25); }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .header-icon { font-size: 30px; }
+  .header-title { font-size: 19px; font-weight: 900; line-height: 1.2; }
+  .header-sub { font-size: var(--fs-xs); opacity: 0.78; }
+  .header-badge { background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.35); padding: 5px 12px; border-radius: 20px; font-size: var(--fs-xs); font-family: 'IBM Plex Mono', monospace; }
 
-        .principles { background-color: #fff5f5; border: 1px solid #feb2b2; }
-        .principles h3 { color: #c53030; }
+  /* TABS */
+  .tab-nav { background: white; border-bottom: 2px solid var(--border); display: flex; overflow-x: auto; padding: 0 12px; scrollbar-width: none; position: sticky; top: 68px; z-index: 90; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .tab-nav::-webkit-scrollbar { display: none; }
+  .tab-btn { flex-shrink: 0; background: none; border: none; border-bottom: 3px solid transparent; padding: 15px 16px 12px; font-family: 'Noto Sans KR', sans-serif; font-size: var(--fs-sm); font-weight: 700; color: #888; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: all 0.18s; white-space: nowrap; margin-bottom: -2px; }
+  .tab-btn:hover { color: var(--red); }
+  .tab-btn.active { color: var(--red-dark); border-bottom-color: var(--red-dark); }
+  .tab-icon { font-size: 18px; }
 
-        .task-item { border: 1px solid #e2e8f0; margin-bottom: 15px; border-radius: 8px; overflow: hidden; background: #fff; }
-        .task-header { padding: 15px; display: flex; align-items: flex-start; background: #f8fafc; cursor: pointer; }
-        .task-header:hover { background: #f1f5f9; }
-        
-        input[type="checkbox"] { transform: scale(1.4); margin-right: 15px; margin-top: 5px; }
-        
-        .task-info { flex-grow: 1; }
-        .task-title { font-weight: bold; font-size: 16px; color: #2d3748; display: block; }
-        .task-manager { font-size: 13px; color: #e53e3e; font-weight: 600; margin-top: 4px; display: block; }
-        
-        .detail-btn { background: #4a5568; color: white; border: none; padding: 5px 10px; border-radius: 4px; font-size: 12px; cursor: pointer; margin-left: 10px; white-space: nowrap; }
-        
-        .task-details { display: none; padding: 15px; background: #fff; border-top: 1px solid #e2e8f0; font-size: 14px; color: #4a5568; }
-        .task-details.show { display: block; }
-        .task-details ul { margin: 0; padding-left: 20px; }
-        .task-details li { margin-bottom: 5px; }
+  /* MAIN */
+  .main { max-width: 860px; margin: 0 auto; padding: 22px 16px 60px; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; animation: fadeIn 0.2s ease; }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(7px); } to { opacity:1; transform:none; } }
 
-        .completed .task-title { text-decoration: line-through; color: #a0aec0; }
-        .completed { background: #f0fff4 !important; opacity: 0.8; }
+  /* SECTION HEADER */
+  .sec-hd { display: flex; align-items: center; gap: 10px; margin: 28px 0 16px; }
+  .sec-hd:first-child { margin-top: 0; }
+  .sec-hd span { font-size: var(--fs-lg); font-weight: 900; white-space: nowrap; }
+  .sec-line { flex: 1; height: 2px; background: var(--border); border-radius: 2px; }
 
-        .progress-container { width: 100%; background: #edf2f7; border-radius: 10px; height: 25px; margin-bottom: 20px; position: relative; overflow: hidden; }
-        .progress-bar { height: 100%; background: #48bb78; width: 0%; transition: width 0.3s ease; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 13px; }
+  /* INFO BOX */
+  .info-box { border-radius: 10px; padding: 16px 18px; margin-bottom: 16px; border-left: 5px solid; font-size: var(--fs-base); }
+  .info-box.red   { background: #fdf2f2; border-color: var(--red); }
+  .info-box.orange{ background: var(--orange-light); border-color: var(--orange); }
+  .info-box.blue  { background: var(--blue-light); border-color: var(--blue-mid); }
+  .info-box.green { background: var(--green-light); border-color: var(--green); }
+  .info-box h4 { font-size: var(--fs-base); font-weight: 700; margin-bottom: 9px; }
+  .info-box.red h4   { color: var(--red-dark); }
+  .info-box.orange h4{ color: #a04000; }
+  .info-box.blue h4  { color: var(--blue); }
+  .info-box.green h4 { color: var(--green); }
+  .info-box ul { padding-left: 20px; }
+  .info-box li { margin-bottom: 5px; }
 
-        .footer { text-align: right; font-size: 10px; color: #cbd5e0; margin-top: 20px; }
-    </style>
+  /* TIP BOX */
+  .tip-box { background: #fffde7; border: 1px solid #ffe082; border-radius: 8px; padding: 12px 16px; font-size: var(--fs-sm); color: #6d4c00; margin-bottom: 16px; }
+
+  /* ─── TAB 1: CHECKLIST ─── */
+  .progress-wrap { margin-bottom: 22px; }
+  .progress-label { font-size: var(--fs-sm); font-weight: 700; color: var(--gray); margin-bottom: 7px; display: flex; justify-content: space-between; }
+  .progress-bar-bg { height: 26px; background: var(--gray-light); border-radius: 13px; overflow: hidden; }
+  .progress-bar-fill { height: 100%; background: linear-gradient(90deg,#27ae60,#2ecc71); border-radius: 13px; width: 0%; transition: width 0.35s ease; display: flex; align-items: center; justify-content: flex-end; padding-right: 12px; }
+  .progress-text { font-size: var(--fs-xs); font-weight: 700; color: white; font-family: 'IBM Plex Mono', monospace; }
+  .task-item { background: white; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 12px; overflow: hidden; transition: box-shadow 0.15s; }
+  .task-item:hover { box-shadow: var(--shadow); }
+  .task-item.done { background: #f9fef9; border-color: #a9dfbf; opacity: 0.82; }
+  .task-header { display: flex; align-items: flex-start; gap: 14px; padding: 15px 16px; cursor: pointer; user-select: none; }
+  .task-check { width: 24px; height: 24px; accent-color: var(--green); cursor: pointer; flex-shrink: 0; margin-top: 3px; }
+  .task-info { flex: 1; }
+  .task-name { font-size: var(--fs-lg); font-weight: 700; color: var(--text); line-height: 1.4; }
+  .task-item.done .task-name { text-decoration: line-through; color: #aaa; }
+  .task-role { font-size: var(--fs-sm); color: var(--red); font-weight: 600; margin-top: 4px; }
+  .toggle-btn { background: var(--gray-light); border: none; border-radius: 6px; padding: 6px 12px; font-size: var(--fs-sm); font-family: 'Noto Sans KR', sans-serif; font-weight: 600; color: var(--gray); cursor: pointer; flex-shrink: 0; transition: background 0.15s; }
+  .toggle-btn:hover { background: var(--border); }
+  .task-detail { display: none; padding: 0 16px 15px 54px; font-size: var(--fs-base); color: #555; border-top: 1px solid var(--gray-light); background: #fafafa; }
+  .task-detail.show { display: block; }
+  .task-detail ul { padding-left: 18px; margin-top: 10px; }
+  .task-detail li { margin-bottom: 6px; }
+
+  /* ─── TAB 2: 응급이송 — 상황분기 ─── */
+  .branch-section { background: white; border: 2px solid var(--border); border-radius: 14px; padding: 20px; margin-bottom: 20px; box-shadow: var(--shadow); }
+  .branch-q { font-size: var(--fs-lg); font-weight: 700; margin-bottom: 14px; color: var(--text); }
+  .branch-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+  .branch-btn { flex: 1; min-width: 140px; padding: 14px 10px; border-radius: 10px; border: 2px solid; font-size: var(--fs-base); font-weight: 700; cursor: pointer; font-family: 'Noto Sans KR', sans-serif; transition: all 0.18s; background: white; text-align: center; line-height: 1.4; }
+  .branch-btn.red-btn   { border-color: var(--red);   color: var(--red-dark); }
+  .branch-btn.blue-btn  { border-color: var(--blue-mid); color: var(--blue); }
+  .branch-btn.green-btn { border-color: var(--green);  color: var(--green); }
+  .branch-btn.sel-red   { background: var(--red-dark); color: white; border-color: var(--red-dark); }
+  .branch-btn.sel-blue  { background: var(--blue-mid); color: white; border-color: var(--blue-mid); }
+  .branch-btn.sel-green { background: var(--green);    color: white; border-color: var(--green); }
+  .my-tasks-box { background: #fff8e1; border: 2px solid #f9a825; border-radius: 12px; padding: 20px; margin-bottom: 20px; display: none; }
+  .my-tasks-box.show { display: block; animation: fadeIn 0.22s ease; }
+  .my-tasks-title { font-size: var(--fs-xl); font-weight: 900; color: #e65100; margin-bottom: 14px; }
+  .my-task-item { display: flex; gap: 12px; align-items: flex-start; background: white; border-radius: 8px; padding: 12px 14px; margin-bottom: 10px; border-left: 4px solid #f9a825; font-size: var(--fs-base); }
+  .my-task-num { font-size: var(--fs-lg); font-weight: 900; color: var(--orange); font-family: 'IBM Plex Mono', monospace; flex-shrink: 0; }
+  .full-table-section { margin-top: 10px; }
+  .resp-table-wrap { overflow-x: auto; border-radius: 10px; box-shadow: var(--shadow); margin-bottom: 16px; }
+  table { width: 100%; border-collapse: collapse; background: white; font-size: var(--fs-base); }
+  th { background: var(--blue); color: white; padding: 12px 14px; text-align: left; font-size: var(--fs-sm); font-weight: 700; }
+  td { padding: 12px 14px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.6; }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: #f7f9fb; }
+  .role-cell { font-weight: 700; color: var(--blue-mid); white-space: nowrap; font-size: var(--fs-sm); }
+  .urgent { color: var(--red); font-weight: 700; }
+  .normal-c { color: var(--blue); font-weight: 700; }
+
+  /* ─── TAB 3: 중대산업재해 — 타이머+체크 ─── */
+  .timer-box { background: var(--red-dark); color: white; border-radius: 12px; padding: 18px 20px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  .timer-label { font-size: var(--fs-base); font-weight: 700; opacity: 0.9; }
+  .timer-display { font-size: 32px; font-weight: 900; font-family: 'IBM Plex Mono', monospace; letter-spacing: 2px; }
+  .timer-sub { font-size: var(--fs-xs); opacity: 0.75; margin-top: 2px; }
+  .timer-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+  .timer-btn { background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.4); color: white; padding: 9px 16px; border-radius: 8px; font-size: var(--fs-sm); font-weight: 700; cursor: pointer; font-family: 'Noto Sans KR', sans-serif; transition: background 0.15s; }
+  .timer-btn:hover { background: rgba(255,255,255,0.32); }
+  .incident-step { background: white; border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; overflow: hidden; box-shadow: var(--shadow); }
+  .incident-step-head { display: flex; align-items: center; gap: 14px; padding: 16px 18px; cursor: pointer; }
+  .incident-step-head:hover { background: #fafafa; }
+  .step-check { width: 26px; height: 26px; accent-color: var(--green); cursor: pointer; flex-shrink: 0; }
+  .step-num-badge { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: var(--fs-base); font-weight: 900; font-family: 'IBM Plex Mono', monospace; flex-shrink: 0; }
+  .snb-red    { background: #fde8e8; color: var(--red-dark); }
+  .snb-orange { background: var(--orange-light); color: #a04000; }
+  .snb-blue   { background: var(--blue-light);   color: var(--blue); }
+  .snb-green  { background: var(--green-light);  color: var(--green); }
+  .step-head-info { flex: 1; }
+  .step-head-title { font-size: var(--fs-lg); font-weight: 700; }
+  .step-head-sub   { font-size: var(--fs-sm); color: #888; margin-top: 3px; }
+  .step-time-badge { font-size: var(--fs-xs); background: var(--green-light); color: var(--green); font-weight: 700; padding: 4px 10px; border-radius: 20px; font-family: 'IBM Plex Mono', monospace; white-space: nowrap; }
+  .step-body-detail { display: none; padding: 0 18px 16px 90px; font-size: var(--fs-base); color: #555; border-top: 1px solid var(--gray-light); background: #fafafa; }
+  .step-body-detail.show { display: block; }
+  .step-body-detail ul { padding-left: 18px; margin-top: 10px; }
+  .step-body-detail li { margin-bottom: 6px; line-height: 1.6; }
+  .step-memo { width: 100%; margin-top: 10px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: var(--fs-sm); font-family: 'Noto Sans KR', sans-serif; resize: vertical; min-height: 60px; }
+  .incident-step.done-step { background: #f9fef9; border-color: #a9dfbf; }
+  .incident-step.done-step .step-head-title { text-decoration: line-through; color: #aaa; }
+
+  /* 보고서 생성 */
+  .report-btn { display: block; width: 100%; margin-top: 20px; padding: 18px; background: var(--blue); color: white; border: none; border-radius: 12px; font-size: var(--fs-lg); font-weight: 900; cursor: pointer; font-family: 'Noto Sans KR', sans-serif; transition: background 0.15s; text-align: center; }
+  .report-btn:hover { background: var(--blue-mid); }
+  .report-output { display: none; margin-top: 16px; background: white; border: 2px solid var(--border); border-radius: 12px; padding: 22px; font-size: var(--fs-base); line-height: 1.8; box-shadow: var(--shadow); }
+  .report-output.show { display: block; animation: fadeIn 0.2s ease; }
+  .report-output h3 { font-size: var(--fs-xl); font-weight: 900; margin-bottom: 16px; color: var(--red-dark); border-bottom: 2px solid var(--border); padding-bottom: 10px; }
+  .report-row { margin-bottom: 10px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .report-key { font-weight: 700; color: var(--blue); min-width: 120px; flex-shrink: 0; }
+  .report-val { flex: 1; }
+  .copy-btn { margin-top: 14px; padding: 12px 20px; background: var(--green); color: white; border: none; border-radius: 8px; font-size: var(--fs-base); font-weight: 700; cursor: pointer; font-family: 'Noto Sans KR', sans-serif; }
+  .copy-btn:hover { background: #1a7a3e; }
+
+  /* ─── TAB 4: 위험성 평가 입력표 ─── */
+  .risk-kind-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+  @media(max-width:560px){ .risk-kind-grid { grid-template-columns: 1fr; } }
+  .risk-kind-card { border-radius: 10px; overflow: hidden; box-shadow: var(--shadow); }
+  .risk-kind-head { padding: 12px 14px; font-size: var(--fs-base); font-weight: 700; color: white; }
+  .rk-red  { background: var(--red-dark); }
+  .rk-ora  { background: var(--orange); }
+  .rk-blue { background: var(--blue); }
+  .risk-kind-body { background: white; padding: 12px 14px; font-size: var(--fs-sm); color: #555; line-height: 1.65; border: 1px solid var(--border); border-top: none; border-radius: 0 0 10px 10px; }
+  .risk-kind-body ul { padding-left: 16px; }
+  .risk-kind-body li { margin-bottom: 4px; }
+
+  .eval-form { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 20px; box-shadow: var(--shadow); margin-bottom: 16px; }
+  .eval-form h4 { font-size: var(--fs-lg); font-weight: 700; margin-bottom: 16px; color: var(--blue); }
+  .eval-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+  @media(max-width:500px){ .eval-row { grid-template-columns: 1fr; } }
+  .eval-field label { display: block; font-size: var(--fs-sm); font-weight: 700; color: var(--gray); margin-bottom: 5px; }
+  .eval-field input, .eval-field select, .eval-field textarea {
+    width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px;
+    font-size: var(--fs-base); font-family: 'Noto Sans KR', sans-serif; color: var(--text);
+    background: #fafafa; transition: border 0.15s;
+  }
+  .eval-field input:focus, .eval-field select:focus, .eval-field textarea:focus { outline: none; border-color: var(--blue-mid); background: white; }
+  .eval-field.full { grid-column: 1/-1; }
+  .eval-field textarea { min-height: 64px; resize: vertical; }
+  .risk-score-box { background: var(--gray-light); border-radius: 10px; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; flex-wrap: wrap; gap: 10px; }
+  .risk-score-label { font-size: var(--fs-base); font-weight: 700; color: var(--text); }
+  .risk-score-num { font-size: 32px; font-weight: 900; font-family: 'IBM Plex Mono', monospace; }
+  .rs-low    { color: var(--green); }
+  .rs-mid    { color: var(--orange); }
+  .rs-high   { color: var(--red-dark); }
+  .risk-level-text { font-size: var(--fs-sm); font-weight: 700; padding: 5px 14px; border-radius: 20px; }
+  .rl-low    { background: var(--green-light);   color: var(--green); }
+  .rl-mid    { background: var(--orange-light);  color: #a04000; }
+  .rl-high   { background: #fde8e8; color: var(--red-dark); }
+  .add-eval-btn { padding: 14px 20px; background: var(--blue-mid); color: white; border: none; border-radius: 10px; font-size: var(--fs-base); font-weight: 700; cursor: pointer; font-family: 'Noto Sans KR', sans-serif; transition: background 0.15s; }
+  .add-eval-btn:hover { background: var(--blue); }
+  .eval-list { margin-top: 20px; }
+  .eval-card { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin-bottom: 10px; box-shadow: var(--shadow); display: flex; gap: 14px; align-items: flex-start; }
+  .eval-card-score { width: 52px; height: 52px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 900; font-family: 'IBM Plex Mono', monospace; flex-shrink: 0; }
+  .ecs-low  { background: var(--green-light);  color: var(--green); }
+  .ecs-mid  { background: var(--orange-light); color: #a04000; }
+  .ecs-high { background: #fde8e8; color: var(--red-dark); }
+  .eval-card-body { flex: 1; }
+  .eval-card-title { font-size: var(--fs-base); font-weight: 700; margin-bottom: 4px; }
+  .eval-card-meta  { font-size: var(--fs-sm); color: #888; line-height: 1.6; }
+  .eval-del-btn { background: none; border: none; font-size: 18px; cursor: pointer; color: #bbb; padding: 4px; }
+  .eval-del-btn:hover { color: var(--red); }
+
+  /* 단계 설명 */
+  .steps-grid { display: grid; gap: 10px; }
+  .step-card2 { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; display: flex; gap: 14px; box-shadow: var(--shadow); }
+  .sc2-num { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: var(--fs-base); font-weight: 900; font-family: 'IBM Plex Mono', monospace; flex-shrink: 0; }
+  .sc2-num.blue  { background: var(--blue-light);  color: var(--blue); }
+  .sc2-body { flex: 1; }
+  .sc2-title { font-size: var(--fs-base); font-weight: 700; margin-bottom: 5px; }
+  .sc2-desc  { font-size: var(--fs-sm); color: #555; line-height: 1.6; }
+
+  /* ─── TAB 5: 비상연락망 ─── */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+  @media(max-width:480px){ .contact-grid { grid-template-columns: 1fr; } }
+  .contact-card { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 16px; box-shadow: var(--shadow); }
+  .contact-card h4 { font-size: var(--fs-base); font-weight: 700; margin-bottom: 10px; color: var(--blue); }
+  .contact-item { margin-bottom: 8px; }
+  .contact-label { font-size: var(--fs-xs); color: #888; font-weight: 600; }
+  .contact-num   { font-size: var(--fs-xl); font-weight: 700; font-family: 'IBM Plex Mono', monospace; color: var(--red-dark); }
+  .contact-note  { font-size: var(--fs-xs); color: #777; }
+
+  .step-card { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; display: flex; gap: 14px; box-shadow: var(--shadow); margin-bottom: 10px; }
+  .step-num  { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: var(--fs-base); font-weight: 900; font-family: 'IBM Plex Mono', monospace; flex-shrink: 0; }
+  .step-num.red    { background: #fde8e8; color: var(--red-dark); }
+  .step-num.orange { background: var(--orange-light); color: #a04000; }
+  .step-num.blue   { background: var(--blue-light);   color: var(--blue); }
+  .step-num.green  { background: var(--green-light);  color: var(--green); }
+  .step-body2 { flex: 1; }
+  .step-title2 { font-size: var(--fs-base); font-weight: 700; margin-bottom: 5px; }
+  .step-desc2  { font-size: var(--fs-sm); color: #555; line-height: 1.6; }
+  .step-badge  { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: var(--fs-xs); font-weight: 700; margin-bottom: 5px; }
+  .badge-red    { background: #fde8e8; color: var(--red-dark); }
+  .badge-blue   { background: var(--blue-light);   color: var(--blue); }
+  .badge-orange { background: var(--orange-light); color: #a04000; }
+  .badge-green  { background: var(--green-light);  color: var(--green); }
+  .form-links { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  @media(max-width:480px){ .form-links { grid-template-columns: 1fr; } }
+  .form-link-card { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 14px; display: flex; align-items: center; gap: 12px; box-shadow: var(--shadow); transition: box-shadow 0.15s, transform 0.12s; }
+  .form-link-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+  .form-icon { font-size: 28px; }
+  .form-info h4 { font-size: var(--fs-sm); font-weight: 700; }
+  .form-info p  { font-size: var(--fs-xs); color: #888; margin-top: 2px; }
+
+  /* FOOTER */
+  .page-footer { text-align: right; font-size: 11px; color: #d0d3d7; margin-top: 36px; padding-top: 12px; border-top: 1px solid #eee; }
+</style>
 </head>
 <body>
 
-<div class="container">
-    <h1>🚨 긴급사안 대응 절차 및 요령</h1>
-
-    <div class="info-box emergency-types">
-        <h3>[긴급 사안 4가지 범위]</h3>
-        <ul>
-            <li>안전(교통)사고로 인한 중대 피해</li>
-            <li>자살(시도) 및 자해로 인한 응급상황</li>
-            <li>각종 폭력 및 범죄로 인한 중대 피해</li>
-            <li>기타 이유로 생명·신체에 위험 발생</li>
-        </ul>
+<header>
+  <div class="header-left">
+    <span class="header-icon">🏫</span>
+    <div>
+      <div class="header-title">학교 안전 대응 지원 시스템</div>
+      <div class="header-sub">긴급사안 · 응급환자 · 중대산업재해</div>
     </div>
+  </div>
+  <div class="header-badge">V5 · 2026</div>
+</header>
 
-    <div class="info-box principles">
-        <h3>[대응 기본 원칙]</h3>
-        <ul>
-            <li>생명·안전 최우선 / 신속성 우선 (완전성보다 신속)</li>
-            <li>역할 분담 및 중복 수행 가능</li>
-            <li>사실 기반 대응 (추측 금지)</li>
-            <li>피해자 중심 (2차 피해 방지, 의사 존중)</li>
-        </ul>
-    </div>
+<nav class="tab-nav">
+  <button class="tab-btn active" onclick="switchTab('tab1',this)"><span class="tab-icon">🚨</span>긴급사안</button>
+  <button class="tab-btn" onclick="switchTab('tab2',this)"><span class="tab-icon">🚑</span>응급환자 이송</button>
+  <button class="tab-btn" onclick="switchTab('tab3',this)"><span class="tab-icon">⚠️</span>중대산업재해</button>
+  <button class="tab-btn" onclick="switchTab('tab4',this)"><span class="tab-icon">📋</span>위험성 평가</button>
+  <button class="tab-btn" onclick="switchTab('tab5',this)"><span class="tab-icon">📞</span>비상연락망</button>
+</nav>
 
-    <div class="progress-container">
-        <div class="progress-bar" id="progressBar">0% 완료</div>
-    </div>
+<div class="main">
 
-    <div id="taskList"></div>
-
-    <div class="footer">
-        만든이 최창훈, 만든날짜 2026.4.13.
-    </div>
+<!-- ══════════════ TAB 1: 긴급사안 ══════════════ -->
+<div class="tab-panel active" id="tab1">
+  <div class="info-box red">
+    <h4>🚨 긴급 사안 4가지 범위</h4>
+    <ul>
+      <li>안전(교통)사고로 인한 중대 피해</li>
+      <li>자살(시도) 및 자해로 인한 응급상황</li>
+      <li>각종 폭력 및 범죄로 인한 중대 피해</li>
+      <li>기타 이유로 생명·신체에 위험 발생</li>
+    </ul>
+  </div>
+  <div class="info-box orange">
+    <h4>⚡ 대응 기본 원칙</h4>
+    <ul>
+      <li>생명·안전 최우선 / 신속성 우선 (완전성보다 신속)</li>
+      <li>역할 분담 및 중복 수행 가능</li>
+      <li>사실 기반 대응 (추측 금지)</li>
+      <li>피해자 중심 (2차 피해 방지, 의사 존중)</li>
+    </ul>
+  </div>
+  <div class="sec-hd"><span>📝 대응 절차 체크리스트</span><div class="sec-line"></div></div>
+  <div class="progress-wrap">
+    <div class="progress-label"><span>진행 상황</span><span id="prog-count1">0 / 9 완료</span></div>
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="prog-bar1"><span class="progress-text" id="prog-pct1"></span></div></div>
+  </div>
+  <div id="taskList1"></div>
 </div>
 
+<!-- ══════════════ TAB 2: 응급환자 이송 ══════════════ -->
+<div class="tab-panel" id="tab2">
+
+  <div class="branch-section">
+    <div class="branch-q">① 지금 환자 상태는 어떻습니까?</div>
+    <div class="branch-btns">
+      <button class="branch-btn red-btn" id="sev-btn" onclick="selectSeverity('severe')">🔴 위급 · 중한 외상<br><span style="font-size:13px;font-weight:400">의식장애·호흡곤란·심정지·다량출혈</span></button>
+      <button class="branch-btn blue-btn" id="mod-btn" onclick="selectSeverity('moderate')">🔵 병원 이송 필요<br><span style="font-size:13px;font-weight:400">단순외상·단순골절·고열 등</span></button>
+    </div>
+  </div>
+
+  <div class="branch-section" id="role-section" style="display:none">
+    <div class="branch-q">② 나는 누구입니까?</div>
+    <div class="branch-btns" id="role-btns"></div>
+  </div>
+
+  <div class="my-tasks-box" id="my-tasks-box">
+    <div class="my-tasks-title" id="my-tasks-title">지금 당신이 해야 할 일</div>
+    <div id="my-tasks-list"></div>
+  </div>
+
+  <div class="full-table-section">
+    <div class="sec-hd"><span>📊 전체 역할 분담표</span><div class="sec-line"></div></div>
+    <div class="resp-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:90px">담당자</th>
+            <th><span class="urgent">● 위급·중한 외상</span></th>
+            <th><span class="normal-c">● 병원 이송 필요</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="role-cell">교장</td><td colspan="2">상황 총괄 / 원인분석 및 재발방지 조치</td></tr>
+          <tr><td class="role-cell">교감</td><td colspan="2">상황파악 및 지시·보고 / 위기상황 처리 필요조치 / 보건·담임 부재 시 대체인력 배정</td></tr>
+          <tr><td class="role-cell">보건교사</td>
+            <td>응급처치 → 담임 통보 → 병원 동행이송 → 관리자 처치현황 보고</td>
+            <td>응급처치 → 담임 통보 → 학생 처치결과 학부모 상담 → 관리자 처치현황 보고</td></tr>
+          <tr><td class="role-cell">담임교사</td>
+            <td>학부모 연락(이송병원으로) → 관리자 사고경위 보고 → 환자 병원이송(보호자 인계 전까지 보호자 역할 대행) → 안전공제회 보상 안내</td>
+            <td>학부모 연락 → 병원이송 안내 및 조치 → 필요시 병원이송 → 관리자 사고경위 보고 → 안전공제회 보상 안내</td></tr>
+          <tr><td class="role-cell">생활지도<br>학년부장</td><td colspan="2">질서 및 생활지도 / 학년 수업 결손 방지 지원</td></tr>
+          <tr><td class="role-cell">이송 담당</td><td colspan="2">안전하게 병원 이송<br><span style="font-size:13px;color:#c0392b">※ 응급처치자는 차량 운전 금지 (개인차량 이송 시 동행 2명 필요)</span></td></tr>
+          <tr><td class="role-cell">행정담당</td><td colspan="2">보상 및 제반 서류 작성 협조 / 병원 이송교사 출장처리 및 비용청구 처리</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="info-box blue">
+      <h4>📝 응급사고 기록지 작성 (보건교사)</h4>
+      <ul>
+        <li>사건 날짜, 시간, 장소, 사고현황, 환자상태, 응급처치 내용</li>
+        <li><strong>6하원칙</strong>에 의거 구체적으로 기록</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ TAB 3: 중대산업재해 ══════════════ -->
+<div class="tab-panel" id="tab3">
+
+  <div class="timer-box">
+    <div>
+      <div class="timer-label">⏱ 사고 발생 후 경과 시간</div>
+      <div class="timer-display" id="timerDisplay">00:00:00</div>
+      <div class="timer-sub" id="timerSub">타이머를 시작하면 경과 시간이 기록됩니다</div>
+    </div>
+    <div class="timer-btns">
+      <button class="timer-btn" onclick="timerStart()">▶ 시작</button>
+      <button class="timer-btn" onclick="timerStop()">⏸ 정지</button>
+      <button class="timer-btn" onclick="timerReset()">↺ 초기화</button>
+    </div>
+  </div>
+
+  <div class="sec-hd"><span>🔴 비상조치 체크리스트</span><div class="sec-line"></div></div>
+  <div id="incidentStepList"></div>
+
+  <button class="report-btn" onclick="generateReport()">📄 사고 대응 보고서 초안 자동 생성</button>
+  <div class="report-output" id="reportOutput"></div>
+
+  <div class="sec-hd" style="margin-top:32px"><span>⚡ 급박한 위험 발생 시</span><div class="sec-line"></div></div>
+  <div class="step-card"><div class="step-num red">A</div><div class="step-body2"><div class="step-title2">급박한 위험요인 발생</div><div class="step-desc2">최초발견자 → 주변 긴급상황 전파 / 초기 화재진압 등 위험요인 즉시 제거</div></div></div>
+  <div class="step-card"><div class="step-num orange">B</div><div class="step-body2"><div class="step-title2">작업중지 후 즉시 위험구역 이탈</div><div class="step-desc2"><strong style="color:var(--red)">급박한 위험 시 모든 근로자에게 작업중지권 있음</strong><br>관리자(기관장·학교장)에게 즉시 보고</div></div></div>
+  <div class="step-card"><div class="step-num blue">C</div><div class="step-body2"><div class="step-title2">긴급상황 전파 및 교직원 대피</div><div class="step-desc2">방송시설 이용 긴급상황 전파 → 학생·교직원 대피<br>교육활동 즉시 중지 후 비상대피 → 응급기관 긴급신고</div></div></div>
+</div>
+
+<!-- ══════════════ TAB 4: 위험성 평가 ══════════════ -->
+<div class="tab-panel" id="tab4">
+
+  <div class="info-box blue">
+    <h4>📌 위험성 평가란?</h4>
+    <ul>
+      <li>사업장·사업 시작 전 업무에 대한 유해·위험을 파악하고 개선하는 절차</li>
+      <li>학교의 경우 <strong>학기 초(3월)</strong>에 실시하는 것이 법령 취지에 부합</li>
+    </ul>
+  </div>
+
+  <div class="sec-hd"><span>📅 평가 종류 및 시기</span><div class="sec-line"></div></div>
+  <div class="risk-kind-grid">
+    <div class="risk-kind-card"><div class="risk-kind-head rk-red">🆕 최초 평가</div><div class="risk-kind-body">사업장·사업 성립 후<br><strong>1개월 이내</strong></div></div>
+    <div class="risk-kind-card"><div class="risk-kind-head rk-ora">📆 정기 평가</div><div class="risk-kind-body">최초 평가 후<br><strong>연 1회</strong> 정기 실시</div></div>
+    <div class="risk-kind-card"><div class="risk-kind-head rk-blue">⚡ 수시 평가</div><div class="risk-kind-body"><ul><li>중대산업사고·재해 발생 시</li><li>작업방법·절차 변경 시</li><li>설비·기계 신규 도입 시</li></ul></div></div>
+  </div>
+
+  <div class="sec-hd"><span>✏️ 위험성 평가 항목 입력</span><div class="sec-line"></div></div>
+  <div class="eval-form">
+    <h4>새 평가 항목 추가</h4>
+    <div class="eval-row">
+      <div class="eval-field"><label>작업 공간 / 장소</label><input type="text" id="ef-place" placeholder="예: 급식실, 체육관 창고"></div>
+      <div class="eval-field"><label>위험 요인</label><input type="text" id="ef-hazard" placeholder="예: 바닥 미끄러움, 전기 배선 노출"></div>
+    </div>
+    <div class="eval-row">
+      <div class="eval-field"><label>발생 빈도 (1~5)</label>
+        <select id="ef-freq">
+          <option value="">선택하세요</option>
+          <option value="1">1 — 거의 없음</option>
+          <option value="2">2 — 가끔 있음</option>
+          <option value="3">3 — 종종 있음</option>
+          <option value="4">4 — 자주 있음</option>
+          <option value="5">5 — 항상 있음</option>
+        </select>
+      </div>
+      <div class="eval-field"><label>피해 강도 (1~5)</label>
+        <select id="ef-severity">
+          <option value="">선택하세요</option>
+          <option value="1">1 — 경미한 부상</option>
+          <option value="2">2 — 치료 필요</option>
+          <option value="3">3 — 입원 필요</option>
+          <option value="4">4 — 중대 피해</option>
+          <option value="5">5 — 사망 가능</option>
+        </select>
+      </div>
+    </div>
+    <div class="risk-score-box" id="scoreBox">
+      <span class="risk-score-label">위험성 점수 (빈도 × 강도)</span>
+      <div style="display:flex;align-items:center;gap:12px">
+        <span class="risk-score-num" id="scoreNum">—</span>
+        <span class="risk-level-text" id="levelText">선택 필요</span>
+      </div>
+    </div>
+    <div class="eval-row">
+      <div class="eval-field full"><label>감소 대책 / 조치 계획</label><textarea id="ef-action" placeholder="예: 미끄럼 방지 매트 설치, 주의 안내표지 부착"></textarea></div>
+    </div>
+    <button class="add-eval-btn" onclick="addEvalItem()">+ 평가 항목 추가</button>
+  </div>
+
+  <div class="eval-list" id="evalList"></div>
+
+  <div class="sec-hd" style="margin-top:28px"><span>📂 평가 구성 서류 (6단계)</span><div class="sec-line"></div></div>
+  <div class="steps-grid">
+    <div class="step-card2"><div class="sc2-num blue">가</div><div class="sc2-body"><div class="sc2-title">위험성 평가 실시 계획서</div><div class="sc2-desc">1단계(사전준비) + 2단계(유해·위험요인 파악)</div></div></div>
+    <div class="step-card2"><div class="sc2-num blue">나</div><div class="sc2-body"><div class="sc2-title">위험성 평가표 시행</div><div class="sc2-desc">3단계(위험성 결정) + 4단계(위험성 감소대책 수립 및 실행)</div></div></div>
+    <div class="step-card2"><div class="sc2-num blue">다</div><div class="sc2-body"><div class="sc2-title">공유 및 기록 유지</div><div class="sc2-desc">5단계(위험성 평가 공유) + 6단계(기록 및 보존) — 서명 및 개선사항 누적 관리</div></div></div>
+  </div>
+  <div class="info-box green" style="margin-top:14px">
+    <h4>🔗 서식 다운로드</h4>
+    <ul><li>광주광역시교육청 재난안전센터: <strong>https://safe.gen.go.kr/</strong></li><li>중대재해예방·산업안전보건 → 안전보건 자료실 → 교육자료</li></ul>
+  </div>
+</div>
+
+<!-- ══════════════ TAB 5: 비상연락망 ══════════════ -->
+<div class="tab-panel" id="tab5">
+  <div class="sec-hd"><span>📞 기관 비상 연락처</span><div class="sec-line"></div></div>
+  <div class="contact-grid">
+    <div class="contact-card"><h4>🚑 응급·사고 신고</h4>
+      <div class="contact-item"><div class="contact-label">화재·응급·구조</div><div class="contact-num">119</div></div>
+      <div class="contact-item"><div class="contact-label">범죄·폭력 신고</div><div class="contact-num">112</div></div>
+    </div>
+    <div class="contact-card"><h4>🏛️ 교육청</h4>
+      <div class="contact-item"><div class="contact-label">안전총괄과 (산업재해예방팀)</div><div class="contact-num" style="font-size:16px">062-380-4887~4890</div></div>
+    </div>
+  </div>
+
+  <div class="sec-hd"><span>📋 보고 절차 흐름</span><div class="sec-line"></div></div>
+  <div class="step-card"><div class="step-num red">①</div><div class="step-body2"><span class="step-badge badge-red">중대재해</span><div class="step-title2">교육청 보고 체계 (중대재해)</div><div class="step-desc2">학교(기관) → 교육청(산업재해예방팀) → 고용노동부<br>유선보고(즉시) 후 사고내용 서면보고</div></div></div>
+  <div class="step-card"><div class="step-num blue">②</div><div class="step-body2"><span class="step-badge badge-blue">일반재해</span><div class="step-title2">교육청 보고 체계 (일반재해)</div><div class="step-desc2">유선보고 → 산재신청 전 사고보고서 제출(안전총괄과)<br>고용노동부: 발생 후 1개월 이내 산업재해조사표 제출</div></div></div>
+  <div class="step-card"><div class="step-num orange">③</div><div class="step-body2"><span class="step-badge badge-orange">긴급사안</span><div class="step-title2">긴급사안 보고 체계</div><div class="step-desc2">학교 → 교육지원청 → 교육청 → 교육부 (또는 학교 → 교육청 직보)<br>사안별(성 관련, 장애학생 등) 담당부서 확인 후 보고</div></div></div>
+
+  <div class="sec-hd" style="margin-top:24px"><span>📄 주요 서식</span><div class="sec-line"></div></div>
+  <div class="form-links">
+    <div class="form-link-card"><span class="form-icon">📝</span><div class="form-info"><h4>사고 보고서</h4><p>사고일시·경위·피해자 정보·사고원인·예방대책</p></div></div>
+    <div class="form-link-card"><span class="form-icon">📊</span><div class="form-info"><h4>산업재해조사표</h4><p>광주지방고용노동청 제출 (산업안전보건법 시행규칙 별지 30호)</p></div></div>
+    <div class="form-link-card"><span class="form-icon">🩺</span><div class="form-info"><h4>응급사고 기록지</h4><p>6하원칙 기반 · 보건교사 작성</p></div></div>
+    <div class="form-link-card"><span class="form-icon">⚖️</span><div class="form-info"><h4>위험성평가표</h4><p>광주광역시교육청 재난안전센터 자료실</p></div></div>
+  </div>
+
+  <div class="page-footer">2026 최창훈</div>
+</div>
+
+</div><!-- /main -->
+
 <script>
-    const tasks = [
-        {
-            title: "① 피해자 상태 확인",
-            manager: "보건교사, 담임교사, 특수교사 (응급대응팀)",
-            details: [
-                "응급조치 및 병원 이송을 위한 1차 확인",
-                "병원 이송 후 진단 및 소견 확인",
-                "교외 사안의 경우 외부 기관과 협조",
-                "119 호출 및 초기 응급처치 실시",
-                "관리자에게 상황 전파"
-            ]
-        },
-        {
-            title: "② 가해자와 분리 및 피해자 보호",
-            manager: "학생부장, 학년부장, 담임교사, 상담사 (학생관리팀)",
-            details: [
-                "가해자와 즉시 분리 조치",
-                "유선, 온라인 접촉도 엄격히 통제 및 유의",
-                "가해자 상태 확인 지속 및 필요시 외부 기관 협조"
-            ]
-        },
-        {
-            title: "③ 병원 동행 이송",
-            manager: "보건교사, 담임교사, 특수교사 (응급대응팀)",
-            details: [
-                "교직원이 병원까지 동행 이송 후 가족에게 인계",
-                "병원 내 학생·가족 조력 역할 유지 및 교대 인력 준비",
-                "담당 교직원의 복무 처리 (교감 지원)"
-            ]
-        },
-        {
-            title: "④ 가족 연락",
-            manager: "보건교사, 담임교사, 특수교사 (응급대응팀)",
-            details: [
-                "사실에 기반한 정확한 내용 전달",
-                "가족의 의사를 최대한 존중하여 인계 절차 진행"
-            ]
-        },
-        {
-            title: "⑤ 역할 분배 및 소통 체계 마련",
-            manager: "교장(총괄), 교감(운영 관리)",
-            details: [
-                "각 조치의 선후를 고정하지 않고 상황에 맞춰 신속 진행",
-                "중복 역할 수행 가능, 교대 인원 미리 확보",
-                "사안 종료 시까지 연락망과 보고 체계 확실히 유지"
-            ]
-        },
-        {
-            title: "⑥ 사안 전파 통제",
-            manager: "학생관리팀, 협력지원팀 (언론대응창구 지정)",
-            details: [
-                "사안 전파 통제 및 공식 안내 창구 단일화",
-                "추측성 정보 확산 방지 및 2차 피해 차단 최우선",
-                "언론 대응 지원 (교감 및 행정실장 등)"
-            ]
-        },
-        {
-            title: "⑦ 안정화 조치 (학생·가족·교직원)",
-            manager: "학생관리팀, 협력지원팀 (교무/행정)",
-            details: [
-                "현장 통제 및 목격자 파악, 안정 조치 우선",
-                "교우 및 동료의 심리·정서적 상태 점검 지원",
-                "재학·재직 중인 가족 파악 및 상태 점검"
-            ]
-        },
-        {
-            title: "⑧ 1차 경위 조사",
-            manager: "학생부장, 상담교사, 생활지도 교사 (조사기록팀)",
-            details: [
-                "완벽성보다는 신속성 위주로 진행 (추후 보완)",
-                "진술자의 심리 상태를 고려하여 신중히 진행",
-                "사건 배경 및 사전 상황 조사, CCTV 등 증거 확보"
-            ]
-        },
-        {
-            title: "⑨ 교육(지원)청 긴급 보고",
-            manager: "학생부장, 상담교사, 생활지도 교사 (조사기록팀)",
-            details: [
-                "보고 체계 엄수: 학교 → 교육지원청 → 교육청 → 교육부 (또는 학교 → 교육청)",
-                "주요 목적은 '사안 처리 지원'을 위한 정보 제공",
-                "사안별(성 관련, 장애 학생 등) 담당 부서 확인 후 보고"
-            ]
-        }
-    ];
+// ── TAB ──
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
 
-    const taskListElement = document.getElementById('taskList');
-    const progressBar = document.getElementById('progressBar');
+// ══════════════ TAB 1: CHECKLIST ══════════════
+const tasks = [
+  { title:"① 피해자 상태 확인", role:"보건교사, 담임교사, 특수교사 (응급대응팀)", details:["응급조치 및 병원 이송을 위한 1차 확인","병원 이송 후 진단 및 소견 확인","교외 사안의 경우 외부 기관과 협조","119 호출 및 초기 응급처치 실시","관리자에게 상황 전파"] },
+  { title:"② 가해자와 분리 및 피해자 보호", role:"학생부장, 학년부장, 담임교사, 상담사 (학생관리팀)", details:["가해자와 즉시 분리 조치","유선·온라인 접촉도 엄격히 통제","가해자 상태 확인 지속 및 필요시 외부 기관 협조"] },
+  { title:"③ 병원 동행 이송", role:"보건교사, 담임교사, 특수교사 (응급대응팀)", details:["교직원이 병원까지 동행 이송 후 가족에게 인계","병원 내 학생·가족 조력 역할 유지 및 교대 인력 준비","담당 교직원의 복무 처리 (교감 지원)"] },
+  { title:"④ 가족 연락", role:"보건교사, 담임교사, 특수교사 (응급대응팀)", details:["사실에 기반한 정확한 내용 전달","가족의 의사를 최대한 존중하여 인계 절차 진행"] },
+  { title:"⑤ 역할 분배 및 소통 체계 마련", role:"교장(총괄), 교감(운영 관리)", details:["각 조치의 선후를 고정하지 않고 상황에 맞춰 신속 진행","중복 역할 수행 가능, 교대 인원 미리 확보","사안 종료 시까지 연락망과 보고 체계 확실히 유지"] },
+  { title:"⑥ 사안 전파 통제", role:"학생관리팀, 협력지원팀 (언론대응창구 지정)", details:["사안 전파 통제 및 공식 안내 창구 단일화","추측성 정보 확산 방지 및 2차 피해 차단 최우선","언론 대응 지원 (교감 및 행정실장 등)"] },
+  { title:"⑦ 안정화 조치 (학생·가족·교직원)", role:"학생관리팀, 협력지원팀 (교무/행정)", details:["현장 통제 및 목격자 파악, 안정 조치 우선","교우 및 동료의 심리·정서적 상태 점검 지원","재학·재직 중인 가족 파악 및 상태 점검"] },
+  { title:"⑧ 1차 경위 조사", role:"학생부장, 상담교사, 생활지도 교사 (조사기록팀)", details:["완벽성보다는 신속성 위주로 진행 (추후 보완)","진술자의 심리 상태를 고려하여 신중히 진행","사건 배경 및 사전 상황 조사, CCTV 등 증거 확보"] },
+  { title:"⑨ 교육(지원)청 긴급 보고", role:"학생부장, 상담교사, 생활지도 교사 (조사기록팀)", details:["보고 체계 엄수: 학교 → 교육지원청 → 교육청 → 교육부","주요 목적은 '사안 처리 지원'을 위한 정보 제공","사안별(성 관련, 장애학생 등) 담당 부서 확인 후 보고"] },
+];
+const list1 = document.getElementById('taskList1');
+tasks.forEach((t,i)=>{
+  const d = document.createElement('div');
+  d.className='task-item'; d.id='ti-'+i;
+  d.innerHTML=`<div class="task-header" onclick="toggleDetail(${i})">
+    <input class="task-check" type="checkbox" id="chk-${i}" onclick="event.stopPropagation();updateProg(${i})">
+    <div class="task-info"><div class="task-name">${t.title}</div><div class="task-role">담당: ${t.role}</div></div>
+    <button class="toggle-btn">상세 ▾</button>
+  </div>
+  <div class="task-detail" id="det-${i}"><ul>${t.details.map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
+  list1.appendChild(d);
+});
+window.toggleDetail=i=>document.getElementById('det-'+i).classList.toggle('show');
+window.updateProg=i=>{
+  const chk=document.getElementById('chk-'+i);
+  document.getElementById('ti-'+i).classList.toggle('done',chk.checked);
+  const done=document.querySelectorAll('#taskList1 .task-check:checked').length;
+  const pct=Math.round(done/tasks.length*100);
+  document.getElementById('prog-bar1').style.width=pct+'%';
+  document.getElementById('prog-pct1').textContent=pct>10?pct+'%':'';
+  document.getElementById('prog-count1').textContent=done+' / '+tasks.length+' 완료';
+};
 
-    function renderTasks() {
-        tasks.forEach((task, index) => {
-            const item = document.createElement('div');
-            item.className = 'task-item';
-            item.innerHTML = `
-                <div class="task-header" onclick="toggleDetails(${index})">
-                    <input type="checkbox" id="check-${index}" onclick="event.stopPropagation(); updateProgress(${index});">
-                    <div class="task-info">
-                        <span class="task-title">${task.title}</span>
-                        <span class="task-manager">담당: ${task.manager}</span>
-                    </div>
-                    <button class="detail-btn">상세 보기</button>
-                </div>
-                <div class="task-details" id="details-${index}">
-                    <ul>
-                        ${task.details.map(d => `<li>${d}</li>`).join('')}
-                    </ul>
-                </div>
-            `;
-            taskListElement.appendChild(item);
-        });
-    }
+// ══════════════ TAB 2: 응급이송 상황분기 ══════════════
+const roleTasks = {
+  severe: {
+    '보건교사':['119 호출 및 응급처치 즉시 실시','담임교사에게 통보','환자와 함께 병원 동행 이송','관리자에게 처치 현황 보고'],
+    '담임교사':['학부모 연락 — 이송 병원으로 오도록 안내','관리자에게 사고경위 보고','보호자 인계 전까지 보호자 역할 대행','안전공제회 보상 안내'],
+    '교감':['상황 파악 및 필요 지시','보건교사·담임교사 부재 시 대체인력 즉시 배정','관리자(교장)에게 보고'],
+    '생활지도부장':['현장 질서 및 생활지도','학년 수업 결손 방지 지원'],
+    '행정담당':['병원 이송교사 출장처리','추후 보상 및 서류 작성 협조'],
+  },
+  moderate: {
+    '보건교사':['응급처치 실시','담임교사에게 통보','학생 처치결과 학부모 상담','관리자에게 처치 현황 보고'],
+    '담임교사':['학부모 연락 및 병원이송 안내','필요시 직접 병원 이송','관리자에게 사고경위 보고','안전공제회 보상 안내'],
+    '교감':['상황 파악 및 지시','필요시 대체인력 배정'],
+    '생활지도부장':['질서 및 생활지도 유지'],
+    '행정담당':['추후 보상 및 서류 작성 협조'],
+  }
+};
+let selSev=null, selRole=null;
+window.selectSeverity=function(sev){
+  selSev=sev; selRole=null;
+  document.getElementById('sev-btn').className='branch-btn red-btn'+(sev==='severe'?' sel-red':'');
+  document.getElementById('mod-btn').className='branch-btn blue-btn'+(sev==='moderate'?' sel-blue':'');
+  const rb=document.getElementById('role-btns');
+  rb.innerHTML='';
+  ['보건교사','담임교사','교감','생활지도부장','행정담당'].forEach(r=>{
+    const b=document.createElement('button');
+    b.className='branch-btn green-btn'; b.textContent=r;
+    b.onclick=()=>selectRole(r);
+    rb.appendChild(b);
+  });
+  document.getElementById('role-section').style.display='block';
+  document.getElementById('my-tasks-box').classList.remove('show');
+};
+window.selectRole=function(role){
+  selRole=role;
+  document.querySelectorAll('#role-btns .branch-btn').forEach(b=>{
+    b.className='branch-btn green-btn'+(b.textContent===role?' sel-green':'');
+  });
+  const tasks2=roleTasks[selSev][role]||[];
+  const sev=selSev==='severe'?'🔴 위급·중한 외상':'🔵 병원 이송 필요';
+  document.getElementById('my-tasks-title').textContent='['+sev+'] '+role+' — 지금 해야 할 일';
+  document.getElementById('my-tasks-list').innerHTML=tasks2.map((t,i)=>`
+    <div class="my-task-item"><span class="my-task-num">${i+1}</span><span>${t}</span></div>`).join('');
+  document.getElementById('my-tasks-box').classList.add('show');
+};
 
-    window.toggleDetails = function(index) {
-        const detailBox = document.getElementById(`details-${index}`);
-        detailBox.classList.toggle('show');
-    };
+// ══════════════ TAB 3: 중대산업재해 타이머+체크 ══════════════
+let timerInterval=null, timerSeconds=0, timerStartTime=null;
+function pad(n){return String(n).padStart(2,'0');}
+function timerTick(){
+  timerSeconds++;
+  const h=Math.floor(timerSeconds/3600), m=Math.floor((timerSeconds%3600)/60), s=timerSeconds%60;
+  document.getElementById('timerDisplay').textContent=pad(h)+':'+pad(m)+':'+pad(s);
+}
+window.timerStart=function(){
+  if(timerInterval) return;
+  if(!timerStartTime){ timerStartTime=new Date(); document.getElementById('timerSub').textContent='시작: '+timerStartTime.toLocaleTimeString('ko-KR'); }
+  timerInterval=setInterval(timerTick,1000);
+};
+window.timerStop=function(){ clearInterval(timerInterval); timerInterval=null; };
+window.timerReset=function(){ clearInterval(timerInterval); timerInterval=null; timerSeconds=0; timerStartTime=null; document.getElementById('timerDisplay').textContent='00:00:00'; document.getElementById('timerSub').textContent='타이머를 시작하면 경과 시간이 기록됩니다'; };
 
-    window.updateProgress = function(index) {
-        const checkbox = document.getElementById(`check-${index}`);
-        const header = checkbox.closest('.task-item');
-        
-        if (checkbox.checked) {
-            header.classList.add('completed');
-        } else {
-            header.classList.remove('completed');
-        }
+const incidentSteps = [
+  { num:'01', cls:'snb-red',    title:'상황 전파 및 보고',      sub:'최초발견자 → 관리감독자 즉시 보고', details:['최초발견자 → 주변에 사고발생 전파','관리감독자(학교장·기관장)에게 즉시 보고'] },
+  { num:'02', cls:'snb-red',    title:'인명 구호 조치',         sub:'119 신고 · 응급처치 · 위험요인 제거', details:['119 신고 접수 및 주변 도움 요청','심폐소생술, 자동제세동기 등 응급구호조치','기계 비상정지 등 제거 가능한 위험요인 즉시 제거'] },
+  { num:'03', cls:'snb-orange', title:'작업중지 및 종사자 대피', sub:'즉시 작업중지 · 대피장소 이동', details:['즉시 모든 작업 중지','종사자 즉시 대피장소 이동 (사전 교육된 대피계획 준수)','2차피해방지 안전조치 / 출입통제 및 사고현장 보존'] },
+  { num:'04', cls:'snb-blue',   title:'재해 발생 보고',         sub:'교육청·고용노동부 즉시 유선보고', details:['교육청(안전총괄과): 학교 → 교육청(산업재해예방팀) 유선보고 후 서면보고','고용노동부(산재예방지도과): 교육청 → 고용노동부 유선보고 후 서면보고'] },
+  { num:'05', cls:'snb-blue',   title:'안전조치 확인 및 현장보존', sub:'사고원인 조사 완료 전 현장 보존', details:['사고발생원인 조사 / 위험성 제거 및 안전조치 확인','사고원인 조사 완료 전까지 현장 보존','현장 보존: 사진·동영상, CCTV 확보, 사고현장 훼손 금지'] },
+  { num:'06', cls:'snb-green',  title:'사후 보고 및 서류 처리',   sub:'사고보고서·산업재해조사표·위험성평가', details:['사고 보고서 작성 → 시교육청 안전총괄과 공문시행','산업재해조사표 작성 → 광주지방고용노동청 팩스 신고','위험성 평가 실시','비상대책회의: 대체인력 채용, 업무분장 조정 등'] },
+];
+const stepList=document.getElementById('incidentStepList');
+incidentSteps.forEach((s,i)=>{
+  const d=document.createElement('div');
+  d.className='incident-step'; d.id='ist-'+i;
+  d.innerHTML=`<div class="incident-step-head" onclick="toggleIStep(${i})">
+    <input class="step-check" type="checkbox" id="ischk-${i}" onclick="event.stopPropagation();markIStep(${i})">
+    <div class="step-num-badge ${s.cls}">${s.num}</div>
+    <div class="step-head-info">
+      <div class="step-head-title">${s.title}</div>
+      <div class="step-head-sub">${s.sub}</div>
+    </div>
+    <span class="step-time-badge" id="istime-${i}">미완료</span>
+  </div>
+  <div class="step-body-detail" id="isdet-${i}">
+    <ul>${s.details.map(x=>`<li>${x}</li>`).join('')}</ul>
+    <textarea class="step-memo" id="ismemo-${i}" placeholder="메모 (담당자, 조치 내용, 특이사항 등)"></textarea>
+  </div>`;
+  stepList.appendChild(d);
+});
+window.toggleIStep=i=>document.getElementById('isdet-'+i).classList.toggle('show');
+window.markIStep=function(i){
+  const chk=document.getElementById('ischk-'+i);
+  document.getElementById('ist-'+i).classList.toggle('done-step',chk.checked);
+  const tb=document.getElementById('istime-'+i);
+  if(chk.checked){ const now=new Date(); tb.textContent='완료 '+now.toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'}); tb.style.background='var(--green-light)'; tb.style.color='var(--green)'; }
+  else { tb.textContent='미완료'; tb.style.background=''; tb.style.color=''; }
+};
+window.generateReport=function(){
+  const now=new Date();
+  const elapsed=document.getElementById('timerDisplay').textContent;
+  let rows='';
+  incidentSteps.forEach((s,i)=>{
+    const done=document.getElementById('ischk-'+i).checked;
+    const time=document.getElementById('istime-'+i).textContent;
+    const memo=document.getElementById('ismemo-'+i).value||'—';
+    rows+=`<div class="report-row"><span class="report-key">${s.num}. ${s.title}</span><span class="report-val">${done?'✅ '+time:'⬜ 미완료'} | 메모: ${memo}</span></div>`;
+  });
+  const done=document.querySelectorAll('#incidentStepList .step-check:checked').length;
+  document.getElementById('reportOutput').innerHTML=`
+    <h3>📄 사고 대응 보고서 초안</h3>
+    <div class="report-row"><span class="report-key">보고서 생성 일시</span><span class="report-val">${now.toLocaleString('ko-KR')}</span></div>
+    <div class="report-row"><span class="report-key">사고 후 경과 시간</span><span class="report-val">${elapsed}</span></div>
+    <div class="report-row"><span class="report-key">완료된 조치 단계</span><span class="report-val">${done} / ${incidentSteps.length} 단계</span></div>
+    <hr style="margin:14px 0;border:none;border-top:1px solid var(--border)">
+    ${rows}
+    <button class="copy-btn" onclick="copyReport()">📋 보고서 내용 복사</button>`;
+  document.getElementById('reportOutput').classList.add('show');
+};
+window.copyReport=function(){
+  const el=document.getElementById('reportOutput');
+  const txt=el.innerText.replace('📋 보고서 내용 복사','').trim();
+  navigator.clipboard.writeText(txt).then(()=>alert('보고서 내용이 복사되었습니다.'));
+};
 
-        const total = tasks.length;
-        const checked = document.querySelectorAll('input[type="checkbox"]:checked').length;
-        const percent = Math.round((checked / total) * 100);
-        
-        progressBar.style.width = percent + '%';
-        progressBar.textContent = percent + '% 완료';
-    };
+// ══════════════ TAB 4: 위험성 평가 ══════════════
+let evalItems=[];
+function calcScore(){
+  const f=parseInt(document.getElementById('ef-freq').value)||0;
+  const s=parseInt(document.getElementById('ef-severity').value)||0;
+  const score=f*s;
+  const num=document.getElementById('scoreNum');
+  const lv=document.getElementById('levelText');
+  if(!f||!s){ num.textContent='—'; num.className='risk-score-num'; lv.textContent='선택 필요'; lv.className='risk-level-text'; return; }
+  num.textContent=score;
+  if(score<=6){      num.className='risk-score-num rs-low';  lv.textContent='낮음 (허용 가능)'; lv.className='risk-level-text rl-low'; }
+  else if(score<=12){ num.className='risk-score-num rs-mid';  lv.textContent='중간 (개선 필요)'; lv.className='risk-level-text rl-mid'; }
+  else {             num.className='risk-score-num rs-high'; lv.textContent='높음 (즉시 조치)'; lv.className='risk-level-text rl-high'; }
+}
+document.getElementById('ef-freq').onchange=calcScore;
+document.getElementById('ef-severity').onchange=calcScore;
 
-    renderTasks();
+window.addEvalItem=function(){
+  const place=document.getElementById('ef-place').value.trim();
+  const hazard=document.getElementById('ef-hazard').value.trim();
+  const freq=parseInt(document.getElementById('ef-freq').value)||0;
+  const sev=parseInt(document.getElementById('ef-severity').value)||0;
+  const action=document.getElementById('ef-action').value.trim();
+  if(!place||!hazard||!freq||!sev){ alert('장소, 위험요인, 빈도, 강도를 모두 입력해주세요.'); return; }
+  const score=freq*sev;
+  const id=Date.now();
+  evalItems.push({id,place,hazard,freq,sev,score,action});
+  renderEvalList();
+  ['ef-place','ef-hazard','ef-action'].forEach(x=>document.getElementById(x).value='');
+  ['ef-freq','ef-severity'].forEach(x=>document.getElementById(x).value='');
+  calcScore();
+};
+function renderEvalList(){
+  const el=document.getElementById('evalList');
+  if(!evalItems.length){ el.innerHTML=''; return; }
+  el.innerHTML='<div class="sec-hd"><span>📊 입력된 평가 항목 ('+evalItems.length+'건)</span><div class="sec-line"></div></div>'+
+    evalItems.map((it,idx)=>{
+      let cls=it.score<=6?'ecs-low':it.score<=12?'ecs-mid':'ecs-high';
+      return `<div class="eval-card">
+        <div class="eval-card-score ${cls}">${it.score}</div>
+        <div class="eval-card-body">
+          <div class="eval-card-title">📍 ${it.place} — ${it.hazard}</div>
+          <div class="eval-card-meta">빈도 ${it.freq} × 강도 ${it.sev} = 위험도 ${it.score} | 대책: ${it.action||'미입력'}</div>
+        </div>
+        <button class="eval-del-btn" onclick="delEval(${idx})">✕</button>
+      </div>`;
+    }).join('');
+}
+window.delEval=function(idx){ evalItems.splice(idx,1); renderEvalList(); };
 </script>
-
 </body>
 </html>
