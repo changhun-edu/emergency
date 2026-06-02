@@ -7,261 +7,325 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --red: #c0392b; --red-dark: #922b21; --orange: #e67e22; --orange-light: #fdebd0;
-    --blue: #1a5276; --blue-mid: #2980b9; --blue-light: #d6eaf8;
-    --green: #1e8449; --green-light: #d5f5e3;
-    --gray: #566573; --gray-light: #eaecee; --bg: #f4f6f8;
-    --text: #1c2833; --border: #d5d8dc;
-    --shadow: 0 2px 12px rgba(0,0,0,0.10); --shadow-lg: 0 6px 28px rgba(0,0,0,0.13);
-    --fs-base: 16px; --fs-sm: 14px; --fs-xs: 13px; --fs-lg: 18px; --fs-xl: 20px;
+    --red:#c0392b; --red-dark:#922b21; --orange:#e67e22; --orange-light:#fdebd0;
+    --blue:#1a5276; --blue-mid:#2980b9; --blue-light:#d6eaf8;
+    --green:#1e8449; --green-light:#d5f5e3;
+    --gray:#566573; --gray-light:#eaecee; --bg:#f4f6f8;
+    --text:#1c2833; --border:#d5d8dc;
+    --shadow:0 2px 12px rgba(0,0,0,0.10); --shadow-lg:0 6px 28px rgba(0,0,0,0.13);
+    --fs-base:16px; --fs-sm:14px; --fs-xs:13px; --fs-lg:18px; --fs-xl:20px;
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: var(--fs-base); line-height: 1.65; }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:var(--fs-base);line-height:1.65;}
 
   /* HEADER */
-  header { background: var(--red-dark); color: white; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; height: 68px; position: sticky; top: 0; z-index: 100; box-shadow: 0 3px 10px rgba(0,0,0,0.25); }
-  .header-left { display: flex; align-items: center; gap: 12px; }
-  .header-icon { font-size: 30px; }
-  .header-title { font-size: 19px; font-weight: 900; line-height: 1.2; }
-  .header-sub { font-size: var(--fs-xs); opacity: 0.78; }
-  .header-badge { background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.35); padding: 5px 12px; border-radius: 20px; font-size: var(--fs-xs); font-family: 'IBM Plex Mono', monospace; }
+  header{background:var(--red-dark);color:white;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:68px;position:sticky;top:0;z-index:100;box-shadow:0 3px 10px rgba(0,0,0,0.25);}
+  .header-left{display:flex;align-items:center;gap:12px;}
+  .header-icon{font-size:30px;}
+  .header-title{font-size:19px;font-weight:900;line-height:1.2;cursor:pointer;transition:opacity .15s;}
+  .header-title:hover{opacity:.82;}
+  .header-sub{font-size:var(--fs-xs);opacity:.78;}
+  .header-school{font-size:var(--fs-sm);font-weight:700;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.35);padding:5px 12px;border-radius:20px;cursor:pointer;transition:background .15s;}
+  .header-school:hover{background:rgba(255,255,255,0.28);}
 
   /* TABS */
-  .tab-nav { background: white; border-bottom: 2px solid var(--border); display: flex; overflow-x: auto; padding: 0 12px; scrollbar-width: none; position: sticky; top: 68px; z-index: 90; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-  .tab-nav::-webkit-scrollbar { display: none; }
-  .tab-btn { flex-shrink: 0; background: none; border: none; border-bottom: 3px solid transparent; padding: 15px 16px 12px; font-family: 'Noto Sans KR', sans-serif; font-size: var(--fs-sm); font-weight: 700; color: #888; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: all 0.18s; white-space: nowrap; margin-bottom: -2px; }
-  .tab-btn:hover { color: var(--red); }
-  .tab-btn.active { color: var(--red-dark); border-bottom-color: var(--red-dark); }
-  .tab-icon { font-size: 18px; }
+  .tab-nav{background:white;border-bottom:2px solid var(--border);display:flex;justify-content:center;overflow-x:auto;padding:0 12px;scrollbar-width:none;position:sticky;top:68px;z-index:90;box-shadow:0 2px 8px rgba(0,0,0,0.06);}
+  .tab-nav::-webkit-scrollbar{display:none;}
+  .tab-btn{flex-shrink:0;background:none;border:none;border-bottom:3px solid transparent;padding:15px 16px 12px;font-family:'Noto Sans KR',sans-serif;font-size:var(--fs-sm);font-weight:700;color:#888;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .18s;white-space:nowrap;margin-bottom:-2px;}
+  .tab-btn:hover{color:var(--red);}
+  .tab-btn.active{color:var(--red-dark);border-bottom-color:var(--red-dark);}
+  .tab-icon{font-size:18px;}
 
   /* MAIN */
-  .main { max-width: 860px; margin: 0 auto; padding: 22px 16px 60px; }
-  .tab-panel { display: none; }
-  .tab-panel.active { display: block; animation: fadeIn 0.2s ease; }
-  @keyframes fadeIn { from { opacity:0; transform:translateY(7px); } to { opacity:1; transform:none; } }
+  .main{max-width:860px;margin:0 auto;padding:22px 16px 60px;}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;animation:fadeIn .2s ease;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
 
   /* SECTION HEADER */
-  .sec-hd { display: flex; align-items: center; gap: 10px; margin: 28px 0 16px; }
-  .sec-hd:first-child { margin-top: 0; }
-  .sec-hd span { font-size: var(--fs-lg); font-weight: 900; white-space: nowrap; }
-  .sec-line { flex: 1; height: 2px; background: var(--border); border-radius: 2px; }
+  .sec-hd{display:flex;align-items:center;gap:10px;margin:28px 0 16px;}
+  .sec-hd:first-child{margin-top:0;}
+  .sec-hd span{font-size:var(--fs-lg);font-weight:900;white-space:nowrap;}
+  .sec-line{flex:1;height:2px;background:var(--border);border-radius:2px;}
 
   /* INFO BOX */
-  .info-box { border-radius: 10px; padding: 16px 18px; margin-bottom: 16px; border-left: 5px solid; font-size: var(--fs-base); }
-  .info-box.red   { background: #fdf2f2; border-color: var(--red); }
-  .info-box.orange{ background: var(--orange-light); border-color: var(--orange); }
-  .info-box.blue  { background: var(--blue-light); border-color: var(--blue-mid); }
-  .info-box.green { background: var(--green-light); border-color: var(--green); }
-  .info-box h4 { font-size: var(--fs-base); font-weight: 700; margin-bottom: 9px; }
-  .info-box.red h4   { color: var(--red-dark); }
-  .info-box.orange h4{ color: #a04000; }
-  .info-box.blue h4  { color: var(--blue); }
-  .info-box.green h4 { color: var(--green); }
-  .info-box ul { padding-left: 20px; }
-  .info-box li { margin-bottom: 5px; }
+  .info-box{border-radius:10px;padding:16px 18px;margin-bottom:16px;border-left:5px solid;font-size:var(--fs-base);}
+  .info-box.red{background:#fdf2f2;border-color:var(--red);}
+  .info-box.orange{background:var(--orange-light);border-color:var(--orange);}
+  .info-box.blue{background:var(--blue-light);border-color:var(--blue-mid);}
+  .info-box.green{background:var(--green-light);border-color:var(--green);}
+  .info-box h4{font-size:var(--fs-base);font-weight:700;margin-bottom:9px;}
+  .info-box.red h4{color:var(--red-dark);}
+  .info-box.orange h4{color:#a04000;}
+  .info-box.blue h4{color:var(--blue);}
+  .info-box.green h4{color:var(--green);}
+  .info-box ul{padding-left:20px;}
+  .info-box li{margin-bottom:5px;}
 
-  /* TIP BOX */
-  .tip-box { background: #fffde7; border: 1px solid #ffe082; border-radius: 8px; padding: 12px 16px; font-size: var(--fs-sm); color: #6d4c00; margin-bottom: 16px; }
+  /* PAGE FOOTER */
+  .page-footer{text-align:right;font-size:11px;color:#d8dbe0;margin-top:40px;padding-top:10px;border-top:1px solid #eee;}
 
-  /* ─── TAB 1: CHECKLIST ─── */
-  .progress-wrap { margin-bottom: 22px; }
-  .progress-label { font-size: var(--fs-sm); font-weight: 700; color: var(--gray); margin-bottom: 7px; display: flex; justify-content: space-between; }
-  .progress-bar-bg { height: 26px; background: var(--gray-light); border-radius: 13px; overflow: hidden; }
-  .progress-bar-fill { height: 100%; background: linear-gradient(90deg,#27ae60,#2ecc71); border-radius: 13px; width: 0%; transition: width 0.35s ease; display: flex; align-items: center; justify-content: flex-end; padding-right: 12px; }
-  .progress-text { font-size: var(--fs-xs); font-weight: 700; color: white; font-family: 'IBM Plex Mono', monospace; }
-  .task-item { background: white; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 12px; overflow: hidden; transition: box-shadow 0.15s; }
-  .task-item:hover { box-shadow: var(--shadow); }
-  .task-item.done { background: #f9fef9; border-color: #a9dfbf; opacity: 0.82; }
-  .task-header { display: flex; align-items: flex-start; gap: 14px; padding: 15px 16px; cursor: pointer; user-select: none; }
-  .task-check { width: 24px; height: 24px; accent-color: var(--green); cursor: pointer; flex-shrink: 0; margin-top: 3px; }
-  .task-info { flex: 1; }
-  .task-name { font-size: var(--fs-lg); font-weight: 700; color: var(--text); line-height: 1.4; }
-  .task-item.done .task-name { text-decoration: line-through; color: #aaa; }
-  .task-role { font-size: var(--fs-sm); color: var(--red); font-weight: 600; margin-top: 4px; }
-  .toggle-btn { background: var(--gray-light); border: none; border-radius: 6px; padding: 6px 12px; font-size: var(--fs-sm); font-family: 'Noto Sans KR', sans-serif; font-weight: 600; color: var(--gray); cursor: pointer; flex-shrink: 0; transition: background 0.15s; }
-  .toggle-btn:hover { background: var(--border); }
-  .task-detail { display: none; padding: 0 16px 15px 54px; font-size: var(--fs-base); color: #555; border-top: 1px solid var(--gray-light); background: #fafafa; }
-  .task-detail.show { display: block; }
-  .task-detail ul { padding-left: 18px; margin-top: 10px; }
-  .task-detail li { margin-bottom: 6px; }
+  /* ── TAB 0: 홈 ── */
+  .home-school-banner{background:white;border:2px solid var(--border);border-radius:14px;padding:20px 22px;margin-bottom:22px;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+  .home-school-name{font-size:22px;font-weight:900;color:var(--text);}
+  .home-school-date{font-size:var(--fs-sm);color:var(--gray);}
+  .setup-btn{background:var(--blue-mid);color:white;border:none;border-radius:8px;padding:10px 18px;font-size:var(--fs-sm);font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:background .15s;}
+  .setup-btn:hover{background:var(--blue);}
 
-  /* ─── TAB 2: 응급이송 — 상황분기 ─── */
-  .branch-section { background: white; border: 2px solid var(--border); border-radius: 14px; padding: 20px; margin-bottom: 20px; box-shadow: var(--shadow); }
-  .branch-q { font-size: var(--fs-lg); font-weight: 700; margin-bottom: 14px; color: var(--text); }
-  .branch-btns { display: flex; gap: 10px; flex-wrap: wrap; }
-  .branch-btn { flex: 1; min-width: 140px; padding: 14px 10px; border-radius: 10px; border: 2px solid; font-size: var(--fs-base); font-weight: 700; cursor: pointer; font-family: 'Noto Sans KR', sans-serif; transition: all 0.18s; background: white; text-align: center; line-height: 1.4; }
-  .branch-btn.red-btn   { border-color: var(--red);   color: var(--red-dark); }
-  .branch-btn.blue-btn  { border-color: var(--blue-mid); color: var(--blue); }
-  .branch-btn.green-btn { border-color: var(--green);  color: var(--green); }
-  .branch-btn.sel-red   { background: var(--red-dark); color: white; border-color: var(--red-dark); }
-  .branch-btn.sel-blue  { background: var(--blue-mid); color: white; border-color: var(--blue-mid); }
-  .branch-btn.sel-green { background: var(--green);    color: white; border-color: var(--green); }
-  .my-tasks-box { background: #fff8e1; border: 2px solid #f9a825; border-radius: 12px; padding: 20px; margin-bottom: 20px; display: none; }
-  .my-tasks-box.show { display: block; animation: fadeIn 0.22s ease; }
-  .my-tasks-title { font-size: var(--fs-xl); font-weight: 900; color: #e65100; margin-bottom: 14px; }
-  .my-task-item { display: flex; gap: 12px; align-items: flex-start; background: white; border-radius: 8px; padding: 12px 14px; margin-bottom: 10px; border-left: 4px solid #f9a825; font-size: var(--fs-base); }
-  .my-task-num { font-size: var(--fs-lg); font-weight: 900; color: var(--orange); font-family: 'IBM Plex Mono', monospace; flex-shrink: 0; }
-  .full-table-section { margin-top: 10px; }
-  .resp-table-wrap { overflow-x: auto; border-radius: 10px; box-shadow: var(--shadow); margin-bottom: 16px; }
-  table { width: 100%; border-collapse: collapse; background: white; font-size: var(--fs-base); }
-  th { background: var(--blue); color: white; padding: 12px 14px; text-align: left; font-size: var(--fs-sm); font-weight: 700; }
-  td { padding: 12px 14px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.6; }
-  tr:last-child td { border-bottom: none; }
-  tr:nth-child(even) td { background: #f7f9fb; }
-  .role-cell { font-weight: 700; color: var(--blue-mid); white-space: nowrap; font-size: var(--fs-sm); }
-  .urgent { color: var(--red); font-weight: 700; }
-  .normal-c { color: var(--blue); font-weight: 700; }
+  .home-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:22px;}
+  @media(max-width:520px){.home-grid{grid-template-columns:1fr;}}
+  .home-card{background:white;border:2px solid var(--border);border-radius:14px;padding:22px 20px;cursor:pointer;transition:box-shadow .15s,transform .12s,border-color .15s;display:flex;flex-direction:column;gap:10px;box-shadow:var(--shadow);}
+  .home-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px);border-color:#bbb;}
+  .home-card-icon{font-size:36px;}
+  .home-card-title{font-size:var(--fs-xl);font-weight:900;line-height:1.3;}
+  .home-card-desc{font-size:var(--fs-sm);color:var(--gray);line-height:1.6;}
+  .home-card.c-red{border-left:6px solid var(--red);}
+  .home-card.c-blue{border-left:6px solid var(--blue-mid);}
+  .home-card.c-orange{border-left:6px solid var(--orange);}
+  .home-card.c-green{border-left:6px solid var(--green);}
 
-  /* ─── TAB 3: 중대산업재해 — 타이머+체크 ─── */
-  .timer-box { background: var(--red-dark); color: white; border-radius: 12px; padding: 18px 20px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
-  .timer-label { font-size: var(--fs-base); font-weight: 700; opacity: 0.9; }
-  .timer-display { font-size: 32px; font-weight: 900; font-family: 'IBM Plex Mono', monospace; letter-spacing: 2px; }
-  .timer-sub { font-size: var(--fs-xs); opacity: 0.75; margin-top: 2px; }
-  .timer-btns { display: flex; gap: 8px; flex-wrap: wrap; }
-  .timer-btn { background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.4); color: white; padding: 9px 16px; border-radius: 8px; font-size: var(--fs-sm); font-weight: 700; cursor: pointer; font-family: 'Noto Sans KR', sans-serif; transition: background 0.15s; }
-  .timer-btn:hover { background: rgba(255,255,255,0.32); }
-  .incident-step { background: white; border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; overflow: hidden; box-shadow: var(--shadow); }
-  .incident-step-head { display: flex; align-items: center; gap: 14px; padding: 16px 18px; cursor: pointer; }
-  .incident-step-head:hover { background: #fafafa; }
-  .step-check { width: 26px; height: 26px; accent-color: var(--green); cursor: pointer; flex-shrink: 0; }
-  .step-num-badge { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: var(--fs-base); font-weight: 900; font-family: 'IBM Plex Mono', monospace; flex-shrink: 0; }
-  .snb-red    { background: #fde8e8; color: var(--red-dark); }
-  .snb-orange { background: var(--orange-light); color: #a04000; }
-  .snb-blue   { background: var(--blue-light);   color: var(--blue); }
-  .snb-green  { background: var(--green-light);  color: var(--green); }
-  .step-head-info { flex: 1; }
-  .step-head-title { font-size: var(--fs-lg); font-weight: 700; }
-  .step-head-sub   { font-size: var(--fs-sm); color: #888; margin-top: 3px; }
-  .step-time-badge { font-size: var(--fs-xs); background: var(--green-light); color: var(--green); font-weight: 700; padding: 4px 10px; border-radius: 20px; font-family: 'IBM Plex Mono', monospace; white-space: nowrap; }
-  .step-body-detail { display: none; padding: 0 18px 16px 90px; font-size: var(--fs-base); color: #555; border-top: 1px solid var(--gray-light); background: #fafafa; }
-  .step-body-detail.show { display: block; }
-  .step-body-detail ul { padding-left: 18px; margin-top: 10px; }
-  .step-body-detail li { margin-bottom: 6px; line-height: 1.6; }
-  .step-memo { width: 100%; margin-top: 10px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: var(--fs-sm); font-family: 'Noto Sans KR', sans-serif; resize: vertical; min-height: 60px; }
-  .incident-step.done-step { background: #f9fef9; border-color: #a9dfbf; }
-  .incident-step.done-step .step-head-title { text-decoration: line-through; color: #aaa; }
+  .home-contacts{background:white;border:1px solid var(--border);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow);margin-bottom:22px;}
+  .home-contacts h3{font-size:var(--fs-lg);font-weight:900;margin-bottom:14px;color:var(--text);}
+  .contact-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--gray-light);gap:10px;flex-wrap:wrap;}
+  .contact-row:last-child{border-bottom:none;padding-bottom:0;}
+  .contact-row-label{font-size:var(--fs-sm);color:var(--gray);font-weight:600;min-width:80px;}
+  .contact-row-num{font-size:22px;font-weight:900;font-family:'IBM Plex Mono',monospace;color:var(--red-dark);}
+  .contact-row-note{font-size:var(--fs-xs);color:#999;}
+  .contact-input-field{flex:1;min-width:160px;padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-size:var(--fs-base);font-family:'IBM Plex Mono',monospace;font-weight:700;color:var(--red-dark);background:#fafafa;}
+  .contact-input-field:focus{outline:none;border-color:var(--blue-mid);background:white;}
+  .contact-save-btn{background:var(--green);color:white;border:none;border-radius:8px;padding:8px 16px;font-size:var(--fs-sm);font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;}
+  .contact-save-btn:hover{background:#1a7a3e;}
 
-  /* 보고서 생성 */
-  .report-btn { display: block; width: 100%; margin-top: 20px; padding: 18px; background: var(--blue); color: white; border: none; border-radius: 12px; font-size: var(--fs-lg); font-weight: 900; cursor: pointer; font-family: 'Noto Sans KR', sans-serif; transition: background 0.15s; text-align: center; }
-  .report-btn:hover { background: var(--blue-mid); }
-  .report-output { display: none; margin-top: 16px; background: white; border: 2px solid var(--border); border-radius: 12px; padding: 22px; font-size: var(--fs-base); line-height: 1.8; box-shadow: var(--shadow); }
-  .report-output.show { display: block; animation: fadeIn 0.2s ease; }
-  .report-output h3 { font-size: var(--fs-xl); font-weight: 900; margin-bottom: 16px; color: var(--red-dark); border-bottom: 2px solid var(--border); padding-bottom: 10px; }
-  .report-row { margin-bottom: 10px; display: flex; gap: 8px; flex-wrap: wrap; }
-  .report-key { font-weight: 700; color: var(--blue); min-width: 120px; flex-shrink: 0; }
-  .report-val { flex: 1; }
-  .copy-btn { margin-top: 14px; padding: 12px 20px; background: var(--green); color: white; border: none; border-radius: 8px; font-size: var(--fs-base); font-weight: 700; cursor: pointer; font-family: 'Noto Sans KR', sans-serif; }
-  .copy-btn:hover { background: #1a7a3e; }
+  /* 설정 모달 */
+  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:200;align-items:center;justify-content:center;}
+  .modal-overlay.show{display:flex;}
+  .modal-box{background:white;border-radius:16px;padding:28px;max-width:460px;width:90%;box-shadow:var(--shadow-lg);}
+  .modal-title{font-size:var(--fs-xl);font-weight:900;margin-bottom:6px;}
+  .modal-sub{font-size:var(--fs-sm);color:var(--gray);margin-bottom:20px;}
+  .modal-field{margin-bottom:14px;}
+  .modal-field label{display:block;font-size:var(--fs-sm);font-weight:700;color:var(--gray);margin-bottom:5px;}
+  .modal-field input{width:100%;padding:11px 13px;border:1px solid var(--border);border-radius:8px;font-size:var(--fs-base);font-family:'Noto Sans KR',sans-serif;}
+  .modal-field input:focus{outline:none;border-color:var(--blue-mid);}
+  .modal-btns{display:flex;gap:10px;justify-content:flex-end;margin-top:20px;}
+  .modal-save{background:var(--red-dark);color:white;border:none;border-radius:8px;padding:11px 22px;font-size:var(--fs-base);font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;}
+  .modal-cancel{background:var(--gray-light);color:var(--gray);border:none;border-radius:8px;padding:11px 22px;font-size:var(--fs-base);font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;}
 
-  /* ─── TAB 4: 위험성 평가 입력표 ─── */
-  .risk-kind-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 20px; }
-  @media(max-width:560px){ .risk-kind-grid { grid-template-columns: 1fr; } }
-  .risk-kind-card { border-radius: 10px; overflow: hidden; box-shadow: var(--shadow); }
-  .risk-kind-head { padding: 12px 14px; font-size: var(--fs-base); font-weight: 700; color: white; }
-  .rk-red  { background: var(--red-dark); }
-  .rk-ora  { background: var(--orange); }
-  .rk-blue { background: var(--blue); }
-  .risk-kind-body { background: white; padding: 12px 14px; font-size: var(--fs-sm); color: #555; line-height: 1.65; border: 1px solid var(--border); border-top: none; border-radius: 0 0 10px 10px; }
-  .risk-kind-body ul { padding-left: 16px; }
-  .risk-kind-body li { margin-bottom: 4px; }
+  /* ── TAB 1: CHECKLIST ── */
+  .progress-wrap{margin-bottom:22px;}
+  .progress-label{font-size:var(--fs-sm);font-weight:700;color:var(--gray);margin-bottom:7px;display:flex;justify-content:space-between;}
+  .progress-bar-bg{height:26px;background:var(--gray-light);border-radius:13px;overflow:hidden;}
+  .progress-bar-fill{height:100%;background:linear-gradient(90deg,#27ae60,#2ecc71);border-radius:13px;width:0%;transition:width .35s ease;display:flex;align-items:center;justify-content:flex-end;padding-right:12px;}
+  .progress-text{font-size:var(--fs-xs);font-weight:700;color:white;font-family:'IBM Plex Mono',monospace;}
+  .task-item{background:white;border:1px solid var(--border);border-radius:10px;margin-bottom:12px;overflow:hidden;transition:box-shadow .15s;}
+  .task-item:hover{box-shadow:var(--shadow);}
+  .task-item.done{background:#f9fef9;border-color:#a9dfbf;opacity:.82;}
+  .task-header{display:flex;align-items:flex-start;gap:14px;padding:15px 16px;cursor:pointer;user-select:none;}
+  .task-check{width:24px;height:24px;accent-color:var(--green);cursor:pointer;flex-shrink:0;margin-top:3px;}
+  .task-info{flex:1;}
+  .task-name{font-size:var(--fs-lg);font-weight:700;color:var(--text);line-height:1.4;}
+  .task-item.done .task-name{text-decoration:line-through;color:#aaa;}
+  .task-role{font-size:var(--fs-sm);color:var(--red);font-weight:600;margin-top:4px;}
+  .toggle-btn{background:var(--gray-light);border:none;border-radius:6px;padding:6px 12px;font-size:var(--fs-sm);font-family:'Noto Sans KR',sans-serif;font-weight:600;color:var(--gray);cursor:pointer;flex-shrink:0;transition:background .15s;}
+  .toggle-btn:hover{background:var(--border);}
+  .task-detail{display:none;padding:0 16px 15px 54px;font-size:var(--fs-base);color:#555;border-top:1px solid var(--gray-light);background:#fafafa;}
+  .task-detail.show{display:block;}
+  .task-detail ul{padding-left:18px;margin-top:10px;}
+  .task-detail li{margin-bottom:6px;}
 
-  .eval-form { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 20px; box-shadow: var(--shadow); margin-bottom: 16px; }
-  .eval-form h4 { font-size: var(--fs-lg); font-weight: 700; margin-bottom: 16px; color: var(--blue); }
-  .eval-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
-  @media(max-width:500px){ .eval-row { grid-template-columns: 1fr; } }
-  .eval-field label { display: block; font-size: var(--fs-sm); font-weight: 700; color: var(--gray); margin-bottom: 5px; }
-  .eval-field input, .eval-field select, .eval-field textarea {
-    width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px;
-    font-size: var(--fs-base); font-family: 'Noto Sans KR', sans-serif; color: var(--text);
-    background: #fafafa; transition: border 0.15s;
-  }
-  .eval-field input:focus, .eval-field select:focus, .eval-field textarea:focus { outline: none; border-color: var(--blue-mid); background: white; }
-  .eval-field.full { grid-column: 1/-1; }
-  .eval-field textarea { min-height: 64px; resize: vertical; }
-  .risk-score-box { background: var(--gray-light); border-radius: 10px; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; flex-wrap: wrap; gap: 10px; }
-  .risk-score-label { font-size: var(--fs-base); font-weight: 700; color: var(--text); }
-  .risk-score-num { font-size: 32px; font-weight: 900; font-family: 'IBM Plex Mono', monospace; }
-  .rs-low    { color: var(--green); }
-  .rs-mid    { color: var(--orange); }
-  .rs-high   { color: var(--red-dark); }
-  .risk-level-text { font-size: var(--fs-sm); font-weight: 700; padding: 5px 14px; border-radius: 20px; }
-  .rl-low    { background: var(--green-light);   color: var(--green); }
-  .rl-mid    { background: var(--orange-light);  color: #a04000; }
-  .rl-high   { background: #fde8e8; color: var(--red-dark); }
-  .add-eval-btn { padding: 14px 20px; background: var(--blue-mid); color: white; border: none; border-radius: 10px; font-size: var(--fs-base); font-weight: 700; cursor: pointer; font-family: 'Noto Sans KR', sans-serif; transition: background 0.15s; }
-  .add-eval-btn:hover { background: var(--blue); }
-  .eval-list { margin-top: 20px; }
-  .eval-card { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin-bottom: 10px; box-shadow: var(--shadow); display: flex; gap: 14px; align-items: flex-start; }
-  .eval-card-score { width: 52px; height: 52px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 900; font-family: 'IBM Plex Mono', monospace; flex-shrink: 0; }
-  .ecs-low  { background: var(--green-light);  color: var(--green); }
-  .ecs-mid  { background: var(--orange-light); color: #a04000; }
-  .ecs-high { background: #fde8e8; color: var(--red-dark); }
-  .eval-card-body { flex: 1; }
-  .eval-card-title { font-size: var(--fs-base); font-weight: 700; margin-bottom: 4px; }
-  .eval-card-meta  { font-size: var(--fs-sm); color: #888; line-height: 1.6; }
-  .eval-del-btn { background: none; border: none; font-size: 18px; cursor: pointer; color: #bbb; padding: 4px; }
-  .eval-del-btn:hover { color: var(--red); }
+  /* ── TAB 2: 응급이송 ── */
+  .branch-section{background:white;border:2px solid var(--border);border-radius:14px;padding:20px;margin-bottom:16px;box-shadow:var(--shadow);}
+  .branch-q{font-size:var(--fs-lg);font-weight:700;margin-bottom:14px;color:var(--text);}
+  .branch-btns{display:flex;gap:10px;flex-wrap:wrap;}
+  .branch-btn{flex:1;min-width:140px;padding:14px 10px;border-radius:10px;border:2px solid;font-size:var(--fs-base);font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all .18s;background:white;text-align:center;line-height:1.4;}
+  .branch-btn.red-btn{border-color:var(--red);color:var(--red-dark);}
+  .branch-btn.blue-btn{border-color:var(--blue-mid);color:var(--blue);}
+  .branch-btn.green-btn{border-color:var(--green);color:var(--green);}
+  .branch-btn.sel-red{background:var(--red-dark);color:white;border-color:var(--red-dark);}
+  .branch-btn.sel-blue{background:var(--blue-mid);color:white;border-color:var(--blue-mid);}
+  .branch-btn.sel-green{background:var(--green);color:white;border-color:var(--green);}
+  .my-tasks-box{background:#fff8e1;border:2px solid #f9a825;border-radius:12px;padding:20px;margin-bottom:16px;display:none;}
+  .my-tasks-box.show{display:block;animation:fadeIn .22s ease;}
+  .my-tasks-title{font-size:var(--fs-xl);font-weight:900;color:#e65100;margin-bottom:14px;}
+  .my-task-item{display:flex;gap:12px;align-items:flex-start;background:white;border-radius:8px;padding:12px 14px;margin-bottom:10px;border-left:4px solid #f9a825;font-size:var(--fs-base);}
+  .my-task-num{font-size:var(--fs-lg);font-weight:900;color:var(--orange);font-family:'IBM Plex Mono',monospace;flex-shrink:0;}
 
-  /* 단계 설명 */
-  .steps-grid { display: grid; gap: 10px; }
-  .step-card2 { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; display: flex; gap: 14px; box-shadow: var(--shadow); }
-  .sc2-num { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: var(--fs-base); font-weight: 900; font-family: 'IBM Plex Mono', monospace; flex-shrink: 0; }
-  .sc2-num.blue  { background: var(--blue-light);  color: var(--blue); }
-  .sc2-body { flex: 1; }
-  .sc2-title { font-size: var(--fs-base); font-weight: 700; margin-bottom: 5px; }
-  .sc2-desc  { font-size: var(--fs-sm); color: #555; line-height: 1.6; }
+  /* 핵심 강조 박스 */
+  .key-box{background:#fff3cd;border:2px solid #f0ad4e;border-radius:12px;padding:18px 20px;margin-bottom:16px;}
+  .key-box-title{font-size:var(--fs-lg);font-weight:900;color:#7d4e00;margin-bottom:14px;}
+  .key-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  @media(max-width:480px){.key-cards{grid-template-columns:1fr;}}
+  .key-card{background:white;border-radius:10px;padding:14px 16px;}
+  .key-card-head{font-size:var(--fs-base);font-weight:900;margin-bottom:8px;}
+  .key-card-who{font-size:var(--fs-base);font-weight:700;color:var(--text);}
+  .key-card-note{font-size:var(--fs-sm);color:#555;margin-top:4px;}
+  .key-card-warn{font-size:var(--fs-sm);color:var(--red);margin-top:4px;font-weight:600;}
 
-  /* ─── TAB 5: 비상연락망 ─── */
-  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
-  @media(max-width:480px){ .contact-grid { grid-template-columns: 1fr; } }
-  .contact-card { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 16px; box-shadow: var(--shadow); }
-  .contact-card h4 { font-size: var(--fs-base); font-weight: 700; margin-bottom: 10px; color: var(--blue); }
-  .contact-item { margin-bottom: 8px; }
-  .contact-label { font-size: var(--fs-xs); color: #888; font-weight: 600; }
-  .contact-num   { font-size: var(--fs-xl); font-weight: 700; font-family: 'IBM Plex Mono', monospace; color: var(--red-dark); }
-  .contact-note  { font-size: var(--fs-xs); color: #777; }
+  /* 전체표 */
+  .resp-table-wrap{overflow-x:auto;border-radius:10px;box-shadow:var(--shadow);margin-bottom:16px;}
+  table{width:100%;border-collapse:collapse;background:white;font-size:var(--fs-base);}
+  th{background:var(--blue);color:white;padding:12px 14px;text-align:left;font-size:var(--fs-sm);font-weight:700;}
+  td{padding:12px 14px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.6;}
+  tr:last-child td{border-bottom:none;}
+  tr:nth-child(even) td{background:#f7f9fb;}
+  .role-cell{font-weight:700;color:var(--blue-mid);white-space:nowrap;font-size:var(--fs-sm);}
+  .urgent{color:var(--red);font-weight:700;}
+  .normal-c{color:var(--blue);font-weight:700;}
 
-  .step-card { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; display: flex; gap: 14px; box-shadow: var(--shadow); margin-bottom: 10px; }
-  .step-num  { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: var(--fs-base); font-weight: 900; font-family: 'IBM Plex Mono', monospace; flex-shrink: 0; }
-  .step-num.red    { background: #fde8e8; color: var(--red-dark); }
-  .step-num.orange { background: var(--orange-light); color: #a04000; }
-  .step-num.blue   { background: var(--blue-light);   color: var(--blue); }
-  .step-num.green  { background: var(--green-light);  color: var(--green); }
-  .step-body2 { flex: 1; }
-  .step-title2 { font-size: var(--fs-base); font-weight: 700; margin-bottom: 5px; }
-  .step-desc2  { font-size: var(--fs-sm); color: #555; line-height: 1.6; }
-  .step-badge  { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: var(--fs-xs); font-weight: 700; margin-bottom: 5px; }
-  .badge-red    { background: #fde8e8; color: var(--red-dark); }
-  .badge-blue   { background: var(--blue-light);   color: var(--blue); }
-  .badge-orange { background: var(--orange-light); color: #a04000; }
-  .badge-green  { background: var(--green-light);  color: var(--green); }
-  .form-links { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  @media(max-width:480px){ .form-links { grid-template-columns: 1fr; } }
-  .form-link-card { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 14px; display: flex; align-items: center; gap: 12px; box-shadow: var(--shadow); transition: box-shadow 0.15s, transform 0.12s; }
-  .form-link-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
-  .form-icon { font-size: 28px; }
-  .form-info h4 { font-size: var(--fs-sm); font-weight: 700; }
-  .form-info p  { font-size: var(--fs-xs); color: #888; margin-top: 2px; }
+  /* ── TAB 3: 중대산업재해 ── */
+  .timer-box{background:var(--red-dark);color:white;border-radius:12px;padding:18px 20px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+  .timer-label{font-size:var(--fs-base);font-weight:700;opacity:.9;}
+  .timer-display{font-size:32px;font-weight:900;font-family:'IBM Plex Mono',monospace;letter-spacing:2px;}
+  .timer-sub{font-size:var(--fs-xs);opacity:.75;margin-top:2px;}
+  .timer-btns{display:flex;gap:8px;flex-wrap:wrap;}
+  .timer-btn{background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:white;padding:9px 16px;border-radius:8px;font-size:var(--fs-sm);font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:background .15s;}
+  .timer-btn:hover{background:rgba(255,255,255,.32);}
+  .incident-step{background:white;border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden;box-shadow:var(--shadow);}
+  .incident-step-head{display:flex;align-items:center;gap:14px;padding:16px 18px;cursor:pointer;}
+  .incident-step-head:hover{background:#fafafa;}
+  .step-check{width:26px;height:26px;accent-color:var(--green);cursor:pointer;flex-shrink:0;}
+  .step-num-badge{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:var(--fs-base);font-weight:900;font-family:'IBM Plex Mono',monospace;flex-shrink:0;}
+  .snb-red{background:#fde8e8;color:var(--red-dark);}
+  .snb-orange{background:var(--orange-light);color:#a04000;}
+  .snb-blue{background:var(--blue-light);color:var(--blue);}
+  .snb-green{background:var(--green-light);color:var(--green);}
+  .step-head-info{flex:1;}
+  .step-head-title{font-size:var(--fs-lg);font-weight:700;}
+  .step-head-sub{font-size:var(--fs-sm);color:#888;margin-top:3px;}
+  .step-time-badge{font-size:var(--fs-xs);background:var(--green-light);color:var(--green);font-weight:700;padding:4px 10px;border-radius:20px;font-family:'IBM Plex Mono',monospace;white-space:nowrap;}
+  .step-body-detail{display:none;padding:0 18px 16px 90px;font-size:var(--fs-base);color:#555;border-top:1px solid var(--gray-light);background:#fafafa;}
+  .step-body-detail.show{display:block;}
+  .step-body-detail ul{padding-left:18px;margin-top:10px;}
+  .step-body-detail li{margin-bottom:6px;line-height:1.6;}
+  .step-memo{width:100%;margin-top:10px;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:var(--fs-sm);font-family:'Noto Sans KR',sans-serif;resize:vertical;min-height:60px;}
+  .incident-step.done-step{background:#f9fef9;border-color:#a9dfbf;}
+  .incident-step.done-step .step-head-title{text-decoration:line-through;color:#aaa;}
+  .report-btn{display:block;width:100%;margin-top:20px;padding:18px;background:var(--blue);color:white;border:none;border-radius:12px;font-size:var(--fs-lg);font-weight:900;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:background .15s;text-align:center;}
+  .report-btn:hover{background:var(--blue-mid);}
+  .report-output{display:none;margin-top:16px;background:white;border:2px solid var(--border);border-radius:12px;padding:22px;font-size:var(--fs-base);line-height:1.8;box-shadow:var(--shadow);}
+  .report-output.show{display:block;animation:fadeIn .2s ease;}
+  .report-output h3{font-size:var(--fs-xl);font-weight:900;margin-bottom:16px;color:var(--red-dark);border-bottom:2px solid var(--border);padding-bottom:10px;}
+  .report-row{margin-bottom:10px;display:flex;gap:8px;flex-wrap:wrap;}
+  .report-key{font-weight:700;color:var(--blue);min-width:120px;flex-shrink:0;}
+  .report-val{flex:1;}
+  .copy-btn{margin-top:14px;padding:12px 20px;background:var(--green);color:white;border:none;border-radius:8px;font-size:var(--fs-base);font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;}
+  .copy-btn:hover{background:#1a7a3e;}
+  .step-card{background:white;border:1px solid var(--border);border-radius:10px;padding:16px 18px;display:flex;gap:14px;box-shadow:var(--shadow);margin-bottom:10px;}
+  .step-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:var(--fs-base);font-weight:900;font-family:'IBM Plex Mono',monospace;flex-shrink:0;}
+  .step-num.red{background:#fde8e8;color:var(--red-dark);}
+  .step-num.orange{background:var(--orange-light);color:#a04000;}
+  .step-num.blue{background:var(--blue-light);color:var(--blue);}
+  .step-num.green{background:var(--green-light);color:var(--green);}
+  .step-body2{flex:1;}
+  .step-title2{font-size:var(--fs-base);font-weight:700;margin-bottom:5px;}
+  .step-desc2{font-size:var(--fs-sm);color:#555;line-height:1.6;}
+  .step-badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:var(--fs-xs);font-weight:700;margin-bottom:5px;}
+  .badge-red{background:#fde8e8;color:var(--red-dark);}
+  .badge-blue{background:var(--blue-light);color:var(--blue);}
+  .badge-orange{background:var(--orange-light);color:#a04000;}
+  .badge-green{background:var(--green-light);color:var(--green);}
 
-  /* FOOTER */
-  .page-footer { text-align: right; font-size: 11px; color: #d0d3d7; margin-top: 36px; padding-top: 12px; border-top: 1px solid #eee; }
+  /* ── TAB 4: 위험성 평가 ── */
+  .risk-kind-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px;}
+  @media(max-width:560px){.risk-kind-grid{grid-template-columns:1fr;}}
+  .risk-kind-card{border-radius:10px;overflow:hidden;box-shadow:var(--shadow);}
+  .risk-kind-head{padding:12px 14px;font-size:var(--fs-base);font-weight:700;color:white;}
+  .rk-red{background:var(--red-dark);}
+  .rk-ora{background:var(--orange);}
+  .rk-blue{background:var(--blue);}
+  .risk-kind-body{background:white;padding:12px 14px;font-size:var(--fs-sm);color:#555;line-height:1.65;border:1px solid var(--border);border-top:none;border-radius:0 0 10px 10px;}
+  .risk-kind-body ul{padding-left:16px;}
+  .risk-kind-body li{margin-bottom:4px;}
+  .eval-form{background:white;border:1px solid var(--border);border-radius:12px;padding:20px;box-shadow:var(--shadow);margin-bottom:16px;}
+  .eval-form h4{font-size:var(--fs-lg);font-weight:700;margin-bottom:16px;color:var(--blue);}
+  .eval-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
+  @media(max-width:500px){.eval-row{grid-template-columns:1fr;}}
+  .eval-field label{display:block;font-size:var(--fs-sm);font-weight:700;color:var(--gray);margin-bottom:5px;}
+  .eval-field input,.eval-field select,.eval-field textarea{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:var(--fs-base);font-family:'Noto Sans KR',sans-serif;color:var(--text);background:#fafafa;transition:border .15s;}
+  .eval-field input:focus,.eval-field select:focus,.eval-field textarea:focus{outline:none;border-color:var(--blue-mid);background:white;}
+  .eval-field.full{grid-column:1/-1;}
+  .eval-field textarea{min-height:64px;resize:vertical;}
+  .risk-score-box{background:var(--gray-light);border-radius:10px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px;}
+  .risk-score-label{font-size:var(--fs-base);font-weight:700;color:var(--text);}
+  .risk-score-num{font-size:32px;font-weight:900;font-family:'IBM Plex Mono',monospace;}
+  .rs-low{color:var(--green);}
+  .rs-mid{color:var(--orange);}
+  .rs-high{color:var(--red-dark);}
+  .risk-level-text{font-size:var(--fs-sm);font-weight:700;padding:5px 14px;border-radius:20px;}
+  .rl-low{background:var(--green-light);color:var(--green);}
+  .rl-mid{background:var(--orange-light);color:#a04000;}
+  .rl-high{background:#fde8e8;color:var(--red-dark);}
+  .add-eval-btn{padding:14px 20px;background:var(--blue-mid);color:white;border:none;border-radius:10px;font-size:var(--fs-base);font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:background .15s;}
+  .add-eval-btn:hover{background:var(--blue);}
+  .eval-list{margin-top:20px;}
+  .eval-card{background:white;border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:10px;box-shadow:var(--shadow);display:flex;gap:14px;align-items:flex-start;}
+  .eval-card-score{width:52px;height:52px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;font-family:'IBM Plex Mono',monospace;flex-shrink:0;}
+  .ecs-low{background:var(--green-light);color:var(--green);}
+  .ecs-mid{background:var(--orange-light);color:#a04000;}
+  .ecs-high{background:#fde8e8;color:var(--red-dark);}
+  .eval-card-body{flex:1;}
+  .eval-card-title{font-size:var(--fs-base);font-weight:700;margin-bottom:4px;}
+  .eval-card-meta{font-size:var(--fs-sm);color:#888;line-height:1.6;}
+  .eval-del-btn{background:none;border:none;font-size:18px;cursor:pointer;color:#bbb;padding:4px;}
+  .eval-del-btn:hover{color:var(--red);}
+  .steps-grid{display:grid;gap:10px;}
+  .step-card2{background:white;border:1px solid var(--border);border-radius:10px;padding:16px 18px;display:flex;gap:14px;box-shadow:var(--shadow);}
+  .sc2-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:var(--fs-base);font-weight:900;font-family:'IBM Plex Mono',monospace;flex-shrink:0;}
+  .sc2-num.blue{background:var(--blue-light);color:var(--blue);}
+  .sc2-body{flex:1;}
+  .sc2-title{font-size:var(--fs-base);font-weight:700;margin-bottom:5px;}
+  .sc2-desc{font-size:var(--fs-sm);color:#555;line-height:1.6;}
+
+  /* ── TAB 5: 비상연락망 ── */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+  @media(max-width:480px){.contact-grid{grid-template-columns:1fr;}}
+  .contact-card{background:white;border:1px solid var(--border);border-radius:12px;padding:16px;box-shadow:var(--shadow);}
+  .contact-card h4{font-size:var(--fs-base);font-weight:700;margin-bottom:10px;color:var(--blue);}
+  .contact-item{margin-bottom:8px;}
+  .contact-label{font-size:var(--fs-xs);color:#888;font-weight:600;}
+  .contact-num{font-size:var(--fs-xl);font-weight:700;font-family:'IBM Plex Mono',monospace;color:var(--red-dark);}
+  .contact-note{font-size:var(--fs-xs);color:#777;}
+  .contact-editable{font-size:var(--fs-xl);font-weight:700;font-family:'IBM Plex Mono',monospace;color:var(--red-dark);border:none;background:transparent;width:100%;padding:0;}
+  .contact-editable:focus{outline:1px dashed var(--blue-mid);background:#f0f7ff;border-radius:4px;padding:2px 4px;}
+  .form-links{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  @media(max-width:480px){.form-links{grid-template-columns:1fr;}}
+  .form-link-card{background:white;border:1px solid var(--border);border-radius:10px;padding:14px;display:flex;align-items:center;gap:12px;box-shadow:var(--shadow);transition:box-shadow .15s,transform .12s;}
+  .form-link-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px);}
+  .form-icon{font-size:28px;}
+  .form-info h4{font-size:var(--fs-sm);font-weight:700;}
+  .form-info p{font-size:var(--fs-xs);color:#888;margin-top:2px;}
 </style>
 </head>
 <body>
+
+<!-- 설정 모달 -->
+<div class="modal-overlay" id="setupModal">
+  <div class="modal-box">
+    <div class="modal-title">🏫 우리 학교 설정</div>
+    <div class="modal-sub">한 번만 입력하면 다음에 열어도 저장됩니다.<br>각 탭의 연락처와 학교명이 자동으로 반영됩니다.</div>
+    <div class="modal-field"><label>학교 이름</label><input type="text" id="cfg-name" placeholder="예: ○○초등학교"></div>
+    <div class="modal-field"><label>교육청 산업재해예방팀 전화번호</label><input type="text" id="cfg-edu" placeholder="예: 062-380-4887"></div>
+    <div class="modal-field"><label>서식 다운로드 사이트 주소</label><input type="text" id="cfg-site" placeholder="https://safe.gen.go.kr/"><div style="font-size:12px;color:#aaa;margin-top:4px;">기본값: https://safe.gen.go.kr/ (비워두면 기본값으로 초기화)</div></div>
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="closeSetup()">취소</button>
+      <button class="modal-save" onclick="saveSetup()">저장</button>
+    </div>
+  </div>
+</div>
 
 <header>
   <div class="header-left">
     <span class="header-icon">🏫</span>
     <div>
-      <div class="header-title">학교 안전 대응 지원 시스템</div>
+      <div class="header-title" onclick="goTab('tab0')">학교 안전 대응 지원 시스템</div>
       <div class="header-sub">긴급사안 · 응급환자 · 중대산업재해</div>
     </div>
   </div>
-  <div class="header-badge">V5 · 2026</div>
+  <button class="header-school" id="headerSchoolBtn" onclick="openSetup()">⚙️ 학교 설정</button>
 </header>
 
 <nav class="tab-nav">
-  <button class="tab-btn active" onclick="switchTab('tab1',this)"><span class="tab-icon">🚨</span>긴급사안</button>
+  <button class="tab-btn active" onclick="switchTab('tab0',this)"><span class="tab-icon">🏠</span>홈</button>
+  <button class="tab-btn" onclick="switchTab('tab1',this)"><span class="tab-icon">🚨</span>긴급사안</button>
   <button class="tab-btn" onclick="switchTab('tab2',this)"><span class="tab-icon">🚑</span>응급환자 이송</button>
   <button class="tab-btn" onclick="switchTab('tab3',this)"><span class="tab-icon">⚠️</span>중대산업재해</button>
   <button class="tab-btn" onclick="switchTab('tab4',this)"><span class="tab-icon">📋</span>위험성 평가</button>
@@ -270,8 +334,61 @@
 
 <div class="main">
 
-<!-- ══════════════ TAB 1: 긴급사안 ══════════════ -->
-<div class="tab-panel active" id="tab1">
+<!-- ══ TAB 0: 홈 ══ -->
+<div class="tab-panel active" id="tab0">
+  <div class="home-school-banner">
+    <div>
+      <div class="home-school-name" id="homeName">학교 이름을 설정해 주세요</div>
+      <div class="home-school-date" id="homeDate"></div>
+    </div>
+    <button class="setup-btn" onclick="openSetup()">⚙️ 학교 설정</button>
+  </div>
+
+  <div class="home-grid">
+    <div class="home-card c-red" onclick="goTab('tab1')">
+      <div class="home-card-icon">🚨</div>
+      <div class="home-card-title">긴급사안 대응</div>
+      <div class="home-card-desc">학생 폭력·자해·사고 등<br>긴급 상황 9단계 체크리스트</div>
+    </div>
+    <div class="home-card c-blue" onclick="goTab('tab2')">
+      <div class="home-card-icon">🚑</div>
+      <div class="home-card-title">응급환자 이송</div>
+      <div class="home-card-desc">환자 상태별 역할 분담<br>학부모 연락 · 병원 이송 담당 확인</div>
+    </div>
+    <div class="home-card c-orange" onclick="goTab('tab3')">
+      <div class="home-card-icon">⚠️</div>
+      <div class="home-card-title">중대산업재해</div>
+      <div class="home-card-desc">교직원 사고 발생 시<br>타이머 · 조치 체크 · 보고서 생성</div>
+    </div>
+    <div class="home-card c-green" onclick="goTab('tab4')">
+      <div class="home-card-icon">📋</div>
+      <div class="home-card-title">위험성 평가</div>
+      <div class="home-card-desc">위험한 곳 발견 시 즉시 기록<br>위험도 자동 계산</div>
+    </div>
+  </div>
+
+  <div class="home-contacts">
+    <h3>📞 긴급 연락처</h3>
+    <div class="contact-row">
+      <span class="contact-row-label">🚒 화재·구조</span>
+      <span class="contact-row-num">119</span>
+    </div>
+    <div class="contact-row">
+      <span class="contact-row-label">🚔 범죄·폭력</span>
+      <span class="contact-row-num">112</span>
+    </div>
+    <div class="contact-row">
+      <span class="contact-row-label" style="min-width:110px">🏫 교육청 산재팀</span>
+      <span class="contact-row-num" id="homeEduNum" style="font-size:18px;color:#888;">미설정</span>
+      <button class="contact-save-btn" onclick="openSetup()" style="margin-left:auto;">번호 설정</button>
+    </div>
+  </div>
+
+  <div class="page-footer">2026 최창훈</div>
+</div>
+
+<!-- ══ TAB 1: 긴급사안 ══ -->
+<div class="tab-panel" id="tab1">
   <div class="info-box red">
     <h4>🚨 긴급 사안 4가지 범위</h4>
     <ul>
@@ -296,68 +413,88 @@
     <div class="progress-bar-bg"><div class="progress-bar-fill" id="prog-bar1"><span class="progress-text" id="prog-pct1"></span></div></div>
   </div>
   <div id="taskList1"></div>
+  <div class="page-footer">2026 최창훈</div>
 </div>
 
-<!-- ══════════════ TAB 2: 응급환자 이송 ══════════════ -->
+<!-- ══ TAB 2: 응급환자 이송 ══ -->
 <div class="tab-panel" id="tab2">
 
-  <div class="branch-section">
-    <div class="branch-q">① 지금 환자 상태는 어떻습니까?</div>
-    <div class="branch-btns">
-      <button class="branch-btn red-btn" id="sev-btn" onclick="selectSeverity('severe')">🔴 위급 · 중한 외상<br><span style="font-size:13px;font-weight:400">의식장애·호흡곤란·심정지·다량출혈</span></button>
-      <button class="branch-btn blue-btn" id="mod-btn" onclick="selectSeverity('moderate')">🔵 병원 이송 필요<br><span style="font-size:13px;font-weight:400">단순외상·단순골절·고열 등</span></button>
+  <!-- ① 핵심 강조 박스 -->
+  <div class="key-box">
+    <div class="key-box-title">⭐ 핵심 — 누가 학부모에게 연락하고, 누가 병원에 데려가나?</div>
+    <div class="key-cards">
+      <div class="key-card" style="border-left:5px solid var(--orange);">
+        <div class="key-card-head" style="color:#a04000;">📞 학부모 연락</div>
+        <div class="key-card-who">담임교사</div>
+        <div class="key-card-note">사실에 근거해 정확하게 전달<br>이송 병원명과 상태를 알림</div>
+      </div>
+      <div class="key-card" style="border-left:5px solid var(--red);">
+        <div class="key-card-head" style="color:var(--red-dark);">🚑 병원 이송 동행</div>
+        <div class="key-card-who">보건교사 <span style="font-size:var(--fs-sm);font-weight:400;color:#888">(위급 시)</span><br>담임교사 <span style="font-size:var(--fs-sm);font-weight:400;color:#888">(보호자 인계 전까지)</span></div>
+        <div class="key-card-warn">※ 응급처치자는 차량 운전 금지</div>
+      </div>
     </div>
   </div>
 
+  <!-- ② 상황 분기 -->
+  <div class="branch-section">
+    <div class="branch-q">① 지금 환자 상태는 어떻습니까?</div>
+    <div class="branch-btns">
+      <button class="branch-btn blue-btn" id="mod-btn" onclick="selectSeverity('moderate')">🔵 병원 이송 필요<br><span style="font-size:13px;font-weight:400">단순외상·단순골절·고열 등</span></button>
+      <button class="branch-btn red-btn" id="sev-btn" onclick="selectSeverity('severe')">🔴 위급 · 중한 외상<br><span style="font-size:13px;font-weight:400">의식장애·호흡곤란·심정지·다량출혈</span></button>
+    </div>
+  </div>
+
+  <!-- ③ 역할 선택 -->
   <div class="branch-section" id="role-section" style="display:none">
     <div class="branch-q">② 나는 누구입니까?</div>
     <div class="branch-btns" id="role-btns"></div>
   </div>
 
+  <!-- ④ 내가 해야 할 일 -->
   <div class="my-tasks-box" id="my-tasks-box">
     <div class="my-tasks-title" id="my-tasks-title">지금 당신이 해야 할 일</div>
     <div id="my-tasks-list"></div>
   </div>
 
-  <div class="full-table-section">
-    <div class="sec-hd"><span>📊 전체 역할 분담표</span><div class="sec-line"></div></div>
-    <div class="resp-table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th style="width:90px">담당자</th>
-            <th><span class="urgent">● 위급·중한 외상</span></th>
-            <th><span class="normal-c">● 병원 이송 필요</span></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td class="role-cell">교장</td><td colspan="2">상황 총괄 / 원인분석 및 재발방지 조치</td></tr>
-          <tr><td class="role-cell">교감</td><td colspan="2">상황파악 및 지시·보고 / 위기상황 처리 필요조치 / 보건·담임 부재 시 대체인력 배정</td></tr>
-          <tr><td class="role-cell">보건교사</td>
-            <td>응급처치 → 담임 통보 → 병원 동행이송 → 관리자 처치현황 보고</td>
-            <td>응급처치 → 담임 통보 → 학생 처치결과 학부모 상담 → 관리자 처치현황 보고</td></tr>
-          <tr><td class="role-cell">담임교사</td>
-            <td>학부모 연락(이송병원으로) → 관리자 사고경위 보고 → 환자 병원이송(보호자 인계 전까지 보호자 역할 대행) → 안전공제회 보상 안내</td>
-            <td>학부모 연락 → 병원이송 안내 및 조치 → 필요시 병원이송 → 관리자 사고경위 보고 → 안전공제회 보상 안내</td></tr>
-          <tr><td class="role-cell">생활지도<br>학년부장</td><td colspan="2">질서 및 생활지도 / 학년 수업 결손 방지 지원</td></tr>
-          <tr><td class="role-cell">이송 담당</td><td colspan="2">안전하게 병원 이송<br><span style="font-size:13px;color:#c0392b">※ 응급처치자는 차량 운전 금지 (개인차량 이송 시 동행 2명 필요)</span></td></tr>
-          <tr><td class="role-cell">행정담당</td><td colspan="2">보상 및 제반 서류 작성 협조 / 병원 이송교사 출장처리 및 비용청구 처리</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="info-box blue">
-      <h4>📝 응급사고 기록지 작성 (보건교사)</h4>
-      <ul>
-        <li>사건 날짜, 시간, 장소, 사고현황, 환자상태, 응급처치 내용</li>
-        <li><strong>6하원칙</strong>에 의거 구체적으로 기록</li>
-      </ul>
-    </div>
+  <!-- ⑤ 전체 역할 분담표 -->
+  <div class="sec-hd"><span>📊 전체 역할 분담표</span><div class="sec-line"></div></div>
+  <div class="resp-table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:90px">담당자</th>
+          <th><span class="urgent">● 위급·중한 외상</span></th>
+          <th><span class="normal-c">● 병원 이송 필요</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="role-cell">교장</td><td colspan="2">상황 총괄 / 원인분석 및 재발방지 조치</td></tr>
+        <tr><td class="role-cell">교감</td><td colspan="2">상황파악 및 지시·보고 / 위기상황 처리 필요조치 / 보건·담임 부재 시 대체인력 배정</td></tr>
+        <tr><td class="role-cell">보건교사</td>
+          <td>응급처치 → 담임 통보 → <strong>병원 동행이송</strong> → 관리자 처치현황 보고</td>
+          <td>응급처치 → 담임 통보 → 학생 처치결과 <strong>학부모 상담</strong> → 관리자 처치현황 보고</td></tr>
+        <tr><td class="role-cell">담임교사</td>
+          <td><strong>학부모 연락</strong>(이송병원으로) → 관리자 사고경위 보고 → 환자 <strong>병원이송</strong>(보호자 인계 전까지 보호자 역할 대행) → 안전공제회 보상 안내</td>
+          <td><strong>학부모 연락</strong> → 병원이송 안내 및 조치 → 필요시 <strong>병원이송</strong> → 관리자 사고경위 보고 → 안전공제회 보상 안내</td></tr>
+        <tr><td class="role-cell">생활지도<br>학년부장</td><td colspan="2">질서 및 생활지도 / 학년 수업 결손 방지 지원</td></tr>
+        <tr><td class="role-cell">이송 담당</td><td colspan="2">안전하게 병원 이송<br><span style="font-size:13px;color:#c0392b">※ 응급처치자는 차량 운전 금지 (개인차량 이송 시 동행 2명 필요)</span></td></tr>
+        <tr><td class="role-cell">행정담당</td><td colspan="2">보상 및 제반 서류 작성 협조 / 병원 이송교사 출장처리 및 비용청구 처리</td></tr>
+      </tbody>
+    </table>
   </div>
+  <div class="info-box blue">
+    <h4>📝 응급사고 기록지 작성 (보건교사)</h4>
+    <ul>
+      <li>사건 날짜, 시간, 장소, 사고현황, 환자상태, 응급처치 내용</li>
+      <li><strong>6하원칙</strong>에 의거 구체적으로 기록</li>
+    </ul>
+  </div>
+  <div class="page-footer">2026 최창훈</div>
 </div>
 
-<!-- ══════════════ TAB 3: 중대산업재해 ══════════════ -->
+<!-- ══ TAB 3: 중대산업재해 ══ -->
 <div class="tab-panel" id="tab3">
-
   <div class="timer-box">
     <div>
       <div class="timer-label">⏱ 사고 발생 후 경과 시간</div>
@@ -370,22 +507,19 @@
       <button class="timer-btn" onclick="timerReset()">↺ 초기화</button>
     </div>
   </div>
-
   <div class="sec-hd"><span>🔴 비상조치 체크리스트</span><div class="sec-line"></div></div>
   <div id="incidentStepList"></div>
-
   <button class="report-btn" onclick="generateReport()">📄 사고 대응 보고서 초안 자동 생성</button>
   <div class="report-output" id="reportOutput"></div>
-
   <div class="sec-hd" style="margin-top:32px"><span>⚡ 급박한 위험 발생 시</span><div class="sec-line"></div></div>
   <div class="step-card"><div class="step-num red">A</div><div class="step-body2"><div class="step-title2">급박한 위험요인 발생</div><div class="step-desc2">최초발견자 → 주변 긴급상황 전파 / 초기 화재진압 등 위험요인 즉시 제거</div></div></div>
   <div class="step-card"><div class="step-num orange">B</div><div class="step-body2"><div class="step-title2">작업중지 후 즉시 위험구역 이탈</div><div class="step-desc2"><strong style="color:var(--red)">급박한 위험 시 모든 근로자에게 작업중지권 있음</strong><br>관리자(기관장·학교장)에게 즉시 보고</div></div></div>
   <div class="step-card"><div class="step-num blue">C</div><div class="step-body2"><div class="step-title2">긴급상황 전파 및 교직원 대피</div><div class="step-desc2">방송시설 이용 긴급상황 전파 → 학생·교직원 대피<br>교육활동 즉시 중지 후 비상대피 → 응급기관 긴급신고</div></div></div>
+  <div class="page-footer">2026 최창훈</div>
 </div>
 
-<!-- ══════════════ TAB 4: 위험성 평가 ══════════════ -->
+<!-- ══ TAB 4: 위험성 평가 ══ -->
 <div class="tab-panel" id="tab4">
-
   <div class="info-box blue">
     <h4>📌 위험성 평가란?</h4>
     <ul>
@@ -393,17 +527,15 @@
       <li>학교의 경우 <strong>학기 초(3월)</strong>에 실시하는 것이 법령 취지에 부합</li>
     </ul>
   </div>
-
   <div class="sec-hd"><span>📅 평가 종류 및 시기</span><div class="sec-line"></div></div>
   <div class="risk-kind-grid">
     <div class="risk-kind-card"><div class="risk-kind-head rk-red">🆕 최초 평가</div><div class="risk-kind-body">사업장·사업 성립 후<br><strong>1개월 이내</strong></div></div>
     <div class="risk-kind-card"><div class="risk-kind-head rk-ora">📆 정기 평가</div><div class="risk-kind-body">최초 평가 후<br><strong>연 1회</strong> 정기 실시</div></div>
     <div class="risk-kind-card"><div class="risk-kind-head rk-blue">⚡ 수시 평가</div><div class="risk-kind-body"><ul><li>중대산업사고·재해 발생 시</li><li>작업방법·절차 변경 시</li><li>설비·기계 신규 도입 시</li></ul></div></div>
   </div>
-
   <div class="sec-hd"><span>✏️ 위험성 평가 항목 입력</span><div class="sec-line"></div></div>
   <div class="eval-form">
-    <h4>새 평가 항목 추가</h4>
+    <h4>새 평가 항목 추가 <span style="font-size:var(--fs-sm);font-weight:500;color:#888">(위험한 곳이 발견되면 기록하세요)</span></h4>
     <div class="eval-row">
       <div class="eval-field"><label>작업 공간 / 장소</label><input type="text" id="ef-place" placeholder="예: 급식실, 체육관 창고"></div>
       <div class="eval-field"><label>위험 요인</label><input type="text" id="ef-hazard" placeholder="예: 바닥 미끄러움, 전기 배선 노출"></div>
@@ -442,9 +574,7 @@
     </div>
     <button class="add-eval-btn" onclick="addEvalItem()">+ 평가 항목 추가</button>
   </div>
-
   <div class="eval-list" id="evalList"></div>
-
   <div class="sec-hd" style="margin-top:28px"><span>📂 평가 구성 서류 (6단계)</span><div class="sec-line"></div></div>
   <div class="steps-grid">
     <div class="step-card2"><div class="sc2-num blue">가</div><div class="sc2-body"><div class="sc2-title">위험성 평가 실시 계획서</div><div class="sc2-desc">1단계(사전준비) + 2단계(유해·위험요인 파악)</div></div></div>
@@ -452,67 +582,126 @@
     <div class="step-card2"><div class="sc2-num blue">다</div><div class="sc2-body"><div class="sc2-title">공유 및 기록 유지</div><div class="sc2-desc">5단계(위험성 평가 공유) + 6단계(기록 및 보존) — 서명 및 개선사항 누적 관리</div></div></div>
   </div>
   <div class="info-box green" style="margin-top:14px">
-    <h4>🔗 서식 다운로드</h4>
-    <ul><li>광주광역시교육청 재난안전센터: <strong>https://safe.gen.go.kr/</strong></li><li>중대재해예방·산업안전보건 → 안전보건 자료실 → 교육자료</li></ul>
+    <h4>🔗 서식 다운로드 사이트</h4>
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px;">
+      <span style="font-size:var(--fs-sm);font-weight:700;color:var(--green);flex-shrink:0;">사이트 주소:</span>
+      <a id="downloadSiteLink" href="https://safe.gen.go.kr/" target="_blank" style="font-size:var(--fs-sm);font-weight:700;color:var(--blue-mid);word-break:break-all;" id="downloadSiteDisplay">https://safe.gen.go.kr/</a>
+      <button onclick="openSetup()" style="background:var(--green);color:white;border:none;border-radius:6px;padding:5px 12px;font-size:var(--fs-xs);font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;white-space:nowrap;">변경</button>
+    </div>
+    <div style="font-size:var(--fs-sm);color:#555;">중대재해예방·산업안전보건 → 안전보건 자료실 → 교육자료</div>
   </div>
+  <div class="page-footer">2026 최창훈</div>
 </div>
 
-<!-- ══════════════ TAB 5: 비상연락망 ══════════════ -->
+<!-- ══ TAB 5: 비상연락망 ══ -->
 <div class="tab-panel" id="tab5">
   <div class="sec-hd"><span>📞 기관 비상 연락처</span><div class="sec-line"></div></div>
   <div class="contact-grid">
     <div class="contact-card"><h4>🚑 응급·사고 신고</h4>
       <div class="contact-item"><div class="contact-label">화재·응급·구조</div><div class="contact-num">119</div></div>
       <div class="contact-item"><div class="contact-label">범죄·폭력 신고</div><div class="contact-num">112</div></div>
+      <div class="contact-item"><div class="contact-label">교육부 민원콜센터</div><div class="contact-num" style="font-size:18px">1800-0410</div></div>
     </div>
-    <div class="contact-card"><h4>🏛️ 교육청</h4>
-      <div class="contact-item"><div class="contact-label">안전총괄과 (산업재해예방팀)</div><div class="contact-num" style="font-size:16px">062-380-4887~4890</div></div>
+    <div class="contact-card"><h4>🏛️ 교육청 산업재해예방팀</h4>
+      <div class="contact-item">
+        <div class="contact-label">전화번호 (설정에서 변경 가능)</div>
+        <div class="contact-num" id="tab5EduNum" style="font-size:18px;color:#aaa;">미설정</div>
+      </div>
+      <button class="contact-save-btn" style="margin-top:8px;" onclick="openSetup()">번호 설정하기</button>
     </div>
   </div>
-
   <div class="sec-hd"><span>📋 보고 절차 흐름</span><div class="sec-line"></div></div>
   <div class="step-card"><div class="step-num red">①</div><div class="step-body2"><span class="step-badge badge-red">중대재해</span><div class="step-title2">교육청 보고 체계 (중대재해)</div><div class="step-desc2">학교(기관) → 교육청(산업재해예방팀) → 고용노동부<br>유선보고(즉시) 후 사고내용 서면보고</div></div></div>
   <div class="step-card"><div class="step-num blue">②</div><div class="step-body2"><span class="step-badge badge-blue">일반재해</span><div class="step-title2">교육청 보고 체계 (일반재해)</div><div class="step-desc2">유선보고 → 산재신청 전 사고보고서 제출(안전총괄과)<br>고용노동부: 발생 후 1개월 이내 산업재해조사표 제출</div></div></div>
   <div class="step-card"><div class="step-num orange">③</div><div class="step-body2"><span class="step-badge badge-orange">긴급사안</span><div class="step-title2">긴급사안 보고 체계</div><div class="step-desc2">학교 → 교육지원청 → 교육청 → 교육부 (또는 학교 → 교육청 직보)<br>사안별(성 관련, 장애학생 등) 담당부서 확인 후 보고</div></div></div>
-
   <div class="sec-hd" style="margin-top:24px"><span>📄 주요 서식</span><div class="sec-line"></div></div>
   <div class="form-links">
     <div class="form-link-card"><span class="form-icon">📝</span><div class="form-info"><h4>사고 보고서</h4><p>사고일시·경위·피해자 정보·사고원인·예방대책</p></div></div>
-    <div class="form-link-card"><span class="form-icon">📊</span><div class="form-info"><h4>산업재해조사표</h4><p>광주지방고용노동청 제출 (산업안전보건법 시행규칙 별지 30호)</p></div></div>
+    <div class="form-link-card"><span class="form-icon">📊</span><div class="form-info"><h4>산업재해조사표</h4><p>교육청 제출 (산업안전보건법 시행규칙 별지 30호)</p></div></div>
     <div class="form-link-card"><span class="form-icon">🩺</span><div class="form-info"><h4>응급사고 기록지</h4><p>6하원칙 기반 · 보건교사 작성</p></div></div>
-    <div class="form-link-card"><span class="form-icon">⚖️</span><div class="form-info"><h4>위험성평가표</h4><p>광주광역시교육청 재난안전센터 자료실</p></div></div>
+    <div class="form-link-card"><span class="form-icon">⚖️</span><div class="form-info"><h4>위험성평가표</h4><p>교육청 재난안전센터 자료실</p></div></div>
   </div>
-
   <div class="page-footer">2026 최창훈</div>
 </div>
 
 </div><!-- /main -->
 
 <script>
-// ── TAB ──
-function switchTab(id, btn) {
-  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+// ══ 설정 저장/불러오기 ══
+function loadConfig(){
+  const name=localStorage.getItem('school_name')||'';
+  const edu=localStorage.getItem('school_edu')||'';
+  const site=localStorage.getItem('school_site')||'https://safe.gen.go.kr/';
+  if(name){
+    document.getElementById('homeName').textContent=name;
+    document.getElementById('headerSchoolBtn').textContent='🏫 '+name;
+  }
+  if(edu){
+    document.getElementById('homeEduNum').textContent=edu;
+    document.getElementById('homeEduNum').style.color='';
+    document.getElementById('tab5EduNum').textContent=edu;
+    document.getElementById('tab5EduNum').style.color='';
+  }
+  const linkEl=document.getElementById('downloadSiteLink');
+  if(linkEl){ linkEl.textContent=site; linkEl.href=site; }
+  const now=new Date();
+  document.getElementById('homeDate').textContent=now.toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric',weekday:'long'});
+}
+window.openSetup=function(){
+  document.getElementById('cfg-name').value=localStorage.getItem('school_name')||'';
+  document.getElementById('cfg-edu').value=localStorage.getItem('school_edu')||'';
+  document.getElementById('cfg-site').value=localStorage.getItem('school_site')||'';
+  document.getElementById('setupModal').classList.add('show');
+};
+window.closeSetup=function(){
+  document.getElementById('setupModal').classList.remove('show');
+};
+window.saveSetup=function(){
+  const name=document.getElementById('cfg-name').value.trim();
+  const edu=document.getElementById('cfg-edu').value.trim();
+  const site=document.getElementById('cfg-site').value.trim();
+  if(name) localStorage.setItem('school_name',name);
+  if(edu)  localStorage.setItem('school_edu',edu);
+  localStorage.setItem('school_site', site||'https://safe.gen.go.kr/');
+  closeSetup();
+  loadConfig();
+};
+// 모달 외부 클릭 시 닫기
+document.getElementById('setupModal').addEventListener('click',function(e){
+  if(e.target===this) closeSetup();
+});
+loadConfig();
+
+// ══ TAB 전환 ══
+const tabBtns=document.querySelectorAll('.tab-btn');
+function switchTab(id,btn){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  tabBtns.forEach(b=>b.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  btn.classList.add('active');
+  if(btn) btn.classList.add('active');
+  else tabBtns.forEach(b=>{ if(b.getAttribute('onclick')&&b.getAttribute('onclick').includes(id)) b.classList.add('active'); });
+}
+function goTab(id){
+  switchTab(id,null);
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 
-// ══════════════ TAB 1: CHECKLIST ══════════════
-const tasks = [
-  { title:"① 피해자 상태 확인", role:"보건교사, 담임교사, 특수교사 (응급대응팀)", details:["응급조치 및 병원 이송을 위한 1차 확인","병원 이송 후 진단 및 소견 확인","교외 사안의 경우 외부 기관과 협조","119 호출 및 초기 응급처치 실시","관리자에게 상황 전파"] },
-  { title:"② 가해자와 분리 및 피해자 보호", role:"학생부장, 학년부장, 담임교사, 상담사 (학생관리팀)", details:["가해자와 즉시 분리 조치","유선·온라인 접촉도 엄격히 통제","가해자 상태 확인 지속 및 필요시 외부 기관 협조"] },
-  { title:"③ 병원 동행 이송", role:"보건교사, 담임교사, 특수교사 (응급대응팀)", details:["교직원이 병원까지 동행 이송 후 가족에게 인계","병원 내 학생·가족 조력 역할 유지 및 교대 인력 준비","담당 교직원의 복무 처리 (교감 지원)"] },
-  { title:"④ 가족 연락", role:"보건교사, 담임교사, 특수교사 (응급대응팀)", details:["사실에 기반한 정확한 내용 전달","가족의 의사를 최대한 존중하여 인계 절차 진행"] },
-  { title:"⑤ 역할 분배 및 소통 체계 마련", role:"교장(총괄), 교감(운영 관리)", details:["각 조치의 선후를 고정하지 않고 상황에 맞춰 신속 진행","중복 역할 수행 가능, 교대 인원 미리 확보","사안 종료 시까지 연락망과 보고 체계 확실히 유지"] },
-  { title:"⑥ 사안 전파 통제", role:"학생관리팀, 협력지원팀 (언론대응창구 지정)", details:["사안 전파 통제 및 공식 안내 창구 단일화","추측성 정보 확산 방지 및 2차 피해 차단 최우선","언론 대응 지원 (교감 및 행정실장 등)"] },
-  { title:"⑦ 안정화 조치 (학생·가족·교직원)", role:"학생관리팀, 협력지원팀 (교무/행정)", details:["현장 통제 및 목격자 파악, 안정 조치 우선","교우 및 동료의 심리·정서적 상태 점검 지원","재학·재직 중인 가족 파악 및 상태 점검"] },
-  { title:"⑧ 1차 경위 조사", role:"학생부장, 상담교사, 생활지도 교사 (조사기록팀)", details:["완벽성보다는 신속성 위주로 진행 (추후 보완)","진술자의 심리 상태를 고려하여 신중히 진행","사건 배경 및 사전 상황 조사, CCTV 등 증거 확보"] },
-  { title:"⑨ 교육(지원)청 긴급 보고", role:"학생부장, 상담교사, 생활지도 교사 (조사기록팀)", details:["보고 체계 엄수: 학교 → 교육지원청 → 교육청 → 교육부","주요 목적은 '사안 처리 지원'을 위한 정보 제공","사안별(성 관련, 장애학생 등) 담당 부서 확인 후 보고"] },
+// ══ TAB 1: 체크리스트 ══
+const tasks=[
+  {title:"① 피해자 상태 확인",role:"보건교사, 담임교사, 특수교사 (응급대응팀)",details:["응급조치 및 병원 이송을 위한 1차 확인","병원 이송 후 진단 및 소견 확인","교외 사안의 경우 외부 기관과 협조","119 호출 및 초기 응급처치 실시","관리자에게 상황 전파"]},
+  {title:"② 가해자와 분리 및 피해자 보호",role:"학생부장, 학년부장, 담임교사, 상담사 (학생관리팀)",details:["가해자와 즉시 분리 조치","유선·온라인 접촉도 엄격히 통제","가해자 상태 확인 지속 및 필요시 외부 기관 협조"]},
+  {title:"③ 병원 동행 이송",role:"보건교사, 담임교사, 특수교사 (응급대응팀)",details:["교직원이 병원까지 동행 이송 후 가족에게 인계","병원 내 학생·가족 조력 역할 유지 및 교대 인력 준비","담당 교직원의 복무 처리 (교감 지원)"]},
+  {title:"④ 가족 연락",role:"보건교사, 담임교사, 특수교사 (응급대응팀)",details:["사실에 기반한 정확한 내용 전달","가족의 의사를 최대한 존중하여 인계 절차 진행"]},
+  {title:"⑤ 역할 분배 및 소통 체계 마련",role:"교장(총괄), 교감(운영 관리)",details:["각 조치의 선후를 고정하지 않고 상황에 맞춰 신속 진행","중복 역할 수행 가능, 교대 인원 미리 확보","사안 종료 시까지 연락망과 보고 체계 확실히 유지"]},
+  {title:"⑥ 사안 전파 통제",role:"학생관리팀, 협력지원팀 (언론대응창구 지정)",details:["사안 전파 통제 및 공식 안내 창구 단일화","추측성 정보 확산 방지 및 2차 피해 차단 최우선","언론 대응 지원 (교감 및 행정실장 등)"]},
+  {title:"⑦ 안정화 조치 (학생·가족·교직원)",role:"학생관리팀, 협력지원팀 (교무/행정)",details:["현장 통제 및 목격자 파악, 안정 조치 우선","교우 및 동료의 심리·정서적 상태 점검 지원","재학·재직 중인 가족 파악 및 상태 점검"]},
+  {title:"⑧ 1차 경위 조사",role:"학생부장, 상담교사, 생활지도 교사 (조사기록팀)",details:["완벽성보다는 신속성 위주로 진행 (추후 보완)","진술자의 심리 상태를 고려하여 신중히 진행","사건 배경 및 사전 상황 조사, CCTV 등 증거 확보"]},
+  {title:"⑨ 교육(지원)청 긴급 보고",role:"학생부장, 상담교사, 생활지도 교사 (조사기록팀)",details:["보고 체계 엄수: 학교 → 교육지원청 → 교육청 → 교육부","주요 목적은 '사안 처리 지원'을 위한 정보 제공","사안별(성 관련, 장애학생 등) 담당 부서 확인 후 보고"]},
 ];
-const list1 = document.getElementById('taskList1');
+const list1=document.getElementById('taskList1');
 tasks.forEach((t,i)=>{
-  const d = document.createElement('div');
-  d.className='task-item'; d.id='ti-'+i;
+  const d=document.createElement('div');
+  d.className='task-item';d.id='ti-'+i;
   d.innerHTML=`<div class="task-header" onclick="toggleDetail(${i})">
     <input class="task-check" type="checkbox" id="chk-${i}" onclick="event.stopPropagation();updateProg(${i})">
     <div class="task-info"><div class="task-name">${t.title}</div><div class="task-role">담당: ${t.role}</div></div>
@@ -532,16 +721,16 @@ window.updateProg=i=>{
   document.getElementById('prog-count1').textContent=done+' / '+tasks.length+' 완료';
 };
 
-// ══════════════ TAB 2: 응급이송 상황분기 ══════════════
-const roleTasks = {
-  severe: {
+// ══ TAB 2: 응급이송 분기 ══
+const roleTasks={
+  severe:{
     '보건교사':['119 호출 및 응급처치 즉시 실시','담임교사에게 통보','환자와 함께 병원 동행 이송','관리자에게 처치 현황 보고'],
     '담임교사':['학부모 연락 — 이송 병원으로 오도록 안내','관리자에게 사고경위 보고','보호자 인계 전까지 보호자 역할 대행','안전공제회 보상 안내'],
     '교감':['상황 파악 및 필요 지시','보건교사·담임교사 부재 시 대체인력 즉시 배정','관리자(교장)에게 보고'],
     '생활지도부장':['현장 질서 및 생활지도','학년 수업 결손 방지 지원'],
     '행정담당':['병원 이송교사 출장처리','추후 보상 및 서류 작성 협조'],
   },
-  moderate: {
+  moderate:{
     '보건교사':['응급처치 실시','담임교사에게 통보','학생 처치결과 학부모 상담','관리자에게 처치 현황 보고'],
     '담임교사':['학부모 연락 및 병원이송 안내','필요시 직접 병원 이송','관리자에게 사고경위 보고','안전공제회 보상 안내'],
     '교감':['상황 파악 및 지시','필요시 대체인력 배정'],
@@ -549,16 +738,16 @@ const roleTasks = {
     '행정담당':['추후 보상 및 서류 작성 협조'],
   }
 };
-let selSev=null, selRole=null;
+let selSev=null;
 window.selectSeverity=function(sev){
-  selSev=sev; selRole=null;
+  selSev=sev;
   document.getElementById('sev-btn').className='branch-btn red-btn'+(sev==='severe'?' sel-red':'');
   document.getElementById('mod-btn').className='branch-btn blue-btn'+(sev==='moderate'?' sel-blue':'');
   const rb=document.getElementById('role-btns');
   rb.innerHTML='';
   ['보건교사','담임교사','교감','생활지도부장','행정담당'].forEach(r=>{
     const b=document.createElement('button');
-    b.className='branch-btn green-btn'; b.textContent=r;
+    b.className='branch-btn green-btn';b.textContent=r;
     b.onclick=()=>selectRole(r);
     rb.appendChild(b);
   });
@@ -566,46 +755,45 @@ window.selectSeverity=function(sev){
   document.getElementById('my-tasks-box').classList.remove('show');
 };
 window.selectRole=function(role){
-  selRole=role;
   document.querySelectorAll('#role-btns .branch-btn').forEach(b=>{
     b.className='branch-btn green-btn'+(b.textContent===role?' sel-green':'');
   });
-  const tasks2=roleTasks[selSev][role]||[];
-  const sev=selSev==='severe'?'🔴 위급·중한 외상':'🔵 병원 이송 필요';
-  document.getElementById('my-tasks-title').textContent='['+sev+'] '+role+' — 지금 해야 할 일';
-  document.getElementById('my-tasks-list').innerHTML=tasks2.map((t,i)=>`
+  const t2=roleTasks[selSev][role]||[];
+  const sevLabel=selSev==='severe'?'🔴 위급·중한 외상':'🔵 병원 이송 필요';
+  document.getElementById('my-tasks-title').textContent='['+sevLabel+'] '+role+' — 지금 해야 할 일';
+  document.getElementById('my-tasks-list').innerHTML=t2.map((t,i)=>`
     <div class="my-task-item"><span class="my-task-num">${i+1}</span><span>${t}</span></div>`).join('');
   document.getElementById('my-tasks-box').classList.add('show');
 };
 
-// ══════════════ TAB 3: 중대산업재해 타이머+체크 ══════════════
-let timerInterval=null, timerSeconds=0, timerStartTime=null;
+// ══ TAB 3: 타이머 ══
+let timerInterval=null,timerSeconds=0,timerStartTime=null;
 function pad(n){return String(n).padStart(2,'0');}
 function timerTick(){
   timerSeconds++;
-  const h=Math.floor(timerSeconds/3600), m=Math.floor((timerSeconds%3600)/60), s=timerSeconds%60;
+  const h=Math.floor(timerSeconds/3600),m=Math.floor((timerSeconds%3600)/60),s=timerSeconds%60;
   document.getElementById('timerDisplay').textContent=pad(h)+':'+pad(m)+':'+pad(s);
 }
 window.timerStart=function(){
-  if(timerInterval) return;
-  if(!timerStartTime){ timerStartTime=new Date(); document.getElementById('timerSub').textContent='시작: '+timerStartTime.toLocaleTimeString('ko-KR'); }
+  if(timerInterval)return;
+  if(!timerStartTime){timerStartTime=new Date();document.getElementById('timerSub').textContent='시작: '+timerStartTime.toLocaleTimeString('ko-KR');}
   timerInterval=setInterval(timerTick,1000);
 };
-window.timerStop=function(){ clearInterval(timerInterval); timerInterval=null; };
-window.timerReset=function(){ clearInterval(timerInterval); timerInterval=null; timerSeconds=0; timerStartTime=null; document.getElementById('timerDisplay').textContent='00:00:00'; document.getElementById('timerSub').textContent='타이머를 시작하면 경과 시간이 기록됩니다'; };
+window.timerStop=function(){clearInterval(timerInterval);timerInterval=null;};
+window.timerReset=function(){clearInterval(timerInterval);timerInterval=null;timerSeconds=0;timerStartTime=null;document.getElementById('timerDisplay').textContent='00:00:00';document.getElementById('timerSub').textContent='타이머를 시작하면 경과 시간이 기록됩니다';};
 
-const incidentSteps = [
-  { num:'01', cls:'snb-red',    title:'상황 전파 및 보고',      sub:'최초발견자 → 관리감독자 즉시 보고', details:['최초발견자 → 주변에 사고발생 전파','관리감독자(학교장·기관장)에게 즉시 보고'] },
-  { num:'02', cls:'snb-red',    title:'인명 구호 조치',         sub:'119 신고 · 응급처치 · 위험요인 제거', details:['119 신고 접수 및 주변 도움 요청','심폐소생술, 자동제세동기 등 응급구호조치','기계 비상정지 등 제거 가능한 위험요인 즉시 제거'] },
-  { num:'03', cls:'snb-orange', title:'작업중지 및 종사자 대피', sub:'즉시 작업중지 · 대피장소 이동', details:['즉시 모든 작업 중지','종사자 즉시 대피장소 이동 (사전 교육된 대피계획 준수)','2차피해방지 안전조치 / 출입통제 및 사고현장 보존'] },
-  { num:'04', cls:'snb-blue',   title:'재해 발생 보고',         sub:'교육청·고용노동부 즉시 유선보고', details:['교육청(안전총괄과): 학교 → 교육청(산업재해예방팀) 유선보고 후 서면보고','고용노동부(산재예방지도과): 교육청 → 고용노동부 유선보고 후 서면보고'] },
-  { num:'05', cls:'snb-blue',   title:'안전조치 확인 및 현장보존', sub:'사고원인 조사 완료 전 현장 보존', details:['사고발생원인 조사 / 위험성 제거 및 안전조치 확인','사고원인 조사 완료 전까지 현장 보존','현장 보존: 사진·동영상, CCTV 확보, 사고현장 훼손 금지'] },
-  { num:'06', cls:'snb-green',  title:'사후 보고 및 서류 처리',   sub:'사고보고서·산업재해조사표·위험성평가', details:['사고 보고서 작성 → 시교육청 안전총괄과 공문시행','산업재해조사표 작성 → 광주지방고용노동청 팩스 신고','위험성 평가 실시','비상대책회의: 대체인력 채용, 업무분장 조정 등'] },
+const incidentSteps=[
+  {num:'01',cls:'snb-red',title:'상황 전파 및 보고',sub:'최초발견자 → 관리감독자 즉시 보고',details:['최초발견자 → 주변에 사고발생 전파','관리감독자(학교장·기관장)에게 즉시 보고']},
+  {num:'02',cls:'snb-red',title:'인명 구호 조치',sub:'119 신고 · 응급처치 · 위험요인 제거',details:['119 신고 접수 및 주변 도움 요청','심폐소생술, 자동제세동기 등 응급구호조치','기계 비상정지 등 제거 가능한 위험요인 즉시 제거']},
+  {num:'03',cls:'snb-orange',title:'작업중지 및 종사자 대피',sub:'즉시 작업중지 · 대피장소 이동',details:['즉시 모든 작업 중지','종사자 즉시 대피장소 이동 (사전 교육된 대피계획 준수)','2차피해방지 안전조치 / 출입통제 및 사고현장 보존']},
+  {num:'04',cls:'snb-blue',title:'재해 발생 보고',sub:'교육청·고용노동부 즉시 유선보고',details:['교육청(안전총괄과): 학교 → 교육청(산업재해예방팀) 유선보고 후 서면보고','고용노동부(산재예방지도과): 교육청 → 고용노동부 유선보고 후 서면보고']},
+  {num:'05',cls:'snb-blue',title:'안전조치 확인 및 현장보존',sub:'사고원인 조사 완료 전 현장 보존',details:['사고발생원인 조사 / 위험성 제거 및 안전조치 확인','사고원인 조사 완료 전까지 현장 보존','현장 보존: 사진·동영상, CCTV 확보, 사고현장 훼손 금지']},
+  {num:'06',cls:'snb-green',title:'사후 보고 및 서류 처리',sub:'사고보고서·산업재해조사표·위험성평가',details:['사고 보고서 작성 → 시교육청 안전총괄과 공문시행','산업재해조사표 작성 → 교육청 경유 고용노동청 팩스 신고','위험성 평가 실시','비상대책회의: 대체인력 채용, 업무분장 조정 등']},
 ];
 const stepList=document.getElementById('incidentStepList');
 incidentSteps.forEach((s,i)=>{
   const d=document.createElement('div');
-  d.className='incident-step'; d.id='ist-'+i;
+  d.className='incident-step';d.id='ist-'+i;
   d.innerHTML=`<div class="incident-step-head" onclick="toggleIStep(${i})">
     <input class="step-check" type="checkbox" id="ischk-${i}" onclick="event.stopPropagation();markIStep(${i})">
     <div class="step-num-badge ${s.cls}">${s.num}</div>
@@ -626,8 +814,8 @@ window.markIStep=function(i){
   const chk=document.getElementById('ischk-'+i);
   document.getElementById('ist-'+i).classList.toggle('done-step',chk.checked);
   const tb=document.getElementById('istime-'+i);
-  if(chk.checked){ const now=new Date(); tb.textContent='완료 '+now.toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'}); tb.style.background='var(--green-light)'; tb.style.color='var(--green)'; }
-  else { tb.textContent='미완료'; tb.style.background=''; tb.style.color=''; }
+  if(chk.checked){const now=new Date();tb.textContent='완료 '+now.toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'});tb.style.background='var(--green-light)';tb.style.color='var(--green)';}
+  else{tb.textContent='미완료';tb.style.background='';tb.style.color='';}
 };
 window.generateReport=function(){
   const now=new Date();
@@ -651,12 +839,11 @@ window.generateReport=function(){
   document.getElementById('reportOutput').classList.add('show');
 };
 window.copyReport=function(){
-  const el=document.getElementById('reportOutput');
-  const txt=el.innerText.replace('📋 보고서 내용 복사','').trim();
+  const txt=document.getElementById('reportOutput').innerText.replace('📋 보고서 내용 복사','').trim();
   navigator.clipboard.writeText(txt).then(()=>alert('보고서 내용이 복사되었습니다.'));
 };
 
-// ══════════════ TAB 4: 위험성 평가 ══════════════
+// ══ TAB 4: 위험성 평가 ══
 let evalItems=[];
 function calcScore(){
   const f=parseInt(document.getElementById('ef-freq').value)||0;
@@ -664,25 +851,23 @@ function calcScore(){
   const score=f*s;
   const num=document.getElementById('scoreNum');
   const lv=document.getElementById('levelText');
-  if(!f||!s){ num.textContent='—'; num.className='risk-score-num'; lv.textContent='선택 필요'; lv.className='risk-level-text'; return; }
+  if(!f||!s){num.textContent='—';num.className='risk-score-num';lv.textContent='선택 필요';lv.className='risk-level-text';return;}
   num.textContent=score;
-  if(score<=6){      num.className='risk-score-num rs-low';  lv.textContent='낮음 (허용 가능)'; lv.className='risk-level-text rl-low'; }
-  else if(score<=12){ num.className='risk-score-num rs-mid';  lv.textContent='중간 (개선 필요)'; lv.className='risk-level-text rl-mid'; }
-  else {             num.className='risk-score-num rs-high'; lv.textContent='높음 (즉시 조치)'; lv.className='risk-level-text rl-high'; }
+  if(score<=6){num.className='risk-score-num rs-low';lv.textContent='낮음 (허용 가능)';lv.className='risk-level-text rl-low';}
+  else if(score<=12){num.className='risk-score-num rs-mid';lv.textContent='중간 (개선 필요)';lv.className='risk-level-text rl-mid';}
+  else{num.className='risk-score-num rs-high';lv.textContent='높음 (즉시 조치)';lv.className='risk-level-text rl-high';}
 }
 document.getElementById('ef-freq').onchange=calcScore;
 document.getElementById('ef-severity').onchange=calcScore;
-
 window.addEvalItem=function(){
   const place=document.getElementById('ef-place').value.trim();
   const hazard=document.getElementById('ef-hazard').value.trim();
   const freq=parseInt(document.getElementById('ef-freq').value)||0;
   const sev=parseInt(document.getElementById('ef-severity').value)||0;
   const action=document.getElementById('ef-action').value.trim();
-  if(!place||!hazard||!freq||!sev){ alert('장소, 위험요인, 빈도, 강도를 모두 입력해주세요.'); return; }
+  if(!place||!hazard||!freq||!sev){alert('장소, 위험요인, 빈도, 강도를 모두 입력해주세요.');return;}
   const score=freq*sev;
-  const id=Date.now();
-  evalItems.push({id,place,hazard,freq,sev,score,action});
+  evalItems.push({place,hazard,freq,sev,score,action});
   renderEvalList();
   ['ef-place','ef-hazard','ef-action'].forEach(x=>document.getElementById(x).value='');
   ['ef-freq','ef-severity'].forEach(x=>document.getElementById(x).value='');
@@ -690,10 +875,10 @@ window.addEvalItem=function(){
 };
 function renderEvalList(){
   const el=document.getElementById('evalList');
-  if(!evalItems.length){ el.innerHTML=''; return; }
+  if(!evalItems.length){el.innerHTML='';return;}
   el.innerHTML='<div class="sec-hd"><span>📊 입력된 평가 항목 ('+evalItems.length+'건)</span><div class="sec-line"></div></div>'+
     evalItems.map((it,idx)=>{
-      let cls=it.score<=6?'ecs-low':it.score<=12?'ecs-mid':'ecs-high';
+      const cls=it.score<=6?'ecs-low':it.score<=12?'ecs-mid':'ecs-high';
       return `<div class="eval-card">
         <div class="eval-card-score ${cls}">${it.score}</div>
         <div class="eval-card-body">
@@ -704,7 +889,7 @@ function renderEvalList(){
       </div>`;
     }).join('');
 }
-window.delEval=function(idx){ evalItems.splice(idx,1); renderEvalList(); };
+window.delEval=function(idx){evalItems.splice(idx,1);renderEvalList();};
 </script>
 </body>
 </html>
