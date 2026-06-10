@@ -304,7 +304,7 @@
     <div class="modal-sub">한 번만 입력하면 다음에 열어도 저장됩니다.<br>각 탭의 연락처와 학교명이 자동으로 반영됩니다.</div>
     <div class="modal-field"><label>학교 이름</label><input type="text" id="cfg-name" placeholder="예: ○○초등학교"></div>
     <div class="modal-field"><label>교육청 산업재해예방팀 전화번호</label><input type="text" id="cfg-edu" placeholder="예: 062-380-4887"></div>
-    <div class="modal-field"><label>서식 다운로드 사이트 주소</label><input type="text" id="cfg-site" placeholder="https://safe.gen.go.kr/"><div style="font-size:12px;color:#aaa;margin-top:4px;">기본값: https://safe.gen.go.kr/ (비워두면 기본값으로 초기화)</div></div>
+    <div class="modal-field"><label>교육청 재난안전센터 사이트 주소</label><input type="text" id="cfg-site" placeholder="https://safe.gen.go.kr/"><div style="font-size:12px;color:#aaa;margin-top:4px;">기본값: https://safe.gen.go.kr/ (비워두면 기본값으로 초기화)</div></div>
     <div class="modal-btns">
       <button class="modal-cancel" onclick="closeSetup()">취소</button>
       <button class="modal-save" onclick="saveSetup()">저장</button>
@@ -407,12 +407,31 @@
       <li>피해자 중심 (2차 피해 방지, 의사 존중)</li>
     </ul>
   </div>
+  <!-- 타이머 박스 -->
+  <div class="timer-box">
+    <div>
+      <div class="timer-label">⏱ 사고 발생 후 경과 시간</div>
+      <div class="timer-display" id="timerDisplay1">00:00:00</div>
+      <div class="timer-sub" id="timerSub1">타이머를 시작하면 경과 시간이 기록됩니다</div>
+    </div>
+    <div class="timer-btns">
+      <button class="timer-btn" onclick="t1Start()">▶ 시작</button>
+      <button class="timer-btn" onclick="t1Stop()">⏸ 정지</button>
+      <button class="timer-btn" onclick="t1Reset()">↺ 초기화</button>
+    </div>
+  </div>
+
   <div class="sec-hd"><span>📝 대응 절차 체크리스트</span><div class="sec-line"></div></div>
   <div class="progress-wrap">
     <div class="progress-label"><span>진행 상황</span><span id="prog-count1">0 / 9 완료</span></div>
     <div class="progress-bar-bg"><div class="progress-bar-fill" id="prog-bar1"><span class="progress-text" id="prog-pct1"></span></div></div>
   </div>
   <div id="taskList1"></div>
+
+  <!-- 보고서 생성 -->
+  <button class="report-btn" onclick="generateReport1()">📄 사고 대응 보고서 초안 자동 생성</button>
+  <div class="report-output" id="reportOutput1"></div>
+
   <div class="page-footer">2026 최창훈</div>
 </div>
 
@@ -582,7 +601,7 @@
     <div class="step-card2"><div class="sc2-num blue">다</div><div class="sc2-body"><div class="sc2-title">공유 및 기록 유지</div><div class="sc2-desc">5단계(위험성 평가 공유) + 6단계(기록 및 보존) — 서명 및 개선사항 누적 관리</div></div></div>
   </div>
   <div class="info-box green" style="margin-top:14px">
-    <h4>🔗 서식 다운로드 사이트</h4>
+    <h4>🔗 교육청 재난안전센터 사이트</h4>
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px;">
       <span style="font-size:var(--fs-sm);font-weight:700;color:var(--green);flex-shrink:0;">사이트 주소:</span>
       <a id="downloadSiteLink" href="https://safe.gen.go.kr/" target="_blank" style="font-size:var(--fs-sm);font-weight:700;color:var(--blue-mid);word-break:break-all;" id="downloadSiteDisplay">https://safe.gen.go.kr/</a>
@@ -615,11 +634,12 @@
   <div class="step-card"><div class="step-num blue">②</div><div class="step-body2"><span class="step-badge badge-blue">일반재해</span><div class="step-title2">교육청 보고 체계 (일반재해)</div><div class="step-desc2">유선보고 → 산재신청 전 사고보고서 제출(안전총괄과)<br>고용노동부: 발생 후 1개월 이내 산업재해조사표 제출</div></div></div>
   <div class="step-card"><div class="step-num orange">③</div><div class="step-body2"><span class="step-badge badge-orange">긴급사안</span><div class="step-title2">긴급사안 보고 체계</div><div class="step-desc2">학교 → 교육지원청 → 교육청 → 교육부 (또는 학교 → 교육청 직보)<br>사안별(성 관련, 장애학생 등) 담당부서 확인 후 보고</div></div></div>
   <div class="sec-hd" style="margin-top:24px"><span>📄 주요 서식</span><div class="sec-line"></div></div>
+  <div style="font-size:var(--fs-sm);color:var(--gray);margin-bottom:10px;">📌 클릭하면 교육청 재난안전센터로 이동합니다.</div>
   <div class="form-links">
-    <div class="form-link-card"><span class="form-icon">📝</span><div class="form-info"><h4>사고 보고서</h4><p>사고일시·경위·피해자 정보·사고원인·예방대책</p></div></div>
-    <div class="form-link-card"><span class="form-icon">📊</span><div class="form-info"><h4>산업재해조사표</h4><p>교육청 제출 (산업안전보건법 시행규칙 별지 30호)</p></div></div>
-    <div class="form-link-card"><span class="form-icon">🩺</span><div class="form-info"><h4>응급사고 기록지</h4><p>6하원칙 기반 · 보건교사 작성</p></div></div>
-    <div class="form-link-card"><span class="form-icon">⚖️</span><div class="form-info"><h4>위험성평가표</h4><p>교육청 재난안전센터 자료실</p></div></div>
+    <div class="form-link-card" style="cursor:pointer;" onclick="openSite()"><span class="form-icon">📝</span><div class="form-info"><h4>사고 보고서</h4><p>사고일시·경위·피해자 정보·사고원인·예방대책</p></div><span style="font-size:18px;color:#bbb;margin-left:auto;">↗</span></div>
+    <div class="form-link-card" style="cursor:pointer;" onclick="openSite()"><span class="form-icon">📊</span><div class="form-info"><h4>산업재해조사표</h4><p>교육청 제출 (산업안전보건법 시행규칙 별지 30호)</p></div><span style="font-size:18px;color:#bbb;margin-left:auto;">↗</span></div>
+    <div class="form-link-card" style="cursor:pointer;" onclick="openSite()"><span class="form-icon">🩺</span><div class="form-info"><h4>응급사고 기록지</h4><p>6하원칙 기반 · 보건교사 작성</p></div><span style="font-size:18px;color:#bbb;margin-left:auto;">↗</span></div>
+    <div class="form-link-card" style="cursor:pointer;" onclick="openSite()"><span class="form-icon">⚖️</span><div class="form-info"><h4>위험성평가표</h4><p>교육청 재난안전센터 자료실</p></div><span style="font-size:18px;color:#bbb;margin-left:auto;">↗</span></div>
   </div>
   <div class="page-footer">2026 최창훈</div>
 </div>
@@ -672,7 +692,10 @@ document.getElementById('setupModal').addEventListener('click',function(e){
 });
 loadConfig();
 
-// ══ TAB 전환 ══
+window.openSite=function(){
+  const site=localStorage.getItem('school_site')||'https://safe.gen.go.kr/';
+  window.open(site,'_blank');
+};
 const tabBtns=document.querySelectorAll('.tab-btn');
 function switchTab(id,btn){
   document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
@@ -719,6 +742,48 @@ window.updateProg=i=>{
   document.getElementById('prog-bar1').style.width=pct+'%';
   document.getElementById('prog-pct1').textContent=pct>10?pct+'%':'';
   document.getElementById('prog-count1').textContent=done+' / '+tasks.length+' 완료';
+};
+
+// ══ TAB 1: 타이머 (긴급사안) ══
+let t1Interval=null,t1Seconds=0,t1StartTime=null;
+window.t1Start=function(){
+  if(t1Interval)return;
+  if(!t1StartTime){t1StartTime=new Date();document.getElementById('timerSub1').textContent='시작: '+t1StartTime.toLocaleTimeString('ko-KR');}
+  t1Interval=setInterval(function(){
+    t1Seconds++;
+    const h=Math.floor(t1Seconds/3600),m=Math.floor((t1Seconds%3600)/60),s=t1Seconds%60;
+    document.getElementById('timerDisplay1').textContent=pad(h)+':'+pad(m)+':'+pad(s);
+  },1000);
+};
+window.t1Stop=function(){clearInterval(t1Interval);t1Interval=null;};
+window.t1Reset=function(){clearInterval(t1Interval);t1Interval=null;t1Seconds=0;t1StartTime=null;document.getElementById('timerDisplay1').textContent='00:00:00';document.getElementById('timerSub1').textContent='타이머를 시작하면 경과 시간이 기록됩니다';};
+
+window.generateReport1=function(){
+  const now=new Date();
+  const elapsed=document.getElementById('timerDisplay1').textContent;
+  const schoolName=localStorage.getItem('school_name')||'(학교명 미설정)';
+  let rows='';
+  tasks.forEach((t,i)=>{
+    const done=document.getElementById('chk-'+i).checked;
+    const titleShort=t.title.replace(/^[①-⑨]\s*/,'');
+    rows+=`<div class="report-row"><span class="report-key">${t.title.match(/^[①-⑨]/)?t.title.match(/^[①-⑨]/)[0]:''} ${titleShort}</span><span class="report-val">${done?'✅ 완료':'⬜ 미완료'} | 담당: ${t.role.split(',')[0]}</span></div>`;
+  });
+  const doneCount=document.querySelectorAll('#taskList1 .task-check:checked').length;
+  document.getElementById('reportOutput1').innerHTML=`
+    <h3>📄 긴급사안 대응 보고서 초안</h3>
+    <div class="report-row"><span class="report-key">학교명</span><span class="report-val">${schoolName}</span></div>
+    <div class="report-row"><span class="report-key">보고서 생성 일시</span><span class="report-val">${now.toLocaleString('ko-KR')}</span></div>
+    <div class="report-row"><span class="report-key">사고 후 경과 시간</span><span class="report-val">${elapsed}</span></div>
+    <div class="report-row"><span class="report-key">완료된 조치 단계</span><span class="report-val">${doneCount} / ${tasks.length} 단계</span></div>
+    <hr style="margin:14px 0;border:none;border-top:1px solid var(--border)">
+    ${rows}
+    <button class="copy-btn" onclick="copyReport1()">📋 보고서 내용 복사</button>`;
+  document.getElementById('reportOutput1').classList.add('show');
+  document.getElementById('reportOutput1').scrollIntoView({behavior:'smooth',block:'start'});
+};
+window.copyReport1=function(){
+  const txt=document.getElementById('reportOutput1').innerText.replace('📋 보고서 내용 복사','').trim();
+  navigator.clipboard.writeText(txt).then(()=>alert('보고서 내용이 복사되었습니다.'));
 };
 
 // ══ TAB 2: 응급이송 분기 ══
