@@ -131,6 +131,10 @@
   .task-detail.show{display:block;}
   .task-detail ul{padding-left:18px;margin-top:10px;}
   .task-detail li{margin-bottom:6px;}
+  .task-time-badge{font-size:var(--fs-xs);background:var(--gray-light);color:var(--gray);font-weight:700;padding:4px 10px;border-radius:20px;font-family:'IBM Plex Mono',monospace;white-space:nowrap;flex-shrink:0;}
+  .task-time-badge.done-time{background:var(--green-light);color:var(--green);}
+  .task-memo{width:100%;margin-top:12px;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:var(--fs-sm);font-family:'Noto Sans KR',sans-serif;resize:vertical;min-height:60px;background:white;}
+  .task-memo:focus{outline:none;border-color:var(--blue-mid);}
 
   /* ── TAB 2: 응급이송 ── */
   .branch-section{background:white;border:2px solid var(--border);border-radius:14px;padding:20px;margin-bottom:16px;box-shadow:var(--shadow);}
@@ -728,15 +732,32 @@ tasks.forEach((t,i)=>{
   d.innerHTML=`<div class="task-header" onclick="toggleDetail(${i})">
     <input class="task-check" type="checkbox" id="chk-${i}" onclick="event.stopPropagation();updateProg(${i})">
     <div class="task-info"><div class="task-name">${t.title}</div><div class="task-role">담당: ${t.role}</div></div>
-    <button class="toggle-btn">상세 ▾</button>
+    <span class="task-time-badge" id="ttime-${i}">미완료</span>
+    <button class="toggle-btn" onclick="event.stopPropagation();toggleDetail(${i})">상세 ▾</button>
   </div>
-  <div class="task-detail" id="det-${i}"><ul>${t.details.map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
+  <div class="task-detail" id="det-${i}">
+    <ul>${t.details.map(x=>`<li>${x}</li>`).join('')}</ul>
+    <textarea class="task-memo" id="tmemo-${i}" placeholder="메모 (담당자, 조치 내용, 특이사항 등)"></textarea>
+  </div>`;
   list1.appendChild(d);
 });
-window.toggleDetail=i=>document.getElementById('det-'+i).classList.toggle('show');
-window.updateProg=i=>{
+window.toggleDetail=i=>{
+  document.getElementById('det-'+i).classList.toggle('show');
+};
+window.updateProg=function(i){
   const chk=document.getElementById('chk-'+i);
   document.getElementById('ti-'+i).classList.toggle('done',chk.checked);
+  const tb=document.getElementById('ttime-'+i);
+  if(chk.checked){
+    const now=new Date();
+    tb.textContent='완료 '+now.toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'});
+    tb.classList.add('done-time');
+    // 상세 펼치기 (메모 입력 유도)
+    document.getElementById('det-'+i).classList.add('show');
+  } else {
+    tb.textContent='미완료';
+    tb.classList.remove('done-time');
+  }
   const done=document.querySelectorAll('#taskList1 .task-check:checked').length;
   const pct=Math.round(done/tasks.length*100);
   document.getElementById('prog-bar1').style.width=pct+'%';
@@ -765,8 +786,12 @@ window.generateReport1=function(){
   let rows='';
   tasks.forEach((t,i)=>{
     const done=document.getElementById('chk-'+i).checked;
-    const titleShort=t.title.replace(/^[①-⑨]\s*/,'');
-    rows+=`<div class="report-row"><span class="report-key">${t.title.match(/^[①-⑨]/)?t.title.match(/^[①-⑨]/)[0]:''} ${titleShort}</span><span class="report-val">${done?'✅ 완료':'⬜ 미완료'} | 담당: ${t.role.split(',')[0]}</span></div>`;
+    const timeText=document.getElementById('ttime-'+i).textContent;
+    const memo=document.getElementById('tmemo-'+i).value||'—';
+    rows+=`<div class="report-row">
+      <span class="report-key">${t.title}</span>
+      <span class="report-val">${done?'✅ '+timeText:'⬜ 미완료'} | 메모: ${memo}</span>
+    </div>`;
   });
   const doneCount=document.querySelectorAll('#taskList1 .task-check:checked').length;
   document.getElementById('reportOutput1').innerHTML=`
