@@ -437,7 +437,7 @@
   <div id="taskList1"></div>
 
   <!-- 보고서 생성 -->
-  <button class="report-btn" onclick="generateReport1()">📄 사고 대응 보고서 초안 자동 생성</button>
+  <button class="report-btn" onclick="generateReport1()">📄 사고 대응 보고서 자동 생성</button>
   <div class="report-output" id="reportOutput1"></div>
 
   <div class="page-footer">2026 최창훈</div>
@@ -536,7 +536,7 @@
   </div>
   <div class="sec-hd"><span>🔴 비상조치 체크리스트</span><div class="sec-line"></div></div>
   <div id="incidentStepList"></div>
-  <button class="report-btn" onclick="generateReport()">📄 사고 대응 보고서 초안 자동 생성</button>
+  <button class="report-btn" onclick="generateReport()">📄 사고 대응 보고서 자동 생성</button>
   <div class="report-output" id="reportOutput"></div>
   <div class="sec-hd" style="margin-top:32px"><span>⚡ 급박한 위험 발생 시</span><div class="sec-line"></div></div>
   <div class="step-card"><div class="step-num red">A</div><div class="step-body2"><div class="step-title2">급박한 위험요인 발생</div><div class="step-desc2">최초발견자 → 주변 긴급상황 전파 / 초기 화재진압 등 위험요인 즉시 제거</div></div></div>
@@ -799,7 +799,7 @@ window.generateReport1=function(){
   });
   const doneCount=document.querySelectorAll('#taskList1 .task-check:checked').length;
   document.getElementById('reportOutput1').innerHTML=`
-    <h3>📄 긴급사안 대응 보고서 초안</h3>
+    <h3>📄 긴급사안 대응 보고서</h3>
     <div class="report-row"><span class="report-key">학교명</span><span class="report-val">${schoolName}</span></div>
     <div class="report-row"><span class="report-key">보고서 생성 일시</span><span class="report-val">${now.toLocaleString('ko-KR')}</span></div>
     <div class="report-row"><span class="report-key">사고 후 경과 시간</span><span class="report-val">${elapsed}</span></div>
@@ -923,7 +923,7 @@ window.generateReport=function(){
   });
   const done=document.querySelectorAll('#incidentStepList .step-check:checked').length;
   document.getElementById('reportOutput').innerHTML=`
-    <h3>📄 사고 대응 보고서 초안</h3>
+    <h3>📄 사고 대응 보고서</h3>
     <div class="report-row"><span class="report-key">보고서 생성 일시</span><span class="report-val">${now.toLocaleString('ko-KR')}</span></div>
     <div class="report-row"><span class="report-key">사고 후 경과 시간</span><span class="report-val">${elapsed}</span></div>
     <div class="report-row"><span class="report-key">완료된 조치 단계</span><span class="report-val">${done} / ${incidentSteps.length} 단계</span></div>
