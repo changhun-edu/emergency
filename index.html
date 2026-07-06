@@ -959,7 +959,7 @@ window.printReportOutput=function(elementId){
   @page{ size:A4; margin:16mm 15mm; }
   *{box-sizing:border-box;}
   html{-webkit-print-color-adjust:exact;print-color-adjust:exact;color-adjust:exact;}
-  body{font-family:'Malgun Gothic','Noto Sans KR',sans-serif;color:#1c2833;margin:0;padding:0;line-height:1.6;font-size:13.5px;}
+  body{font-family:'Malgun Gothic','Noto Sans KR',sans-serif;color:#1c2833;margin:0;padding:32px 36px 40px;line-height:1.6;font-size:13.5px;max-width:760px;margin-left:auto;margin-right:auto;}
   .print-header{border-bottom:3px solid #922b21;padding-bottom:12px;margin-bottom:20px;}
   .print-school{font-size:12.5px;color:#566573;font-weight:700;margin-bottom:5px;letter-spacing:.2px;}
   .print-title{font-size:22px;font-weight:900;color:#922b21;}
@@ -985,7 +985,6 @@ window.printReportOutput=function(elementId){
     <div class="print-meta">인쇄 일시: ${printedAt}</div>
   </div>
   <div class="report-card">${rowsHtml}</div>
-  <div class="print-footer">2026 최창훈 · 학교 안전 대응 지원 시스템</div>
 </body></html>`);
   win.document.close();
   win.focus();
