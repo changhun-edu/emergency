@@ -210,7 +210,11 @@
   .report-output h3{font-size:var(--fs-xl);font-weight:900;margin-bottom:16px;color:var(--red-dark);border-bottom:2px solid var(--border);padding-bottom:10px;}
   .report-row{margin-bottom:10px;display:flex;gap:8px;flex-wrap:wrap;}
   .report-key{font-weight:700;color:var(--blue);min-width:120px;flex-shrink:0;}
-  .report-val{flex:1;}
+  .report-val{flex:1;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .status-badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:var(--fs-xs);font-weight:700;font-family:'IBM Plex Mono',monospace;white-space:nowrap;}
+  .status-done{background:var(--green-light);color:var(--green);}
+  .status-pending{background:var(--gray-light);color:var(--gray);}
+  .report-memo-label{font-size:var(--fs-xs);font-weight:700;color:#999;}
   .copy-btn{margin-top:14px;padding:12px 20px;background:var(--green);color:white;border:none;border-radius:8px;font-size:var(--fs-base);font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;}
   .copy-btn:hover{background:#1a7a3e;}
   .step-card{background:white;border:1px solid var(--border);border-radius:10px;padding:16px 18px;display:flex;gap:14px;box-shadow:var(--shadow);margin-bottom:10px;}
@@ -790,7 +794,7 @@ window.generateReport1=function(){
     const memo=document.getElementById('tmemo-'+i).value||'—';
     rows+=`<div class="report-row">
       <span class="report-key">${t.title}</span>
-      <span class="report-val">${done?'✅ '+timeText:'⬜ 미완료'} | 메모: ${memo}</span>
+      <span class="report-val"><span class="status-badge ${done?'status-done':'status-pending'}">${done?timeText:'미완료'}</span><span class="report-memo-label">메모</span> ${memo}</span>
     </div>`;
   });
   const doneCount=document.querySelectorAll('#taskList1 .task-check:checked').length;
@@ -915,7 +919,7 @@ window.generateReport=function(){
     const done=document.getElementById('ischk-'+i).checked;
     const time=document.getElementById('istime-'+i).textContent;
     const memo=document.getElementById('ismemo-'+i).value||'—';
-    rows+=`<div class="report-row"><span class="report-key">${s.num}. ${s.title}</span><span class="report-val">${done?'✅ '+time:'⬜ 미완료'} | 메모: ${memo}</span></div>`;
+    rows+=`<div class="report-row"><span class="report-key">${s.num}. ${s.title}</span><span class="report-val"><span class="status-badge ${done?'status-done':'status-pending'}">${done?time:'미완료'}</span><span class="report-memo-label">메모</span> ${memo}</span></div>`;
   });
   const done=document.querySelectorAll('#incidentStepList .step-check:checked').length;
   document.getElementById('reportOutput').innerHTML=`
@@ -937,41 +941,50 @@ window.copyReport=function(){
 window.printReportOutput=function(elementId){
   const src=document.getElementById(elementId);
   if(!src) return;
+  const stripEmoji=str=>str.replace(/[\u{1F1E6}-\u{1F1FF}\u{1F300}-\u{1FAFF}\u{2190}-\u{21FF}\u{2300}-\u{27BF}\u{2B00}-\u{2BFF}\u{FE0F}\u{200D}]/gu,'').replace(/[ \t]{2,}/g,' ');
   const clone=src.cloneNode(true);
   clone.querySelectorAll('button').forEach(b=>b.remove());
   const titleEl=clone.querySelector('h3');
-  const titleText=titleEl?titleEl.textContent.replace(/^📄\s*/,''):'보고서';
+  const titleText=titleEl?stripEmoji(titleEl.textContent).trim():'보고서';
   if(titleEl) titleEl.remove();
-  const schoolName=localStorage.getItem('school_name')||'';
+  const schoolName=stripEmoji(localStorage.getItem('school_name')||'').trim();
   const now=new Date();
   const printedAt=now.toLocaleString('ko-KR');
-  const rowsHtml=clone.innerHTML;
+  const rowsHtml=stripEmoji(clone.innerHTML);
   const win=window.open('','_blank');
   if(!win){alert('팝업이 차단되어 인쇄 창을 열 수 없습니다. 팝업 차단을 해제해 주세요.');return;}
   win.document.write(`<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
 <title>${titleText}</title>
 <style>
-  @page{ size:A4; margin:18mm 16mm; }
+  @page{ size:A4; margin:16mm 15mm; }
   *{box-sizing:border-box;}
-  body{font-family:'Malgun Gothic','Noto Sans KR',sans-serif;color:#1c2833;margin:0;padding:0;line-height:1.7;}
-  .print-header{border-bottom:3px solid #922b21;padding-bottom:14px;margin-bottom:22px;}
-  .print-school{font-size:14px;color:#566573;font-weight:600;margin-bottom:4px;}
-  .print-title{font-size:24px;font-weight:900;color:#922b21;}
-  .print-meta{font-size:12px;color:#888;margin-top:6px;}
-  .report-row{display:flex;gap:10px;flex-wrap:wrap;padding:10px 0;border-bottom:1px solid #eaecee;font-size:14px;}
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact;color-adjust:exact;}
+  body{font-family:'Malgun Gothic','Noto Sans KR',sans-serif;color:#1c2833;margin:0;padding:0;line-height:1.6;font-size:13.5px;}
+  .print-header{border-bottom:3px solid #922b21;padding-bottom:12px;margin-bottom:20px;}
+  .print-school{font-size:12.5px;color:#566573;font-weight:700;margin-bottom:5px;letter-spacing:.2px;}
+  .print-title{font-size:22px;font-weight:900;color:#922b21;}
+  .print-meta{font-size:10.5px;color:#999;margin-top:6px;}
+  .report-card{border:1px solid #e2e5e8;border-radius:10px;overflow:hidden;}
+  .report-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:11px 16px;border-bottom:1px solid #eef0f2;}
+  .report-row:last-child{border-bottom:none;}
+  .report-row:nth-child(odd){background:#fafbfc;}
   .report-key{font-weight:700;color:#1a5276;min-width:150px;flex-shrink:0;}
-  .report-val{flex:1;word-break:break-word;}
-  .print-footer{margin-top:34px;padding-top:12px;border-top:1px solid #d5d8dc;font-size:11px;color:#aaa;text-align:right;}
+  .report-val{flex:1;display:flex;align-items:center;gap:9px;flex-wrap:wrap;color:#333;word-break:break-word;}
+  .status-badge{display:inline-block;padding:3px 12px;border-radius:20px;font-size:10.5px;font-weight:700;font-family:'Consolas','IBM Plex Mono',monospace;white-space:nowrap;border:1px solid transparent;}
+  .status-done{background:#eafaf1;color:#1e8449;border-color:#a9dfbf;}
+  .status-pending{background:#f4f6f7;color:#7f8c8d;border-color:#e3e6e8;}
+  .report-memo-label{font-size:10.5px;font-weight:700;color:#aaa;}
+  .print-footer{margin-top:26px;padding-top:10px;border-top:1px solid #e2e5e8;font-size:10px;color:#bbb;text-align:right;}
   hr{display:none;}
   @media print{ .no-print{display:none;} }
 </style>
 </head><body>
   <div class="print-header">
-    ${schoolName?`<div class="print-school">🏫 ${schoolName}</div>`:''}
+    ${schoolName?`<div class="print-school">${schoolName}</div>`:''}
     <div class="print-title">${titleText}</div>
     <div class="print-meta">인쇄 일시: ${printedAt}</div>
   </div>
-  ${rowsHtml}
+  <div class="report-card">${rowsHtml}</div>
   <div class="print-footer">2026 최창훈 · 학교 안전 대응 지원 시스템</div>
 </body></html>`);
   win.document.close();
