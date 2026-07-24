@@ -283,6 +283,31 @@
   .sc2-title{font-size:var(--fs-base);font-weight:700;margin-bottom:5px;}
   .sc2-desc{font-size:var(--fs-sm);color:#555;line-height:1.6;}
 
+  /* ── 참고사례 아코디언 ── */
+  .ref-section{margin-bottom:10px;border-radius:12px;overflow:hidden;box-shadow:var(--shadow);}
+  .ref-section-head{display:flex;align-items:center;gap:12px;padding:14px 18px;background:white;border:1px solid var(--border);cursor:pointer;user-select:none;transition:background .15s;}
+  .ref-section-head:hover{background:#f7f9fb;}
+  .ref-place-icon{font-size:22px;flex-shrink:0;}
+  .ref-place-name{font-size:var(--fs-lg);font-weight:900;flex:1;}
+  .ref-count-badge{font-size:var(--fs-xs);font-weight:700;padding:3px 10px;border-radius:20px;background:var(--gray-light);color:var(--gray);font-family:'IBM Plex Mono',monospace;white-space:nowrap;}
+  .ref-toggle-arrow{font-size:14px;color:#aaa;transition:transform .2s;flex-shrink:0;}
+  .ref-section-head.open .ref-toggle-arrow{transform:rotate(180deg);}
+  .ref-cards-wrap{display:none;padding:4px 10px 12px;background:#f7f9fb;border:1px solid var(--border);border-top:none;
+    display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .ref-cards-wrap.show{display:grid;}
+  .ref-cards-wrap:not(.show){display:none;}
+  @media(max-width:520px){.ref-cards-wrap{grid-template-columns:1fr;}}
+  .ref-card{background:white;border-radius:10px;padding:14px 16px;border-left:4px solid var(--border);box-shadow:0 1px 6px rgba(0,0,0,0.07);}
+  .ref-card.good{border-left-color:var(--green);}
+  .ref-card.risk{border-left-color:var(--orange);}
+  .ref-card-hazard{font-size:var(--fs-sm);font-weight:700;color:var(--text);line-height:1.5;margin-bottom:8px;}
+  .ref-card-score{display:inline-block;font-size:var(--fs-xs);font-weight:700;font-family:'IBM Plex Mono',monospace;padding:2px 9px;border-radius:20px;margin-bottom:8px;}
+  .ref-card-score.low{background:var(--green-light);color:var(--green);}
+  .ref-card-score.mid{background:var(--orange-light);color:#a04000;}
+  .ref-card-score.high{background:#fde8e8;color:var(--red-dark);}
+  .ref-card-action{font-size:var(--fs-xs);color:#555;background:var(--gray-light);border-radius:6px;padding:6px 10px;line-height:1.5;}
+  .ref-card-action-label{font-weight:700;color:var(--blue);margin-right:4px;}
+
   /* ── TAB 5: 비상연락망 ── */
   .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
   @media(max-width:480px){.contact-grid{grid-template-columns:1fr;}}
@@ -560,11 +585,11 @@
     <div class="risk-kind-card"><div class="risk-kind-head rk-ora">📆 정기 평가</div><div class="risk-kind-body">최초 평가 후<br><strong>연 1회</strong> 정기 실시</div></div>
     <div class="risk-kind-card"><div class="risk-kind-head rk-blue">⚡ 수시 평가</div><div class="risk-kind-body"><ul><li>중대산업사고·재해 발생 시</li><li>작업방법·절차 변경 시</li><li>설비·기계 신규 도입 시</li></ul></div></div>
   </div>
-  <div class="sec-hd"><span>✏️ 위험성 평가 항목 입력</span><div class="sec-line"></div></div>
+  <div class="sec-hd"><span>✏️ 우리 학교 위험성 평가 입력</span><div class="sec-line"></div></div>
   <div class="eval-form">
-    <h4>새 평가 항목 추가 <span style="font-size:var(--fs-sm);font-weight:500;color:#888">(위험한 곳이 발견되면 기록하세요)</span></h4>
+    <h4>평가 항목 추가 <span style="font-size:var(--fs-sm);font-weight:500;color:#888">위험한 곳을 발견하면 아래 참고사례를 보고 직접 기록하세요</span></h4>
     <div class="eval-row">
-      <div class="eval-field"><label>작업 공간 / 장소</label><input type="text" id="ef-place" placeholder="예: 급식실, 체육관 창고"></div>
+      <div class="eval-field"><label>작업 공간 / 장소</label><input type="text" id="ef-place" placeholder="예: 식생활관, 체육관 창고"></div>
       <div class="eval-field"><label>위험 요인</label><input type="text" id="ef-hazard" placeholder="예: 바닥 미끄러움, 전기 배선 노출"></div>
     </div>
     <div class="eval-row">
@@ -601,13 +626,7 @@
     </div>
     <button class="add-eval-btn" onclick="addEvalItem()">+ 평가 항목 추가</button>
   </div>
-  <div class="eval-list" id="evalList"></div>
-  <div class="sec-hd" style="margin-top:28px"><span>📂 평가 구성 서류 (6단계)</span><div class="sec-line"></div></div>
-  <div class="steps-grid">
-    <div class="step-card2"><div class="sc2-num blue">가</div><div class="sc2-body"><div class="sc2-title">위험성 평가 실시 계획서</div><div class="sc2-desc">1단계(사전준비) + 2단계(유해·위험요인 파악)</div></div></div>
-    <div class="step-card2"><div class="sc2-num blue">나</div><div class="sc2-body"><div class="sc2-title">위험성 평가표 시행</div><div class="sc2-desc">3단계(위험성 결정) + 4단계(위험성 감소대책 수립 및 실행)</div></div></div>
-    <div class="step-card2"><div class="sc2-num blue">다</div><div class="sc2-body"><div class="sc2-title">공유 및 기록 유지</div><div class="sc2-desc">5단계(위험성 평가 공유) + 6단계(기록 및 보존) — 서명 및 개선사항 누적 관리</div></div></div>
-  </div>
+  <div id="refCaseList"></div>
   <div class="info-box green" style="margin-top:14px">
     <h4>🔗 교육청 재난안전센터 사이트</h4>
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px;">
@@ -991,7 +1010,120 @@ window.printReportOutput=function(elementId){
   setTimeout(()=>{ win.print(); },300);
 };
 
-// ══ TAB 4: 위험성 평가 ══
+// ══ TAB 4: 위험성 평가 — 참고사례 데이터 ══
+// kind: 'good'=우수사례, 'risk'=위험요인
+// score: 빈도×강도 (1=미미, 4=경미 등)
+const refCases=[
+  // ── 우수사례 ──
+  {place:'교내 계단',icon:'🪜',kind:'good',hazard:'끝단 논슬립 패드 설치로 미끄러짐·넘어짐 예방',freq:1,sev:1,score:1,action:'현행 유지'},
+  {place:'식생활관',icon:'🍽️',kind:'good',hazard:'전기판넬 앞 감전주의 표지 부착으로 감전 위험 예방',freq:1,sev:1,score:1,action:'현행 유지'},
+  // ── 교직원 위험요인 ──
+  {place:'영어교실·음악실',icon:'🎵',kind:'risk',hazard:'선반 상단 물건 이동 시 의자 사용으로 균형상실·넘어짐',freq:2,sev:2,score:4,action:'의자 철거, 발판형 사다리 비치'},
+  {place:'유치원·교직원협의실',icon:'🏫',kind:'risk',hazard:'전선 늘어짐으로 걸려 넘어짐',freq:2,sev:2,score:4,action:'전선 정리정돈 후 몰딩화'},
+  {place:'후관 1층 창고',icon:'📦',kind:'risk',hazard:'층고 낮아 머리 부딪힘',freq:2,sev:2,score:4,action:'충격방지 패드 부착'},
+  {place:'강당 체육창고',icon:'🏋️',kind:'risk',hazard:'선반 상단 끝단 적재 물품 낙하',freq:2,sev:2,score:4,action:'물품 이동 조치, 낙하물 주의 표지 부착'},
+  // ── 식생활관 위험요인 ──
+  {place:'식생활관 조리실',icon:'🍽️',kind:'risk',hazard:'트렌치 구조 변형·단차로 이동 시 걸려 넘어짐',freq:2,sev:2,score:4,action:'트렌치 교체 및 수리'},
+  {place:'식생활관 조리실',icon:'🍽️',kind:'risk',hazard:'바닥 물기 및 카트 미고정으로 전도',freq:2,sev:2,score:4,action:'이동 없을 땐 고정조치'},
+  {place:'식생활관 조리실',icon:'🍽️',kind:'risk',hazard:'커넥터 늘어짐으로 환풍기에 말려들어갈 위험',freq:2,sev:2,score:4,action:'커넥터 정리'},
+  {place:'식생활관 조리실',icon:'🍽️',kind:'risk',hazard:'연한 지난·노후화된 소화기로 화재 대응 지연',freq:2,sev:2,score:4,action:'연한지난·노후화 소화기 교체'},
+  {place:'식생활관 조리실',icon:'🍽️',kind:'risk',hazard:'바닥 타일 깨짐으로 카트 사용 시 걸려 넘어짐',freq:2,sev:2,score:4,action:'바닥 타일 보수'},
+  {place:'식생활관 물품창고',icon:'🍽️',kind:'risk',hazard:'층고 낮아 머리 부딪힘·근골격계 질환 유발',freq:2,sev:2,score:4,action:'충격방지 패드 부착'},
+  {place:'식생활관 물품창고',icon:'🍽️',kind:'risk',hazard:'MSDS 미최신화로 유해화학물질 응급 대응 미흡',freq:2,sev:2,score:4,action:'MSDS 최신화'},
+  {place:'식생활관 전기설비',icon:'⚡',kind:'risk',hazard:'전기판넬 매입 푸쉬버튼 고장, 상시개방으로 감전 위험',freq:2,sev:2,score:4,action:'매입 푸쉬버튼 수리, 감전주의 표지 부착'},
+  {place:'식생활관 전기설비',icon:'⚡',kind:'risk',hazard:'외함 후크 손상·노후화로 다습 환경 누전·감전',freq:2,sev:2,score:4,action:'외함 후크 수리'},
+  {place:'식생활관 전기설비',icon:'⚡',kind:'risk',hazard:'전선 노출로 임의접촉 시 감전',freq:2,sev:2,score:4,action:'해당구역 마감조치'},
+  {place:'식품창고·휴게실',icon:'🏠',kind:'risk',hazard:'콘센트 벽체 미고정·탈락으로 화재 위험',freq:2,sev:2,score:4,action:'콘센트 벽체 고정'},
+  // ── 시설 위험요인 ──
+  {place:'보일러실',icon:'🔥',kind:'risk',hazard:'조도 낮음 및 연한 지난 소화기로 긴급 대응 지연',freq:2,sev:2,score:4,action:'조명 설치, 소화기 교체'},
+  {place:'본관 4층 학습지원실',icon:'🖥️',kind:'risk',hazard:'콘센트 덮개 파손으로 임의접촉 시 감전',freq:2,sev:2,score:4,action:'콘센트 교체'},
+  {place:'인쇄실',icon:'🖨️',kind:'risk',hazard:'인쇄 작업 전·후 비산먼지로 호흡기 질환 유발',freq:2,sev:2,score:4,action:'방진마스크 비치, 작업 전·후 환기'},
+  {place:'옥상 저수조실',icon:'💧',kind:'risk',hazard:'물탱크 밀폐공간 표지 미흡으로 질식·중독 위험',freq:2,sev:2,score:4,action:'밀폐공간 표지 부착'},
+  {place:'음식물처리 경로',icon:'🚛',kind:'risk',hazard:'계단 단차로 외부 경로 운반 시 넘어짐·미끄러짐',freq:2,sev:2,score:4,action:'음식물처리 업체 내부 출입 검토'},
+];
+
+// 장소별로 그룹핑
+function groupByPlace(items){
+  const map={};
+  items.forEach(it=>{
+    if(!map[it.place]) map[it.place]={icon:it.icon,place:it.place,items:[]};
+    map[it.place].items.push(it);
+  });
+  return Object.values(map);
+}
+
+function scoreClass(s){return s<=3?'low':s<=8?'mid':'high';}
+function scoreLabel(s){return s<=3?'미미':s<=8?'경미':s<=15?'보통':'위험';}
+
+function renderRefCases(){
+  const el=document.getElementById('refCaseList');
+  if(!el) return;
+
+  const goodItems=refCases.filter(r=>r.kind==='good');
+  const riskItems=refCases.filter(r=>r.kind==='risk');
+
+  let html='';
+
+  // ── 우수사례 섹션 ──
+  html+=`<div class="sec-hd" style="margin-top:28px"><span>⭐ 순회점검 우수사례</span><div class="sec-line"></div></div>`;
+  html+=`<div class="info-box green" style="margin-bottom:14px;font-size:var(--fs-sm);">잘 관리되고 있는 사례입니다. 우리 학교에도 이런 부분이 잘 되어 있는지 확인해 보세요.</div>`;
+  groupByPlace(goodItems).forEach((g,gi)=>{
+    const uid=`ref-good-${gi}`;
+    html+=`<div class="ref-section">
+      <div class="ref-section-head" onclick="toggleRef('${uid}')">
+        <span class="ref-place-icon">${g.icon}</span>
+        <span class="ref-place-name">${g.place}</span>
+        <span class="ref-count-badge">${g.items.length}건</span>
+        <span class="ref-toggle-arrow" id="arr-${uid}">▼</span>
+      </div>
+      <div class="ref-cards-wrap" id="${uid}" style="grid-template-columns:${g.items.length===1?'1fr':'1fr 1fr'}">
+        ${g.items.map(it=>`
+          <div class="ref-card good">
+            <div class="ref-card-hazard">✅ ${it.hazard}</div>
+            <span class="ref-card-score low">위험도 ${it.score} · ${scoreLabel(it.score)}</span>
+            <div class="ref-card-action"><span class="ref-card-action-label">개선방법</span>${it.action}</div>
+          </div>`).join('')}
+      </div>
+    </div>`;
+  });
+
+  // ── 위험요인 섹션 ──
+  html+=`<div class="sec-hd" style="margin-top:24px"><span>⚠️ 순회점검 주요 위험요인</span><div class="sec-line"></div></div>`;
+  html+=`<div class="info-box orange" style="margin-bottom:14px;font-size:var(--fs-sm);">다른 학교에서 발견된 위험요인 사례입니다. 우리 학교에 같은 위험은 없는지 점검해 보세요.</div>`;
+  groupByPlace(riskItems).forEach((g,gi)=>{
+    const uid=`ref-risk-${gi}`;
+    html+=`<div class="ref-section">
+      <div class="ref-section-head" onclick="toggleRef('${uid}')">
+        <span class="ref-place-icon">${g.icon}</span>
+        <span class="ref-place-name">${g.place}</span>
+        <span class="ref-count-badge">${g.items.length}건</span>
+        <span class="ref-toggle-arrow" id="arr-${uid}">▼</span>
+      </div>
+      <div class="ref-cards-wrap" id="${uid}" style="grid-template-columns:${g.items.length===1?'1fr':'1fr 1fr'}">
+        ${g.items.map(it=>`
+          <div class="ref-card risk">
+            <div class="ref-card-hazard">⚠️ ${it.hazard}</div>
+            <span class="ref-card-score ${scoreClass(it.score)}">위험도 ${it.score} · ${scoreLabel(it.score)}</span>
+            <div class="ref-card-action"><span class="ref-card-action-label">개선방법</span>${it.action}</div>
+          </div>`).join('')}
+      </div>
+    </div>`;
+  });
+
+  el.innerHTML=html;
+}
+window.toggleRef=function(uid){
+  const wrap=document.getElementById(uid);
+  const arr=document.getElementById('arr-'+uid);
+  const head=wrap.previousElementSibling;
+  const isOpen=wrap.classList.contains('show');
+  wrap.classList.toggle('show',!isOpen);
+  if(arr) arr.style.transform=isOpen?'':'rotate(180deg)';
+  if(head) head.classList.toggle('open',!isOpen);
+};
+renderRefCases();
+
+// ── 위험성 평가 직접 입력 ──
 let evalItems=[];
 function calcScore(){
   const f=parseInt(document.getElementById('ef-freq').value)||0;
@@ -1023,17 +1155,19 @@ window.addEvalItem=function(){
 };
 function renderEvalList(){
   const el=document.getElementById('evalList');
+  if(!el) return;
   if(!evalItems.length){el.innerHTML='';return;}
-  el.innerHTML='<div class="sec-hd"><span>📊 입력된 평가 항목 ('+evalItems.length+'건)</span><div class="sec-line"></div></div>'+
+  el.innerHTML='<div class="sec-hd" style="margin-top:20px"><span>📝 내가 입력한 평가 항목 ('+evalItems.length+'건)</span><div class="sec-line"></div></div>'+
     evalItems.map((it,idx)=>{
-      const cls=it.score<=6?'ecs-low':it.score<=12?'ecs-mid':'ecs-high';
+      const cls=it.score<=3?'ecs-low':it.score<=8?'ecs-mid':'ecs-high';
       return `<div class="eval-card">
         <div class="eval-card-score ${cls}">${it.score}</div>
         <div class="eval-card-body">
-          <div class="eval-card-title">📍 ${it.place} — ${it.hazard}</div>
-          <div class="eval-card-meta">빈도 ${it.freq} × 강도 ${it.sev} = 위험도 ${it.score} | 대책: ${it.action||'미입력'}</div>
+          <div class="eval-card-title">📍 ${it.place}</div>
+          <div class="eval-card-title" style="font-weight:400;font-size:var(--fs-sm);margin-top:3px;">${it.hazard}</div>
+          <div class="eval-card-meta" style="margin-top:6px;">빈도 ${it.freq} × 강도 ${it.sev} = <strong>${it.score}점</strong> &nbsp;|&nbsp; <span style="color:var(--blue)">개선방법:</span> ${it.action||'미입력'}</div>
         </div>
-        <button class="eval-del-btn" onclick="delEval(${idx})">✕</button>
+        <button class="eval-del-btn" title="삭제" onclick="delEval(${idx})">✕</button>
       </div>`;
     }).join('');
 }
