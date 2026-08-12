@@ -334,6 +334,8 @@
   /* ── 안내 토스트 ── */
   #toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(14px);background:rgba(28,40,51,.94);color:white;font-size:var(--fs-sm);font-weight:700;padding:12px 20px;border-radius:24px;box-shadow:var(--shadow-lg);z-index:300;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;max-width:90%;text-align:center;line-height:1.5;}
   #toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  .reset-mini{flex-shrink:0;background:white;border:1px solid var(--border);color:var(--gray);border-radius:8px;padding:7px 13px;font-size:var(--fs-xs);font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;white-space:nowrap;transition:all .15s;}
+  .reset-mini:hover{background:#fdecea;border-color:#f5c6c2;color:var(--red-dark);}
   .modal-reset{background:#fdecea;color:var(--red-dark);border:1px solid #f5c6c2;border-radius:8px;padding:11px 16px;font-size:var(--fs-sm);font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;margin-right:auto;}
   .modal-reset:hover{background:#fadbd8;}
 </style>
@@ -471,7 +473,7 @@
     </div>
   </div>
 
-  <div class="sec-hd"><span>📝 대응 절차 체크리스트</span><div class="sec-line"></div></div>
+  <div class="sec-hd"><span>📝 대응 절차 체크리스트</span><div class="sec-line"></div><button class="reset-mini" onclick="resetChecklist1()">↺ 초기화</button></div>
   <div class="progress-wrap">
     <div class="progress-label"><span>진행 상황</span><span id="prog-count1">0 / 9 완료</span></div>
     <div class="progress-bar-bg"><div class="progress-bar-fill" id="prog-bar1"><span class="progress-text" id="prog-pct1"></span></div></div>
@@ -576,7 +578,7 @@
       <button class="timer-btn" onclick="timerReset()">↺ 초기화</button>
     </div>
   </div>
-  <div class="sec-hd"><span>🔴 비상조치 체크리스트</span><div class="sec-line"></div></div>
+  <div class="sec-hd"><span>🔴 비상조치 체크리스트</span><div class="sec-line"></div><button class="reset-mini" onclick="resetChecklist3()">↺ 초기화</button></div>
   <div id="incidentStepList"></div>
   <button class="report-btn" onclick="generateReport()">📄 사고 대응 보고서 자동 생성</button>
   <div class="report-output" id="reportOutput"></div>
@@ -1374,6 +1376,41 @@ setInterval(function(){ if(t1Interval||timerInterval) saveState(); },5000);
 window.addEventListener('pagehide',saveState);
 window.addEventListener('beforeunload',saveState);
 document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='hidden') saveState(); });
+
+// ── 체크리스트 개별 초기화 ──
+window.resetChecklist1=function(){
+  if(!confirm('긴급사안 체크리스트를 초기화합니다.\n\n· 체크 표시와 완료 시각 해제\n· 작성한 메모 전체 삭제\n· 경과 시간 타이머 및 생성된 보고서 초기화\n\n계속할까요?')) return;
+  tasks.forEach((t,i)=>{
+    document.getElementById('chk-'+i).checked=false;
+    document.getElementById('ti-'+i).classList.remove('done');
+    const tb=document.getElementById('ttime-'+i);
+    tb.textContent='미완료'; tb.classList.remove('done-time');
+    document.getElementById('tmemo-'+i).value='';
+    document.getElementById('det-'+i).classList.remove('show');
+  });
+  recalcProg1();
+  t1Reset();
+  const ro=document.getElementById('reportOutput1');
+  ro.classList.remove('show'); ro.innerHTML='';
+  saveState();
+  showToast('체크리스트를 초기화했습니다');
+};
+window.resetChecklist3=function(){
+  if(!confirm('중대산업재해 비상조치 체크리스트를 초기화합니다.\n\n· 체크 표시와 완료 시각 해제\n· 작성한 메모 전체 삭제\n· 경과 시간 타이머 및 생성된 보고서 초기화\n\n계속할까요?')) return;
+  incidentSteps.forEach((sx,i)=>{
+    document.getElementById('ischk-'+i).checked=false;
+    document.getElementById('ist-'+i).classList.remove('done-step');
+    const tb=document.getElementById('istime-'+i);
+    tb.textContent='미완료'; tb.style.background=''; tb.style.color='';
+    document.getElementById('ismemo-'+i).value='';
+    document.getElementById('isdet-'+i).classList.remove('show');
+  });
+  timerReset();
+  const ro=document.getElementById('reportOutput');
+  ro.classList.remove('show'); ro.innerHTML='';
+  saveState();
+  showToast('체크리스트를 초기화했습니다');
+};
 
 // ── 작업기록 초기화 ──
 window.resetProgress=function(){
