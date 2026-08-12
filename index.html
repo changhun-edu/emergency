@@ -336,8 +336,7 @@
   #toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
   .reset-mini{flex-shrink:0;background:white;border:1px solid var(--border);color:var(--gray);border-radius:8px;padding:7px 13px;font-size:var(--fs-xs);font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;white-space:nowrap;transition:all .15s;}
   .reset-mini:hover{background:#fdecea;border-color:#f5c6c2;color:var(--red-dark);}
-  .modal-resets{display:flex;gap:8px;margin-top:20px;}
-  .modal-reset{flex:1;background:#fdecea;color:var(--red-dark);border:1px solid #f5c6c2;border-radius:8px;padding:11px 10px;font-size:var(--fs-sm);font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;white-space:nowrap;}
+  .modal-reset{background:#fdecea;color:var(--red-dark);border:1px solid #f5c6c2;border-radius:8px;padding:11px 16px;font-size:var(--fs-sm);font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;margin-right:auto;}
   .modal-reset:hover{background:#fadbd8;}
 </style>
 </head>
@@ -351,11 +350,8 @@
     <div class="modal-field"><label>학교 이름</label><input type="text" id="cfg-name" placeholder="예: ○○초등학교"></div>
     <div class="modal-field"><label>교육청 산업재해예방팀 전화번호</label><input type="text" id="cfg-edu" placeholder="예: 062-380-4887"></div>
     <div class="modal-field"><label>교육청 재난안전센터 사이트 주소</label><input type="text" id="cfg-site" placeholder="https://safe.jge.go.kr/"><div style="font-size:12px;color:#aaa;margin-top:4px;">기본값: https://safe.jge.go.kr/ (비워두면 기본값으로 초기화)</div></div>
-    <div class="modal-resets">
-      <button class="modal-reset" onclick="resetConfig()">🏫 설정 초기화</button>
-      <button class="modal-reset" onclick="resetProgress()">🗑 작업기록 초기화</button>
-    </div>
     <div class="modal-btns">
+      <button class="modal-reset" onclick="resetConfig()">🗑 설정 초기화</button>
       <button class="modal-cancel" onclick="closeSetup()">취소</button>
       <button class="modal-save" onclick="saveSetup()">저장</button>
     </div>
@@ -1414,13 +1410,6 @@ window.resetChecklist3=function(){
   ro.classList.remove('show'); ro.innerHTML='';
   saveState();
   showToast('체크리스트를 초기화했습니다');
-};
-
-// ── 작업기록 초기화 ──
-window.resetProgress=function(){
-  if(!confirm('체크리스트·메모·타이머·위험성평가 입력 등\n지금까지의 작업 기록을 모두 지웁니다.\n(학교 이름·연락처 설정은 그대로 유지됩니다)\n\n계속할까요?')) return;
-  try{ localStorage.removeItem(STORE_KEY); }catch(e){}
-  location.reload();
 };
 
 // ── 우리 학교 설정 초기화 ──
