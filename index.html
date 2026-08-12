@@ -19,7 +19,10 @@
   body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:var(--fs-base);line-height:1.65;}
 
   /* HEADER */
-  header{background:var(--red-dark);color:white;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:68px;position:sticky;top:0;z-index:100;box-shadow:0 3px 10px rgba(0,0,0,0.25);}
+  /* 공통 컨테이너 — 헤더/탭/본문 모두 동일 폭 */
+  .container{max-width:720px;margin:0 auto;width:100%;padding:0 16px;}
+  header{background:var(--red-dark);color:white;height:68px;position:sticky;top:0;z-index:100;box-shadow:0 3px 10px rgba(0,0,0,0.25);}
+  .header-inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;}
   .header-left{display:flex;align-items:center;gap:12px;}
   .header-icon{font-size:30px;}
   .header-title{font-size:19px;font-weight:900;line-height:1.2;cursor:pointer;transition:opacity .15s;}
@@ -29,15 +32,16 @@
   .header-school:hover{background:rgba(255,255,255,0.28);}
 
   /* TABS */
-  .tab-nav{background:white;border-bottom:2px solid var(--border);display:flex;justify-content:center;overflow-x:auto;padding:0 12px;scrollbar-width:none;position:sticky;top:68px;z-index:90;box-shadow:0 2px 8px rgba(0,0,0,0.06);}
-  .tab-nav::-webkit-scrollbar{display:none;}
-  .tab-btn{flex-shrink:0;background:none;border:none;border-bottom:3px solid transparent;padding:15px 16px 12px;font-family:'Noto Sans KR',sans-serif;font-size:var(--fs-sm);font-weight:700;color:#888;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .18s;white-space:nowrap;margin-bottom:-2px;}
+  .tab-nav{background:white;border-bottom:2px solid var(--border);position:sticky;top:68px;z-index:90;box-shadow:0 2px 8px rgba(0,0,0,0.06);}
+  .tab-nav-inner{display:flex;justify-content:center;overflow-x:auto;scrollbar-width:none;padding:0 6px;}
+  .tab-nav-inner::-webkit-scrollbar{display:none;}
+  .tab-btn{flex-shrink:0;background:none;border:none;border-bottom:3px solid transparent;padding:15px 12px 12px;font-family:'Noto Sans KR',sans-serif;font-size:var(--fs-sm);font-weight:700;color:#888;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .18s;white-space:nowrap;margin-bottom:-2px;}
   .tab-btn:hover{color:var(--red);}
   .tab-btn.active{color:var(--red-dark);border-bottom-color:var(--red-dark);}
   .tab-icon{font-size:18px;}
 
   /* MAIN */
-  .main{max-width:860px;margin:0 auto;padding:22px 16px 60px;}
+  .main{padding-top:22px;padding-bottom:60px;}
   .tab-panel{display:none;}
   .tab-panel.active{display:block;animation:fadeIn .2s ease;}
   @keyframes fadeIn{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
@@ -326,6 +330,12 @@
   .form-icon{font-size:28px;}
   .form-info h4{font-size:var(--fs-sm);font-weight:700;}
   .form-info p{font-size:var(--fs-xs);color:#888;margin-top:2px;}
+
+  /* ── 안내 토스트 ── */
+  #toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(14px);background:rgba(28,40,51,.94);color:white;font-size:var(--fs-sm);font-weight:700;padding:12px 20px;border-radius:24px;box-shadow:var(--shadow-lg);z-index:300;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;max-width:90%;text-align:center;line-height:1.5;}
+  #toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  .modal-reset{background:#fdecea;color:var(--red-dark);border:1px solid #f5c6c2;border-radius:8px;padding:11px 16px;font-size:var(--fs-sm);font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;margin-right:auto;}
+  .modal-reset:hover{background:#fadbd8;}
 </style>
 </head>
 <body>
@@ -339,13 +349,17 @@
     <div class="modal-field"><label>교육청 산업재해예방팀 전화번호</label><input type="text" id="cfg-edu" placeholder="예: 062-380-4887"></div>
     <div class="modal-field"><label>교육청 재난안전센터 사이트 주소</label><input type="text" id="cfg-site" placeholder="https://safe.gen.go.kr/"><div style="font-size:12px;color:#aaa;margin-top:4px;">기본값: https://safe.gen.go.kr/ (비워두면 기본값으로 초기화)</div></div>
     <div class="modal-btns">
+      <button class="modal-reset" onclick="resetProgress()">🗑 작업기록 초기화</button>
       <button class="modal-cancel" onclick="closeSetup()">취소</button>
       <button class="modal-save" onclick="saveSetup()">저장</button>
     </div>
   </div>
 </div>
 
+<div id="toast"></div>
+
 <header>
+ <div class="container header-inner">
   <div class="header-left">
     <span class="header-icon">🏫</span>
     <div>
@@ -354,18 +368,21 @@
     </div>
   </div>
   <button class="header-school" id="headerSchoolBtn" onclick="openSetup()">⚙️ 학교 설정</button>
+ </div>
 </header>
 
 <nav class="tab-nav">
+ <div class="container tab-nav-inner">
   <button class="tab-btn active" onclick="switchTab('tab0',this)"><span class="tab-icon">🏠</span>홈</button>
   <button class="tab-btn" onclick="switchTab('tab1',this)"><span class="tab-icon">🚨</span>긴급사안</button>
   <button class="tab-btn" onclick="switchTab('tab2',this)"><span class="tab-icon">🚑</span>응급환자 이송</button>
   <button class="tab-btn" onclick="switchTab('tab3',this)"><span class="tab-icon">⚠️</span>중대산업재해</button>
   <button class="tab-btn" onclick="switchTab('tab4',this)"><span class="tab-icon">📋</span>위험성 평가</button>
   <button class="tab-btn" onclick="switchTab('tab5',this)"><span class="tab-icon">📞</span>비상연락망</button>
+ </div>
 </nav>
 
-<div class="main">
+<div class="container main">
 
 <!-- ══ TAB 0: 홈 ══ -->
 <div class="tab-panel active" id="tab0">
@@ -626,6 +643,7 @@
     </div>
     <button class="add-eval-btn" onclick="addEvalItem()">+ 평가 항목 추가</button>
   </div>
+  <div class="eval-list" id="evalList"></div>
   <div id="refCaseList"></div>
   <div class="info-box green" style="margin-top:14px">
     <h4>🔗 교육청 재난안전센터 사이트</h4>
@@ -1172,6 +1190,212 @@ function renderEvalList(){
     }).join('');
 }
 window.delEval=function(idx){evalItems.splice(idx,1);renderEvalList();};
+
+// ══════════════════════════════════════════════════════════════
+//  뒤로가기 · 새로고침 대응 (탭 히스토리 + 작업내용 자동 저장)
+// ══════════════════════════════════════════════════════════════
+const TABS=['tab0','tab1','tab2','tab3','tab4','tab5'];
+const STORE_KEY='school_safety_state_v1';
+let currentTab='tab0';
+let selRole=null;
+
+// ── 토스트 안내 ──
+let toastTimer=null;
+function showToast(msg){
+  const el=document.getElementById('toast');
+  if(!el) return;
+  el.textContent=msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>el.classList.remove('show'),2400);
+}
+
+// ── 탭 전환을 브라우저 히스토리에 기록 ──
+function pushTab(id){
+  const st=history.state;
+  if(st&&st.tab===id) return;
+  try{ history.pushState({tab:id},'','#'+id); }
+  catch(e){ try{ history.pushState({tab:id},''); }catch(e2){} }
+}
+const _switchTabOrig=switchTab;
+switchTab=function(id,btn,push){
+  _switchTabOrig(id,btn);
+  currentTab=id;
+  if(push!==false) pushTab(id);
+  scheduleSave();
+};
+
+// 뒤로가기: 이전 탭으로 이동. 홈에서 한 번 더 누르면 그때 페이지를 벗어남
+let exitArmed=false,exitTimer=null;
+window.addEventListener('popstate',function(e){
+  const st=e.state;
+  if(st&&st.tab&&TABS.indexOf(st.tab)>=0){
+    switchTab(st.tab,null,false);
+    return;
+  }
+  if(exitArmed){ history.back(); return; }   // 두 번째 뒤로가기 → 실제 이탈 허용
+  pushTab(currentTab);
+  switchTab(currentTab,null,false);
+  showToast('뒤로가기를 한 번 더 누르면 페이지를 벗어납니다');
+  exitArmed=true;
+  clearTimeout(exitTimer);
+  exitTimer=setTimeout(()=>{exitArmed=false;},2500);
+});
+
+// ── 상태 저장 ──
+let saveTimer=null;
+function scheduleSave(){clearTimeout(saveTimer);saveTimer=setTimeout(saveState,400);}
+function val(id){const el=document.getElementById(id);return el?el.value:'';}
+function saveState(){
+  try{
+    const st={
+      savedAt:Date.now(),
+      tab:currentTab,
+      t1:{sec:t1Seconds,run:!!t1Interval,start:t1StartTime?t1StartTime.toISOString():null},
+      t3:{sec:timerSeconds,run:!!timerInterval,start:timerStartTime?timerStartTime.toISOString():null},
+      checks1:tasks.map((t,i)=>({
+        d:document.getElementById('chk-'+i).checked,
+        time:document.getElementById('ttime-'+i).textContent,
+        memo:document.getElementById('tmemo-'+i).value,
+        open:document.getElementById('det-'+i).classList.contains('show')
+      })),
+      steps3:incidentSteps.map((sx,i)=>({
+        d:document.getElementById('ischk-'+i).checked,
+        time:document.getElementById('istime-'+i).textContent,
+        memo:document.getElementById('ismemo-'+i).value,
+        open:document.getElementById('isdet-'+i).classList.contains('show')
+      })),
+      sev:selSev,
+      role:selRole,
+      evals:evalItems,
+      form4:{place:val('ef-place'),hazard:val('ef-hazard'),freq:val('ef-freq'),sev:val('ef-severity'),action:val('ef-action')}
+    };
+    localStorage.setItem(STORE_KEY,JSON.stringify(st));
+  }catch(e){}
+}
+
+// ── 상태 복원 ──
+function fmtTime(sec){const h=Math.floor(sec/3600),m=Math.floor((sec%3600)/60),s=sec%60;return pad(h)+':'+pad(m)+':'+pad(s);}
+function recalcProg1(){
+  const done=document.querySelectorAll('#taskList1 .task-check:checked').length;
+  const pct=Math.round(done/tasks.length*100);
+  document.getElementById('prog-bar1').style.width=pct+'%';
+  document.getElementById('prog-pct1').textContent=pct>10?pct+'%':'';
+  document.getElementById('prog-count1').textContent=done+' / '+tasks.length+' 완료';
+}
+function restoreState(){
+  let st=null;
+  try{ st=JSON.parse(localStorage.getItem(STORE_KEY)||'null'); }catch(e){ st=null; }
+  if(!st) return null;
+  let touched=false;
+
+  (st.checks1||[]).forEach((c,i)=>{
+    const chk=document.getElementById('chk-'+i);
+    if(!chk) return;
+    chk.checked=!!c.d;
+    document.getElementById('ti-'+i).classList.toggle('done',!!c.d);
+    const tb=document.getElementById('ttime-'+i);
+    tb.textContent=c.time||'미완료';
+    tb.classList.toggle('done-time',!!c.d);
+    document.getElementById('tmemo-'+i).value=c.memo||'';
+    if(c.open) document.getElementById('det-'+i).classList.add('show');
+    if(c.d||c.memo) touched=true;
+  });
+  recalcProg1();
+
+  (st.steps3||[]).forEach((c,i)=>{
+    const chk=document.getElementById('ischk-'+i);
+    if(!chk) return;
+    chk.checked=!!c.d;
+    document.getElementById('ist-'+i).classList.toggle('done-step',!!c.d);
+    const tb=document.getElementById('istime-'+i);
+    tb.textContent=c.time||'미완료';
+    if(c.d){tb.style.background='var(--green-light)';tb.style.color='var(--green)';}
+    document.getElementById('ismemo-'+i).value=c.memo||'';
+    if(c.open) document.getElementById('isdet-'+i).classList.add('show');
+    if(c.d||c.memo) touched=true;
+  });
+
+  if(st.sev){ selectSeverity(st.sev); if(st.role) selectRole(st.role); touched=true; }
+
+  if(Array.isArray(st.evals)&&st.evals.length){ evalItems=st.evals; renderEvalList(); touched=true; }
+  if(st.form4){
+    ['place','hazard','action'].forEach(k=>{
+      const el=document.getElementById(k==='place'?'ef-place':k==='hazard'?'ef-hazard':'ef-action');
+      if(el&&st.form4[k]) el.value=st.form4[k];
+    });
+    if(st.form4.freq) document.getElementById('ef-freq').value=st.form4.freq;
+    if(st.form4.sev) document.getElementById('ef-severity').value=st.form4.sev;
+    calcScore();
+  }
+
+  // 타이머 — 저장 이후 흐른 시간까지 반영
+  const gap=st.savedAt?Math.floor((Date.now()-st.savedAt)/1000):0;
+  if(st.t1&&(st.t1.sec||st.t1.run)){
+    t1Seconds=(st.t1.sec||0)+(st.t1.run?gap:0);
+    t1StartTime=st.t1.start?new Date(st.t1.start):null;
+    document.getElementById('timerDisplay1').textContent=fmtTime(t1Seconds);
+    if(t1StartTime) document.getElementById('timerSub1').textContent='시작: '+t1StartTime.toLocaleTimeString('ko-KR');
+    if(st.t1.run) t1Start();
+    touched=true;
+  }
+  if(st.t3&&(st.t3.sec||st.t3.run)){
+    timerSeconds=(st.t3.sec||0)+(st.t3.run?gap:0);
+    timerStartTime=st.t3.start?new Date(st.t3.start):null;
+    document.getElementById('timerDisplay').textContent=fmtTime(timerSeconds);
+    if(timerStartTime) document.getElementById('timerSub').textContent='시작: '+timerStartTime.toLocaleTimeString('ko-KR');
+    if(st.t3.run) timerStart();
+    touched=true;
+  }
+  st._touched=touched;
+  return st;
+}
+
+// ── 저장 시점 훅 (기존 함수 감싸기) ──
+function wrap(name,after){
+  const f=window[name];
+  if(typeof f!=='function') return;
+  window[name]=function(){ const r=f.apply(this,arguments); if(after) after.apply(this,arguments); scheduleSave(); return r; };
+}
+['updateProg','markIStep','toggleDetail','toggleIStep','addEvalItem','delEval',
+ 't1Start','t1Stop','t1Reset','timerStart','timerStop','timerReset'].forEach(n=>wrap(n));
+wrap('selectSeverity',function(){selRole=null;});
+wrap('selectRole',function(role){selRole=role;});
+
+// 메모·입력값은 입력할 때마다 저장
+document.addEventListener('input',function(e){
+  if(e.target&&e.target.matches&&e.target.matches('.task-memo,.step-memo,#ef-place,#ef-hazard,#ef-action')) scheduleSave();
+});
+document.addEventListener('change',function(e){
+  if(e.target&&e.target.matches&&e.target.matches('#ef-freq,#ef-severity')) scheduleSave();
+});
+// 타이머 작동 중에는 주기적으로, 창을 닫거나 새로고침할 때는 즉시 저장
+setInterval(function(){ if(t1Interval||timerInterval) saveState(); },5000);
+window.addEventListener('pagehide',saveState);
+window.addEventListener('beforeunload',saveState);
+document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='hidden') saveState(); });
+
+// ── 작업기록 초기화 ──
+window.resetProgress=function(){
+  if(!confirm('체크리스트·메모·타이머·위험성평가 입력 등\n지금까지의 작업 기록을 모두 지웁니다.\n(학교 이름·연락처 설정은 그대로 유지됩니다)\n\n계속할까요?')) return;
+  try{ localStorage.removeItem(STORE_KEY); }catch(e){}
+  location.reload();
+};
+
+// ── 시작 시 복원 + 히스토리 초기화 ──
+(function initApp(){
+  const saved=restoreState();
+  let start=(location.hash||'').replace('#','');
+  if(TABS.indexOf(start)<0) start=(saved&&TABS.indexOf(saved.tab)>=0)?saved.tab:'tab0';
+  try{
+    history.replaceState({guard:true},'',location.href.split('#')[0]);
+    history.pushState({tab:start},'','#'+start);
+  }catch(e){
+    try{ history.replaceState({guard:true},''); history.pushState({tab:start},''); }catch(e2){}
+  }
+  switchTab(start,null,false);
+  if(saved&&saved._touched) showToast('이전 작업 내용을 그대로 불러왔습니다');
+})();
 </script>
 </body>
 </html>
