@@ -67,7 +67,32 @@
   .info-box li{margin-bottom:5px;}
 
   /* PAGE FOOTER */
-  .page-footer{text-align:right;font-size:11px;color:#d8dbe0;margin-top:40px;padding-top:10px;border-top:1px solid #eee;}
+  .page-footer{margin-top:44px;font-size:12px;color:#858d96;line-height:1.7;}
+  .page-footer strong{color:#5d666f;font-weight:700;}
+  .page-footer a{color:var(--blue-mid);text-decoration:none;}
+  .page-footer a:hover{text-decoration:underline;}
+  .ft-notice{background:#fef9e7;border:1px solid #f4e1a8;border-radius:10px;padding:11px 14px;color:#8a6d1f;margin-bottom:18px;}
+  .ft-meta{border-top:1px solid var(--border);padding-top:15px;}
+  .ft-row{display:flex;gap:11px;align-items:flex-start;margin-bottom:8px;}
+  .ft-row:last-child{margin-bottom:0;}
+  .ft-tag{flex-shrink:0;width:52px;text-align:center;background:var(--gray-light);color:#949ca5;font-size:10.5px;font-weight:700;padding:2px 0;border-radius:20px;letter-spacing:.2px;margin-top:2px;}
+  .ft-row div{flex:1;min-width:0;}
+  .ft-license{margin-top:15px;padding:14px 16px;background:#f7f9fa;border:1px solid var(--border);border-radius:11px;}
+  .ft-lic-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px;}
+  .ft-owner{font-size:13.5px;font-weight:700;color:#4f5862;letter-spacing:-.2px;}
+  .page-footer .ft-badge{display:inline-flex;align-items:center;gap:6px;background:white;border:1.5px solid #c5d7e6;color:var(--blue-mid);font-size:11px;font-weight:700;padding:3px 11px;border-radius:20px;letter-spacing:.3px;transition:all .15s;}
+  .page-footer .ft-badge:hover{background:var(--blue-light);border-color:var(--blue-mid);text-decoration:none;}
+  .ft-badge b{font-size:12px;letter-spacing:.5px;}
+  .ft-terms{display:flex;flex-wrap:wrap;gap:6px 16px;}
+  .ft-term{display:flex;align-items:center;gap:6px;font-size:11.5px;}
+  .ft-ok{color:#1e8449;font-weight:900;}
+  .ft-no{color:#c0392b;font-weight:900;}
+  @media(max-width:520px){
+    .page-footer{font-size:11.5px;}
+    .ft-row{gap:9px;}
+    .ft-tag{width:46px;font-size:10px;}
+    .ft-terms{flex-direction:column;gap:5px;}
+  }
 
   /* ── TAB 0: 홈 ── */
   .home-school-banner{background:white;border:2px solid var(--border);border-radius:14px;padding:20px 22px;margin-bottom:22px;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
@@ -348,8 +373,8 @@
     <div class="modal-title">🏫 우리 학교 설정</div>
     <div class="modal-sub">한 번만 입력하면 다음에 열어도 저장됩니다.<br>각 탭의 연락처와 학교명이 자동으로 반영됩니다.</div>
     <div class="modal-field"><label>학교 이름</label><input type="text" id="cfg-name" placeholder="예: ○○초등학교"></div>
-    <div class="modal-field"><label>교육청 산업재해예방팀 전화번호</label><input type="text" id="cfg-edu" placeholder="예: 062-380-4887"></div>
-    <div class="modal-field"><label>교육청 재난안전센터 사이트 주소</label><input type="text" id="cfg-site" placeholder="https://safe.jge.go.kr/"><div style="font-size:12px;color:#aaa;margin-top:4px;">기본값: https://safe.jge.go.kr/ (비워두면 기본값으로 초기화)</div></div>
+    <div class="modal-field"><label>교육청 산업재해예방팀 전화번호</label><input type="text" id="cfg-edu" placeholder="예: 000-000-0000"></div>
+    <div class="modal-field"><label>교육청 재난안전센터 사이트 주소</label><input type="text" id="cfg-site" placeholder="https://safe.jge.go.kr/"><div style="font-size:12px;color:#aaa;margin-top:4px;">기본값: 광주광역시교육청 재난안전센터(https://safe.jge.go.kr/) · 비워두면 기본값으로 초기화됩니다. 다른 지역은 소속 교육청 주소로 바꿔 주세요.</div></div>
     <div class="modal-btns">
       <button class="modal-reset" onclick="resetConfig()">🗑 설정 초기화</button>
       <button class="modal-cancel" onclick="closeSetup()">취소</button>
@@ -436,7 +461,27 @@
     </div>
   </div>
 
-  <div class="page-footer">2026 최창훈</div>
+  <footer class="page-footer">
+    <div class="ft-notice">※ 이 도구는 <strong>참고용</strong>입니다. 실제 상황에서는 소속 교육청·학교의 공식 매뉴얼과 지침을 우선 적용하시고, 응급 상황에서는 <strong>119 신고를 최우선</strong>으로 하세요.</div>
+
+    <div class="ft-meta">
+      <div class="ft-row"><span class="ft-tag">출처</span><div>대응 절차와 단계 구성은 교육청 관리자 안전 연수자료, 고용노동부·교육부의 중대재해 대응 안내 자료를 참고해 학교 현장에 맞게 재구성했습니다. 위험성 평가 참고사례는 특정 학교를 알 수 없도록 일반화한 예시입니다.</div></div>
+      <div class="ft-row"><span class="ft-tag">글꼴</span><div>Noto Sans KR · IBM Plex Mono — SIL Open Font License 1.1</div></div>
+      <div class="ft-row"><span class="ft-tag">아이콘</span><div>별도 이미지 없이 유니코드 표준 이모지 문자만 사용했습니다.</div></div>
+    </div>
+
+    <div class="ft-license">
+      <div class="ft-lic-head">
+        <span class="ft-owner">ⓒ 2026 최창훈</span>
+        <a class="ft-badge" href="https://creativecommons.org/licenses/by-nc/4.0/deed.ko" target="_blank" rel="noopener">ⓒ <b>CC BY-NC 4.0</b></a>
+      </div>
+      <div class="ft-terms">
+        <span class="ft-term"><span class="ft-ok">✓</span> 출처 표시 후 복제·배포·수정</span>
+        <span class="ft-term"><span class="ft-ok">✓</span> 학교·교육기관 자유 사용</span>
+        <span class="ft-term"><span class="ft-no">✕</span> <strong>상업적 이용 불가</strong></span>
+      </div>
+    </div>
+  </footer>
 </div>
 
 <!-- ══ TAB 1: 긴급사안 ══ -->
@@ -484,7 +529,27 @@
   <button class="report-btn" onclick="generateReport1()">📄 사고 대응 보고서 자동 생성</button>
   <div class="report-output" id="reportOutput1"></div>
 
-  <div class="page-footer">2026 최창훈</div>
+  <footer class="page-footer">
+    <div class="ft-notice">※ 이 도구는 <strong>참고용</strong>입니다. 실제 상황에서는 소속 교육청·학교의 공식 매뉴얼과 지침을 우선 적용하시고, 응급 상황에서는 <strong>119 신고를 최우선</strong>으로 하세요.</div>
+
+    <div class="ft-meta">
+      <div class="ft-row"><span class="ft-tag">출처</span><div>대응 절차와 단계 구성은 교육청 관리자 안전 연수자료, 고용노동부·교육부의 중대재해 대응 안내 자료를 참고해 학교 현장에 맞게 재구성했습니다. 위험성 평가 참고사례는 특정 학교를 알 수 없도록 일반화한 예시입니다.</div></div>
+      <div class="ft-row"><span class="ft-tag">글꼴</span><div>Noto Sans KR · IBM Plex Mono — SIL Open Font License 1.1</div></div>
+      <div class="ft-row"><span class="ft-tag">아이콘</span><div>별도 이미지 없이 유니코드 표준 이모지 문자만 사용했습니다.</div></div>
+    </div>
+
+    <div class="ft-license">
+      <div class="ft-lic-head">
+        <span class="ft-owner">ⓒ 2026 최창훈</span>
+        <a class="ft-badge" href="https://creativecommons.org/licenses/by-nc/4.0/deed.ko" target="_blank" rel="noopener">ⓒ <b>CC BY-NC 4.0</b></a>
+      </div>
+      <div class="ft-terms">
+        <span class="ft-term"><span class="ft-ok">✓</span> 출처 표시 후 복제·배포·수정</span>
+        <span class="ft-term"><span class="ft-ok">✓</span> 학교·교육기관 자유 사용</span>
+        <span class="ft-term"><span class="ft-no">✕</span> <strong>상업적 이용 불가</strong></span>
+      </div>
+    </div>
+  </footer>
 </div>
 
 <!-- ══ TAB 2: 응급환자 이송 ══ -->
@@ -561,7 +626,27 @@
       <li><strong>6하원칙</strong>에 의거 구체적으로 기록</li>
     </ul>
   </div>
-  <div class="page-footer">2026 최창훈</div>
+  <footer class="page-footer">
+    <div class="ft-notice">※ 이 도구는 <strong>참고용</strong>입니다. 실제 상황에서는 소속 교육청·학교의 공식 매뉴얼과 지침을 우선 적용하시고, 응급 상황에서는 <strong>119 신고를 최우선</strong>으로 하세요.</div>
+
+    <div class="ft-meta">
+      <div class="ft-row"><span class="ft-tag">출처</span><div>대응 절차와 단계 구성은 교육청 관리자 안전 연수자료, 고용노동부·교육부의 중대재해 대응 안내 자료를 참고해 학교 현장에 맞게 재구성했습니다. 위험성 평가 참고사례는 특정 학교를 알 수 없도록 일반화한 예시입니다.</div></div>
+      <div class="ft-row"><span class="ft-tag">글꼴</span><div>Noto Sans KR · IBM Plex Mono — SIL Open Font License 1.1</div></div>
+      <div class="ft-row"><span class="ft-tag">아이콘</span><div>별도 이미지 없이 유니코드 표준 이모지 문자만 사용했습니다.</div></div>
+    </div>
+
+    <div class="ft-license">
+      <div class="ft-lic-head">
+        <span class="ft-owner">ⓒ 2026 최창훈</span>
+        <a class="ft-badge" href="https://creativecommons.org/licenses/by-nc/4.0/deed.ko" target="_blank" rel="noopener">ⓒ <b>CC BY-NC 4.0</b></a>
+      </div>
+      <div class="ft-terms">
+        <span class="ft-term"><span class="ft-ok">✓</span> 출처 표시 후 복제·배포·수정</span>
+        <span class="ft-term"><span class="ft-ok">✓</span> 학교·교육기관 자유 사용</span>
+        <span class="ft-term"><span class="ft-no">✕</span> <strong>상업적 이용 불가</strong></span>
+      </div>
+    </div>
+  </footer>
 </div>
 
 <!-- ══ TAB 3: 중대산업재해 ══ -->
@@ -586,7 +671,27 @@
   <div class="step-card"><div class="step-num red">A</div><div class="step-body2"><div class="step-title2">급박한 위험요인 발생</div><div class="step-desc2">최초발견자 → 주변 긴급상황 전파 / 초기 화재진압 등 위험요인 즉시 제거</div></div></div>
   <div class="step-card"><div class="step-num orange">B</div><div class="step-body2"><div class="step-title2">작업중지 후 즉시 위험구역 이탈</div><div class="step-desc2"><strong style="color:var(--red)">급박한 위험 시 모든 근로자에게 작업중지권 있음</strong><br>관리자(기관장·학교장)에게 즉시 보고</div></div></div>
   <div class="step-card"><div class="step-num blue">C</div><div class="step-body2"><div class="step-title2">긴급상황 전파 및 교직원 대피</div><div class="step-desc2">방송시설 이용 긴급상황 전파 → 학생·교직원 대피<br>교육활동 즉시 중지 후 비상대피 → 응급기관 긴급신고</div></div></div>
-  <div class="page-footer">2026 최창훈</div>
+  <footer class="page-footer">
+    <div class="ft-notice">※ 이 도구는 <strong>참고용</strong>입니다. 실제 상황에서는 소속 교육청·학교의 공식 매뉴얼과 지침을 우선 적용하시고, 응급 상황에서는 <strong>119 신고를 최우선</strong>으로 하세요.</div>
+
+    <div class="ft-meta">
+      <div class="ft-row"><span class="ft-tag">출처</span><div>대응 절차와 단계 구성은 교육청 관리자 안전 연수자료, 고용노동부·교육부의 중대재해 대응 안내 자료를 참고해 학교 현장에 맞게 재구성했습니다. 위험성 평가 참고사례는 특정 학교를 알 수 없도록 일반화한 예시입니다.</div></div>
+      <div class="ft-row"><span class="ft-tag">글꼴</span><div>Noto Sans KR · IBM Plex Mono — SIL Open Font License 1.1</div></div>
+      <div class="ft-row"><span class="ft-tag">아이콘</span><div>별도 이미지 없이 유니코드 표준 이모지 문자만 사용했습니다.</div></div>
+    </div>
+
+    <div class="ft-license">
+      <div class="ft-lic-head">
+        <span class="ft-owner">ⓒ 2026 최창훈</span>
+        <a class="ft-badge" href="https://creativecommons.org/licenses/by-nc/4.0/deed.ko" target="_blank" rel="noopener">ⓒ <b>CC BY-NC 4.0</b></a>
+      </div>
+      <div class="ft-terms">
+        <span class="ft-term"><span class="ft-ok">✓</span> 출처 표시 후 복제·배포·수정</span>
+        <span class="ft-term"><span class="ft-ok">✓</span> 학교·교육기관 자유 사용</span>
+        <span class="ft-term"><span class="ft-no">✕</span> <strong>상업적 이용 불가</strong></span>
+      </div>
+    </div>
+  </footer>
 </div>
 
 <!-- ══ TAB 4: 위험성 평가 ══ -->
@@ -656,7 +761,27 @@
     </div>
     <div style="font-size:var(--fs-sm);color:#555;">중대재해예방·산업안전보건 → 안전보건 자료실 → 교육자료</div>
   </div>
-  <div class="page-footer">2026 최창훈</div>
+  <footer class="page-footer">
+    <div class="ft-notice">※ 이 도구는 <strong>참고용</strong>입니다. 실제 상황에서는 소속 교육청·학교의 공식 매뉴얼과 지침을 우선 적용하시고, 응급 상황에서는 <strong>119 신고를 최우선</strong>으로 하세요.</div>
+
+    <div class="ft-meta">
+      <div class="ft-row"><span class="ft-tag">출처</span><div>대응 절차와 단계 구성은 교육청 관리자 안전 연수자료, 고용노동부·교육부의 중대재해 대응 안내 자료를 참고해 학교 현장에 맞게 재구성했습니다. 위험성 평가 참고사례는 특정 학교를 알 수 없도록 일반화한 예시입니다.</div></div>
+      <div class="ft-row"><span class="ft-tag">글꼴</span><div>Noto Sans KR · IBM Plex Mono — SIL Open Font License 1.1</div></div>
+      <div class="ft-row"><span class="ft-tag">아이콘</span><div>별도 이미지 없이 유니코드 표준 이모지 문자만 사용했습니다.</div></div>
+    </div>
+
+    <div class="ft-license">
+      <div class="ft-lic-head">
+        <span class="ft-owner">ⓒ 2026 최창훈</span>
+        <a class="ft-badge" href="https://creativecommons.org/licenses/by-nc/4.0/deed.ko" target="_blank" rel="noopener">ⓒ <b>CC BY-NC 4.0</b></a>
+      </div>
+      <div class="ft-terms">
+        <span class="ft-term"><span class="ft-ok">✓</span> 출처 표시 후 복제·배포·수정</span>
+        <span class="ft-term"><span class="ft-ok">✓</span> 학교·교육기관 자유 사용</span>
+        <span class="ft-term"><span class="ft-no">✕</span> <strong>상업적 이용 불가</strong></span>
+      </div>
+    </div>
+  </footer>
 </div>
 
 <!-- ══ TAB 5: 비상연락망 ══ -->
@@ -688,7 +813,27 @@
     <div class="form-link-card" style="cursor:pointer;" onclick="openSite()"><span class="form-icon">🩺</span><div class="form-info"><h4>응급사고 기록지</h4><p>6하원칙 기반 · 보건교사 작성</p></div><span style="font-size:18px;color:#bbb;margin-left:auto;">↗</span></div>
     <div class="form-link-card" style="cursor:pointer;" onclick="openSite()"><span class="form-icon">⚖️</span><div class="form-info"><h4>위험성평가표</h4><p>교육청 재난안전센터 자료실</p></div><span style="font-size:18px;color:#bbb;margin-left:auto;">↗</span></div>
   </div>
-  <div class="page-footer">2026 최창훈</div>
+  <footer class="page-footer">
+    <div class="ft-notice">※ 이 도구는 <strong>참고용</strong>입니다. 실제 상황에서는 소속 교육청·학교의 공식 매뉴얼과 지침을 우선 적용하시고, 응급 상황에서는 <strong>119 신고를 최우선</strong>으로 하세요.</div>
+
+    <div class="ft-meta">
+      <div class="ft-row"><span class="ft-tag">출처</span><div>대응 절차와 단계 구성은 교육청 관리자 안전 연수자료, 고용노동부·교육부의 중대재해 대응 안내 자료를 참고해 학교 현장에 맞게 재구성했습니다. 위험성 평가 참고사례는 특정 학교를 알 수 없도록 일반화한 예시입니다.</div></div>
+      <div class="ft-row"><span class="ft-tag">글꼴</span><div>Noto Sans KR · IBM Plex Mono — SIL Open Font License 1.1</div></div>
+      <div class="ft-row"><span class="ft-tag">아이콘</span><div>별도 이미지 없이 유니코드 표준 이모지 문자만 사용했습니다.</div></div>
+    </div>
+
+    <div class="ft-license">
+      <div class="ft-lic-head">
+        <span class="ft-owner">ⓒ 2026 최창훈</span>
+        <a class="ft-badge" href="https://creativecommons.org/licenses/by-nc/4.0/deed.ko" target="_blank" rel="noopener">ⓒ <b>CC BY-NC 4.0</b></a>
+      </div>
+      <div class="ft-terms">
+        <span class="ft-term"><span class="ft-ok">✓</span> 출처 표시 후 복제·배포·수정</span>
+        <span class="ft-term"><span class="ft-ok">✓</span> 학교·교육기관 자유 사용</span>
+        <span class="ft-term"><span class="ft-no">✕</span> <strong>상업적 이용 불가</strong></span>
+      </div>
+    </div>
+  </footer>
 </div>
 
 </div><!-- /main -->
@@ -998,7 +1143,7 @@ window.printReportOutput=function(elementId){
   @page{ size:A4; margin:16mm 15mm; }
   *{box-sizing:border-box;}
   html{-webkit-print-color-adjust:exact;print-color-adjust:exact;color-adjust:exact;}
-  body{font-family:'Malgun Gothic','Noto Sans KR',sans-serif;color:#1c2833;margin:0;padding:32px 36px 40px;line-height:1.6;font-size:13.5px;max-width:760px;margin-left:auto;margin-right:auto;}
+  body{font-family:system-ui,-apple-system,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;color:#1c2833;margin:0;padding:32px 36px 40px;line-height:1.6;font-size:13.5px;max-width:760px;margin-left:auto;margin-right:auto;}
   .print-header{border-bottom:3px solid #922b21;padding-bottom:12px;margin-bottom:20px;}
   .print-school{font-size:12.5px;color:#566573;font-weight:700;margin-bottom:5px;letter-spacing:.2px;}
   .print-title{font-size:22px;font-weight:900;color:#922b21;}
@@ -1009,7 +1154,7 @@ window.printReportOutput=function(elementId){
   .report-row:nth-child(odd){background:#fafbfc;}
   .report-key{font-weight:700;color:#1a5276;min-width:150px;flex-shrink:0;}
   .report-val{flex:1;display:flex;align-items:center;gap:9px;flex-wrap:wrap;color:#333;word-break:break-word;}
-  .status-badge{display:inline-block;padding:3px 12px;border-radius:20px;font-size:10.5px;font-weight:700;font-family:'Consolas','IBM Plex Mono',monospace;white-space:nowrap;border:1px solid transparent;}
+  .status-badge{display:inline-block;padding:3px 12px;border-radius:20px;font-size:10.5px;font-weight:700;font-family:ui-monospace,SFMono-Regular,'IBM Plex Mono',monospace;white-space:nowrap;border:1px solid transparent;}
   .status-done{background:#eafaf1;color:#1e8449;border-color:#a9dfbf;}
   .status-pending{background:#f4f6f7;color:#7f8c8d;border-color:#e3e6e8;}
   .report-memo-label{font-size:10.5px;font-weight:700;color:#aaa;}
@@ -1039,9 +1184,9 @@ const refCases=[
   {place:'식생활관',icon:'🍽️',kind:'good',hazard:'전기판넬 앞 감전주의 표지 부착으로 감전 위험 예방',freq:1,sev:1,score:1,action:'현행 유지'},
   // ── 교직원 위험요인 ──
   {place:'영어교실·음악실',icon:'🎵',kind:'risk',hazard:'선반 상단 물건 이동 시 의자 사용으로 균형상실·넘어짐',freq:2,sev:2,score:4,action:'의자 철거, 발판형 사다리 비치'},
-  {place:'유치원·교직원협의실',icon:'🏫',kind:'risk',hazard:'전선 늘어짐으로 걸려 넘어짐',freq:2,sev:2,score:4,action:'전선 정리정돈 후 몰딩화'},
-  {place:'후관 1층 창고',icon:'📦',kind:'risk',hazard:'층고 낮아 머리 부딪힘',freq:2,sev:2,score:4,action:'충격방지 패드 부착'},
-  {place:'강당 체육창고',icon:'🏋️',kind:'risk',hazard:'선반 상단 끝단 적재 물품 낙하',freq:2,sev:2,score:4,action:'물품 이동 조치, 낙하물 주의 표지 부착'},
+  {place:'교직원협의실',icon:'🏫',kind:'risk',hazard:'전선 늘어짐으로 걸려 넘어짐',freq:2,sev:2,score:4,action:'전선 정리정돈 후 몰딩화'},
+  {place:'교내 창고',icon:'📦',kind:'risk',hazard:'층고 낮아 머리 부딪힘',freq:2,sev:2,score:4,action:'충격방지 패드 부착'},
+  {place:'체육관 창고',icon:'🏋️',kind:'risk',hazard:'선반 상단 끝단 적재 물품 낙하',freq:2,sev:2,score:4,action:'물품 이동 조치, 낙하물 주의 표지 부착'},
   // ── 식생활관 위험요인 ──
   {place:'식생활관 조리실',icon:'🍽️',kind:'risk',hazard:'트렌치 구조 변형·단차로 이동 시 걸려 넘어짐',freq:2,sev:2,score:4,action:'트렌치 교체 및 수리'},
   {place:'식생활관 조리실',icon:'🍽️',kind:'risk',hazard:'바닥 물기 및 카트 미고정으로 전도',freq:2,sev:2,score:4,action:'이동 없을 땐 고정조치'},
@@ -1056,9 +1201,9 @@ const refCases=[
   {place:'식품창고·휴게실',icon:'🏠',kind:'risk',hazard:'콘센트 벽체 미고정·탈락으로 화재 위험',freq:2,sev:2,score:4,action:'콘센트 벽체 고정'},
   // ── 시설 위험요인 ──
   {place:'보일러실',icon:'🔥',kind:'risk',hazard:'조도 낮음 및 연한 지난 소화기로 긴급 대응 지연',freq:2,sev:2,score:4,action:'조명 설치, 소화기 교체'},
-  {place:'본관 4층 학습지원실',icon:'🖥️',kind:'risk',hazard:'콘센트 덮개 파손으로 임의접촉 시 감전',freq:2,sev:2,score:4,action:'콘센트 교체'},
+  {place:'학습지원실',icon:'🖥️',kind:'risk',hazard:'콘센트 덮개 파손으로 임의접촉 시 감전',freq:2,sev:2,score:4,action:'콘센트 교체'},
   {place:'인쇄실',icon:'🖨️',kind:'risk',hazard:'인쇄 작업 전·후 비산먼지로 호흡기 질환 유발',freq:2,sev:2,score:4,action:'방진마스크 비치, 작업 전·후 환기'},
-  {place:'옥상 저수조실',icon:'💧',kind:'risk',hazard:'물탱크 밀폐공간 표지 미흡으로 질식·중독 위험',freq:2,sev:2,score:4,action:'밀폐공간 표지 부착'},
+  {place:'저수조실(밀폐공간)',icon:'💧',kind:'risk',hazard:'물탱크 밀폐공간 표지 미흡으로 질식·중독 위험',freq:2,sev:2,score:4,action:'밀폐공간 표지 부착'},
   {place:'음식물처리 경로',icon:'🚛',kind:'risk',hazard:'계단 단차로 외부 경로 운반 시 넘어짐·미끄러짐',freq:2,sev:2,score:4,action:'음식물처리 업체 내부 출입 검토'},
 ];
 
@@ -1086,7 +1231,7 @@ function renderRefCases(){
 
   // ── 우수사례 섹션 ──
   html+=`<div class="sec-hd" style="margin-top:28px"><span>⭐ 순회점검 우수사례</span><div class="sec-line"></div></div>`;
-  html+=`<div class="info-box green" style="margin-bottom:14px;font-size:var(--fs-sm);">잘 관리되고 있는 사례입니다. 우리 학교에도 이런 부분이 잘 되어 있는지 확인해 보세요.</div>`;
+  html+=`<div class="info-box green" style="margin-bottom:14px;font-size:var(--fs-sm);">잘 관리되고 있는 상태를 일반화한 예시입니다. 우리 학교에도 이런 부분이 잘 되어 있는지 확인해 보세요.</div>`;
   groupByPlace(goodItems).forEach((g,gi)=>{
     const uid=`ref-good-${gi}`;
     html+=`<div class="ref-section">
@@ -1109,7 +1254,7 @@ function renderRefCases(){
 
   // ── 위험요인 섹션 ──
   html+=`<div class="sec-hd" style="margin-top:24px"><span>⚠️ 순회점검 주요 위험요인</span><div class="sec-line"></div></div>`;
-  html+=`<div class="info-box orange" style="margin-bottom:14px;font-size:var(--fs-sm);">다른 학교에서 발견된 위험요인 사례입니다. 우리 학교에 같은 위험은 없는지 점검해 보세요.</div>`;
+  html+=`<div class="info-box orange" style="margin-bottom:14px;font-size:var(--fs-sm);">학교 현장에서 자주 발견되는 대표적인 위험요인을 일반화한 예시입니다. 우리 학교에 같은 위험은 없는지 점검해 보세요.</div>`;
   groupByPlace(riskItems).forEach((g,gi)=>{
     const uid=`ref-risk-${gi}`;
     html+=`<div class="ref-section">
