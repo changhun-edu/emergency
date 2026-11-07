@@ -79,6 +79,7 @@
   .ft-row div{flex:1;min-width:0;}
   .ft-license{margin-top:15px;padding:14px 16px;background:#f7f9fa;border:1px solid var(--border);border-radius:11px;}
   .ft-lic-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px;}
+  .page-footer .ft-hub{color:var(--blue-mid);font-weight:700;text-decoration:underline;text-underline-offset:3px;}
   .ft-owner{font-size:13.5px;font-weight:700;color:#4f5862;letter-spacing:-.2px;}
   .page-footer .ft-badge{display:inline-flex;align-items:center;gap:6px;background:white;border:1.5px solid #c5d7e6;color:var(--blue-mid);font-size:11px;font-weight:700;padding:3px 11px;border-radius:20px;letter-spacing:.3px;transition:all .15s;}
   .page-footer .ft-badge:hover{background:var(--blue-light);border-color:var(--blue-mid);text-decoration:none;}
@@ -363,6 +364,112 @@
   .reset-mini:hover{background:#fdecea;border-color:#f5c6c2;color:var(--red-dark);}
   .modal-reset{background:#fdecea;color:var(--red-dark);border:1px solid #f5c6c2;border-radius:8px;padding:11px 16px;font-size:var(--fs-sm);font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;margin-right:auto;}
   .modal-reset:hover{background:#fadbd8;}
+
+  .unofficial-note{background:#f4f6f8;border:1px dashed #b8c0c8;border-radius:10px;padding:11px 14px;font-size:var(--fs-xs);color:#5d666f;line-height:1.6;margin:-8px 0 20px;}
+  .unofficial-note strong{color:#3d4650;}
+
+  /* ── 탭 7개: 넘치면 가로 스크롤, 넉넉하면 가운데 정렬 ── */
+  .tab-nav-inner{justify-content:flex-start;}
+  .tab-nav-inner .tab-btn:first-child{margin-left:auto;}
+  .tab-nav-inner .tab-btn:last-child{margin-right:auto;}
+  .tab-btn{padding:15px 7px 12px;gap:4px;}
+  .tab-icon{font-size:16px;}
+  .home-card.c-purple{border-left:6px solid var(--purple);}
+  .home-card.c-gray{border-left:6px solid var(--gray);}
+  :root{--purple:#6c3483;--purple-light:#ebdef0;}
+
+  /* ── 설정 모달 확장 ── */
+  .modal-box{max-height:90vh;overflow-y:auto;}
+  .modal-group{margin-top:20px;padding-top:16px;border-top:1px dashed var(--border);}
+  .modal-group-title{font-size:var(--fs-base);font-weight:900;color:var(--purple);margin-bottom:4px;}
+  .modal-group-sub{font-size:12px;color:#999;margin-bottom:12px;line-height:1.5;}
+  .modal-3col{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:6px;}
+  .modal-2col{display:grid;grid-template-columns:1.3fr 1fr;gap:6px;}
+  .modal-3col input,.modal-2col input{padding:9px 10px !important;font-size:var(--fs-sm) !important;}
+  .modal-col-hint{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:6px;font-size:11px;color:#aaa;margin-bottom:3px;}
+  @media(max-width:480px){.modal-3col,.modal-col-hint{grid-template-columns:1fr 1fr 1fr;}.modal-box{padding:22px 18px;}}
+
+  /* ── 지침 4단계 ── */
+  .law-box{background:white;border:2px solid var(--border);border-radius:14px;padding:18px 20px;margin-bottom:16px;box-shadow:var(--shadow);display:none;}
+  .law-box.show{display:block;animation:fadeIn .22s ease;}
+  .law-box-title{font-size:var(--fs-lg);font-weight:900;margin-bottom:4px;}
+  .law-box-src{font-size:var(--fs-xs);color:#999;margin-bottom:14px;}
+  .law-step{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px dashed var(--gray-light);}
+  .law-step:last-of-type{border-bottom:none;}
+  .law-step-num{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-family:'IBM Plex Mono',monospace;flex-shrink:0;}
+  .law-step-name{font-size:var(--fs-sm);font-weight:900;color:var(--blue);}
+  .law-step-desc{font-size:var(--fs-base);line-height:1.6;}
+  .law-note{margin-top:10px;font-size:var(--fs-xs);color:#7d4e00;background:#fff8e1;border-radius:8px;padding:8px 12px;}
+  .branch-btn.green2-btn{border-color:var(--green);color:var(--green);}
+  .branch-btn.sel-green2{background:var(--green);color:white;border-color:var(--green);}
+  .mild-c{color:var(--green);font-weight:700;}
+
+  /* ── TAB 6: 과학실 ── */
+  .seg{display:flex;gap:6px;background:white;border:1px solid var(--border);border-radius:12px;padding:5px;margin-bottom:18px;box-shadow:var(--shadow);}
+  .seg-btn{flex:1;border:none;background:none;border-radius:8px;padding:11px 6px;font-family:'Noto Sans KR',sans-serif;font-size:var(--fs-sm);font-weight:700;color:#888;cursor:pointer;transition:all .15s;}
+  .seg-btn:hover{color:var(--purple);}
+  .seg-btn.active{background:var(--purple);color:white;}
+  .seg-panel{display:none;}
+  .seg-panel.active{display:block;animation:fadeIn .2s ease;}
+  .deadline-box{background:linear-gradient(135deg,#4a235a,#6c3483);color:white;border-radius:14px;padding:18px 20px;margin-bottom:18px;box-shadow:var(--shadow-lg);}
+  .deadline-title{font-size:var(--fs-lg);font-weight:900;margin-bottom:12px;}
+  .deadline-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px;}
+  .deadline-row label{font-size:var(--fs-sm);font-weight:700;min-width:118px;opacity:.92;}
+  .deadline-row input{flex:1;min-width:170px;padding:8px 10px;border-radius:8px;border:1px solid rgba(255,255,255,.45);background:rgba(255,255,255,.95);font-family:'IBM Plex Mono',monospace;font-size:var(--fs-sm);color:var(--text);}
+  .deadline-now{background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.45);color:white;border-radius:8px;padding:8px 12px;font-size:var(--fs-xs);font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;white-space:nowrap;}
+  .deadline-now:hover{background:rgba(255,255,255,.32);}
+  .deadline-result{margin-top:6px;background:rgba(255,255,255,.14);border-radius:10px;padding:12px 14px;}
+  .deadline-due{font-size:var(--fs-sm);opacity:.9;}
+  .deadline-due b{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-lg);}
+  .deadline-left{font-size:26px;font-weight:900;font-family:'IBM Plex Mono',monospace;letter-spacing:1px;margin-top:2px;}
+  .deadline-left.over{color:#ffb3a7;}
+  .ccc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0 4px;}
+  @media(max-width:520px){.ccc-grid{grid-template-columns:1fr;}}
+  .ccc-card{background:white;border:1px solid var(--border);border-radius:10px;padding:10px 12px;}
+  .ccc-card b{display:block;font-size:var(--fs-sm);color:var(--purple);margin-bottom:4px;}
+  .ccc-card ul{padding-left:16px;font-size:var(--fs-sm);}
+  .tel{color:var(--red-dark);font-family:'IBM Plex Mono',monospace;font-weight:700;text-decoration:none;white-space:nowrap;}
+  .tel:hover{text-decoration:underline;}
+  .org-table td,.org-table th{font-size:var(--fs-sm);padding:10px 12px;}
+  .org-table th{background:var(--purple);}
+  .region-note{font-size:var(--fs-xs);color:#888;margin:-6px 0 14px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .region-chip{display:inline-block;background:var(--purple-light);color:var(--purple);font-weight:700;border-radius:20px;padding:2px 10px;}
+  .mini-link-btn{background:none;border:1px solid var(--border);border-radius:6px;padding:3px 10px;font-size:var(--fs-xs);font-weight:700;color:var(--gray);cursor:pointer;font-family:'Noto Sans KR',sans-serif;}
+  .mini-link-btn:hover{border-color:var(--purple);color:var(--purple);}
+  .sci-form{background:white;border:1px solid var(--border);border-radius:12px;padding:20px;box-shadow:var(--shadow);margin-bottom:16px;}
+  .sci-form h5{font-size:var(--fs-base);font-weight:900;color:var(--purple);margin:18px 0 10px;}
+  .sci-form h5:first-child{margin-top:0;}
+  .sci-report-text{white-space:pre-wrap;font-family:'Noto Sans KR',sans-serif;font-size:var(--fs-base);line-height:1.85;color:var(--text);background:#fafbfc;border:1px solid var(--gray-light);border-radius:10px;padding:16px 18px;}
+  .rule-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
+  @media(max-width:520px){.rule-grid{grid-template-columns:1fr;}}
+  .rule-item{display:flex;gap:10px;align-items:flex-start;background:white;border:1px solid var(--border);border-radius:10px;padding:11px 13px;font-size:var(--fs-sm);font-weight:600;line-height:1.5;}
+  .rule-no{width:26px;height:26px;border-radius:50%;background:var(--purple-light);color:var(--purple);font-weight:900;font-family:'IBM Plex Mono',monospace;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:var(--fs-xs);}
+  .big-btn{display:block;width:100%;padding:13px;border:2px solid var(--purple);background:white;color:var(--purple);border-radius:10px;font-size:var(--fs-base);font-weight:900;cursor:pointer;font-family:'Noto Sans KR',sans-serif;margin-bottom:6px;}
+  .big-btn:hover{background:var(--purple-light);}
+  .prev-group{background:white;border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden;box-shadow:var(--shadow);}
+  .prev-head{display:flex;align-items:center;gap:10px;padding:13px 16px;background:#faf7fb;border-bottom:1px solid var(--gray-light);}
+  .prev-head-title{font-size:var(--fs-lg);font-weight:900;flex:1;}
+  .prev-count{font-size:var(--fs-xs);font-weight:700;font-family:'IBM Plex Mono',monospace;background:var(--purple-light);color:var(--purple);padding:3px 10px;border-radius:20px;}
+  .prev-count.full{background:var(--green-light);color:var(--green);}
+  .chk-row{display:flex;gap:11px;align-items:flex-start;padding:10px 16px;border-bottom:1px solid var(--gray-light);cursor:pointer;font-size:var(--fs-sm);line-height:1.55;}
+  .chk-row:last-child{border-bottom:none;}
+  .chk-row:hover{background:#fcfaff;}
+  .chk-row input{width:20px;height:20px;accent-color:var(--green);flex-shrink:0;margin-top:1px;cursor:pointer;}
+  .chk-row.on span{color:#aaa;text-decoration:line-through;}
+  .link-list{display:grid;gap:8px;margin-bottom:16px;}
+  .link-item{display:flex;align-items:center;gap:12px;background:white;border:1px solid var(--border);border-radius:10px;padding:12px 14px;text-decoration:none;color:var(--text);box-shadow:var(--shadow);transition:transform .12s,box-shadow .15s;}
+  .link-item:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);}
+  .link-item b{font-size:var(--fs-sm);display:block;}
+  .link-item small{font-size:var(--fs-xs);color:#888;}
+  .link-item .arr{margin-left:auto;color:#bbb;font-size:18px;}
+  .big-rules{display:none;position:fixed;inset:0;background:#1c1030;color:white;z-index:400;overflow-y:auto;padding:28px 22px 40px;}
+  .big-rules.show{display:block;}
+  .big-rules-inner{max-width:900px;margin:0 auto;}
+  .big-rules h2{font-size:clamp(24px,4vw,40px);font-weight:900;margin-bottom:18px;text-align:center;}
+  .big-rules ol{list-style:none;counter-reset:r;display:grid;gap:10px;}
+  .big-rules li{counter-increment:r;display:flex;gap:16px;align-items:center;background:rgba(255,255,255,.08);border-radius:12px;padding:12px 18px;font-size:clamp(17px,2.6vw,28px);font-weight:700;line-height:1.4;}
+  .big-rules li::before{content:counter(r);min-width:44px;height:44px;border-radius:50%;background:#f4d03f;color:#1c1030;display:flex;align-items:center;justify-content:center;font-weight:900;font-family:'IBM Plex Mono',monospace;}
+  .big-close{position:fixed;top:14px;right:14px;background:white;color:#1c1030;border:none;border-radius:20px;padding:9px 16px;font-weight:900;cursor:pointer;font-family:'Noto Sans KR',sans-serif;z-index:401;}
 </style>
 </head>
 <body>
@@ -371,10 +478,26 @@
 <div class="modal-overlay" id="setupModal">
   <div class="modal-box">
     <div class="modal-title">🏫 우리 학교 설정</div>
-    <div class="modal-sub">한 번만 입력하면 다음에 열어도 저장됩니다.<br>각 탭의 연락처와 학교명이 자동으로 반영됩니다.</div>
+    <div class="modal-sub">입력한 내용은 이 기기의 브라우저에만 저장되며, 어떤 서버로도 전송되지 않습니다(개인 제작 비공식 사이트).<br>한 번만 입력하면 다음에 열어도 저장됩니다.<br>각 탭의 연락처와 학교명이 자동으로 반영됩니다.</div>
     <div class="modal-field"><label>학교 이름</label><input type="text" id="cfg-name" placeholder="예: ○○초등학교"></div>
     <div class="modal-field"><label>교육청 산업재해예방팀 전화번호</label><input type="text" id="cfg-edu" placeholder="예: 000-000-0000"></div>
     <div class="modal-field"><label>교육청 재난안전센터 사이트 주소</label><input type="text" id="cfg-site" placeholder="https://safe.jge.go.kr/"><div style="font-size:12px;color:#aaa;margin-top:4px;">기본값: 광주광역시교육청 재난안전센터(https://safe.jge.go.kr/) · 비워두면 기본값으로 초기화됩니다. 다른 지역은 소속 교육청 주소로 바꿔 주세요.</div></div>
+
+    <div class="modal-group">
+      <div class="modal-group-title">🧪 과학실·화학사고 연락처</div>
+      <div class="modal-group-sub">기본값은 <strong>광주광역시</strong> 기준입니다. 다른 지역은 소속 교육청·관할 기관으로 바꿔 주세요. 칸을 비우고 저장하면 광주 기본값으로 돌아갑니다.</div>
+      <div class="modal-field"><label>교육청 과학실 사고 보고 부서 (부서명 · 전화)</label>
+        <div class="modal-2col"><input type="text" id="cfg-edu_sci_name"><input type="text" id="cfg-edu_sci_tel"></div></div>
+      <div class="modal-field"><label>교육청 안전 총괄 부서 (부서명 · 전화)</label>
+        <div class="modal-2col"><input type="text" id="cfg-edu_safe_name"><input type="text" id="cfg-edu_safe_tel"></div></div>
+      <div class="modal-field"><label>관할 유역(지방)환경청</label>
+        <div class="modal-col-hint"><span>기관명</span><span>사무실(주간)</span><span>당직실(야간)</span></div>
+        <div class="modal-3col"><input type="text" id="cfg-env_name"><input type="text" id="cfg-env_day"><input type="text" id="cfg-env_night"></div></div>
+      <div class="modal-field"><label>지역 화학재난 합동방재센터</label>
+        <div class="modal-col-hint"><span>기관명</span><span>사무실(주간)</span><span>당직실(야간)</span></div>
+        <div class="modal-3col"><input type="text" id="cfg-chem_name"><input type="text" id="cfg-chem_day"><input type="text" id="cfg-chem_night"></div></div>
+    </div>
+
     <div class="modal-btns">
       <button class="modal-reset" onclick="resetConfig()">🗑 설정 초기화</button>
       <button class="modal-cancel" onclick="closeSetup()">취소</button>
@@ -391,7 +514,7 @@
     <span class="header-icon">🏫</span>
     <div>
       <div class="header-title" onclick="goTab('tab0')">학교 안전 대응 지원 시스템</div>
-      <div class="header-sub">긴급사안 · 응급환자 · 중대산업재해</div>
+      <div class="header-sub">긴급사안 · 응급환자 · 과학실 · 중대산업재해</div>
     </div>
   </div>
   <button class="header-school" id="headerSchoolBtn" onclick="openSetup()">⚙️ 학교 설정</button>
@@ -403,6 +526,7 @@
   <button class="tab-btn active" onclick="switchTab('tab0',this)"><span class="tab-icon">🏠</span>홈</button>
   <button class="tab-btn" onclick="switchTab('tab1',this)"><span class="tab-icon">🚨</span>긴급사안</button>
   <button class="tab-btn" onclick="switchTab('tab2',this)"><span class="tab-icon">🚑</span>응급환자 이송</button>
+  <button class="tab-btn" onclick="switchTab('tab6',this)"><span class="tab-icon">🧪</span>과학실 안전</button>
   <button class="tab-btn" onclick="switchTab('tab3',this)"><span class="tab-icon">⚠️</span>중대산업재해</button>
   <button class="tab-btn" onclick="switchTab('tab4',this)"><span class="tab-icon">📋</span>위험성 평가</button>
   <button class="tab-btn" onclick="switchTab('tab5',this)"><span class="tab-icon">📞</span>비상연락망</button>
@@ -421,6 +545,8 @@
     <button class="setup-btn" onclick="openSetup()">⚙️ 학교 설정</button>
   </div>
 
+  <div class="unofficial-note">ℹ️ <strong>개인 제작 비공식 사이트</strong> — 교육부·교육청이 운영하는 공식 사이트가 아닙니다. 공개된 지침·안내 자료를 바탕으로 현직 교원이 만든 참고용 도구이며, 실제 업무는 소속 교육청·학교의 공식 지침을 따르세요.</div>
+
   <div class="home-grid">
     <div class="home-card c-red" onclick="goTab('tab1')">
       <div class="home-card-icon">🚨</div>
@@ -430,7 +556,12 @@
     <div class="home-card c-blue" onclick="goTab('tab2')">
       <div class="home-card-icon">🚑</div>
       <div class="home-card-title">응급환자 이송</div>
-      <div class="home-card-desc">환자 상태별 역할 분담<br>학부모 연락 · 병원 이송 담당 확인</div>
+      <div class="home-card-desc">사고 유형 3가지 · 대응 4단계<br>역할별 할 일 · 학부모 연락 · 병원 이송</div>
+    </div>
+    <div class="home-card c-purple" onclick="goTab('tab6')">
+      <div class="home-card-icon">🧪</div>
+      <div class="home-card-title">과학실 안전</div>
+      <div class="home-card-desc">사고 대응 · 24시간 서면보고 마감<br>상황보고서 · 수업 전·중·후 점검</div>
     </div>
     <div class="home-card c-orange" onclick="goTab('tab3')">
       <div class="home-card-icon">⚠️</div>
@@ -441,6 +572,11 @@
       <div class="home-card-icon">📋</div>
       <div class="home-card-title">위험성 평가</div>
       <div class="home-card-desc">위험한 곳 발견 시 즉시 기록<br>위험도 자동 계산</div>
+    </div>
+    <div class="home-card c-gray" onclick="goTab('tab5')">
+      <div class="home-card-icon">📞</div>
+      <div class="home-card-title">비상연락망</div>
+      <div class="home-card-desc">신고·보고 기관 연락처<br>사고 종류별 보고 절차 · 주요 서식</div>
     </div>
   </div>
 
@@ -459,20 +595,25 @@
       <span class="contact-row-num" id="homeEduNum" style="font-size:18px;color:#888;">미설정</span>
       <button class="contact-save-btn" onclick="openSetup()" style="margin-left:auto;">번호 설정</button>
     </div>
+    <div class="contact-row">
+      <span class="contact-row-label" style="min-width:110px">🧪 화학사고 신고</span>
+      <a class="contact-row-num tel" href="tel:0438304120" style="font-size:18px;">043-830-4120</a>
+      <span class="contact-row-note" style="margin-left:auto;">화학물질안전원 (전국 공통)</span>
+    </div>
   </div>
 
   <footer class="page-footer">
-    <div class="ft-notice">※ 이 도구는 <strong>참고용</strong>입니다. 실제 상황에서는 소속 교육청·학교의 공식 매뉴얼과 지침을 우선 적용하시고, 응급 상황에서는 <strong>119 신고를 최우선</strong>으로 하세요.</div>
+    <div class="ft-notice">※ 이 사이트는 <strong>교육부·교육청의 공식 사이트가 아니며</strong>, 현직 교원이 개인적으로 만든 <strong>참고용</strong> 도구입니다. 실제 상황에서는 소속 교육청·학교의 공식 매뉴얼과 지침을 우선 적용하시고, 응급 상황에서는 <strong>119 신고를 최우선</strong>으로 하세요.</div>
 
     <div class="ft-meta">
-      <div class="ft-row"><span class="ft-tag">출처</span><div>대응 절차와 단계 구성은 교육청 관리자 안전 연수자료, 고용노동부·교육부의 중대재해 대응 안내 자료를 참고해 학교 현장에 맞게 재구성했습니다. 위험성 평가 참고사례는 특정 학교를 알 수 없도록 일반화한 예시입니다.</div></div>
+      <div class="ft-row"><span class="ft-tag">출처</span><div>대응 절차와 단계 구성은 교육청 관리자 안전 연수자료, 고용노동부·교육부의 중대재해 대응 안내 자료를 참고해 학교 현장에 맞게 재구성했습니다. 학생 안전사고 유형과 대응 4단계는 「학교 안전사고관리 지침」(교육부 고시 제2025-19호), 과학실 안전 내용은 광주광역시교육청 「과학실험실 내 안전사고 예방 및 발생시 주요 사항 안내」를 바탕으로 재구성했습니다. 위험성 평가 참고사례는 특정 학교를 알 수 없도록 일반화한 예시입니다.</div></div>
       <div class="ft-row"><span class="ft-tag">글꼴</span><div>Noto Sans KR · IBM Plex Mono — SIL Open Font License 1.1 · <a href="#" onclick="openOss(); return false;" style="color:inherit;text-decoration:underline;text-underline-offset:2px">라이선스 전문 보기</a></div></div>
       <div class="ft-row"><span class="ft-tag">아이콘</span><div>별도 이미지 없이 유니코드 표준 이모지 문자만 사용했습니다.</div></div>
     </div>
 
     <div class="ft-license">
       <div class="ft-lic-head">
-        <span class="ft-owner">ⓒ 2026 최창훈</span>
+        <span class="ft-owner">만든이 2026 최창훈 · <a class="ft-hub" href="https://edu-hub-alpha-ten.vercel.app/" target="_blank" rel="noopener">학교 연장통의 도구</a></span>
         <a class="ft-badge" href="https://creativecommons.org/licenses/by-nc/4.0/deed.ko" target="_blank" rel="noopener">ⓒ <b>CC BY-NC 4.0</b></a>
       </div>
       <div class="ft-terms">
@@ -530,17 +671,17 @@
   <div class="report-output" id="reportOutput1"></div>
 
   <footer class="page-footer">
-    <div class="ft-notice">※ 이 도구는 <strong>참고용</strong>입니다. 실제 상황에서는 소속 교육청·학교의 공식 매뉴얼과 지침을 우선 적용하시고, 응급 상황에서는 <strong>119 신고를 최우선</strong>으로 하세요.</div>
+    <div class="ft-notice">※ 이 사이트는 <strong>교육부·교육청의 공식 사이트가 아니며</strong>, 현직 교원이 개인적으로 만든 <strong>참고용</strong> 도구입니다. 실제 상황에서는 소속 교육청·학교의 공식 매뉴얼과 지침을 우선 적용하시고, 응급 상황에서는 <strong>119 신고를 최우선</strong>으로 하세요.</div>
 
     <div class="ft-meta">
-      <div class="ft-row"><span class="ft-tag">출처</span><div>대응 절차와 단계 구성은 교육청 관리자 안전 연수자료, 고용노동부·교육부의 중대재해 대응 안내 자료를 참고해 학교 현장에 맞게 재구성했습니다. 위험성 평가 참고사례는 특정 학교를 알 수 없도록 일반화한 예시입니다.</div></div>
+      <div class="ft-row"><span class="ft-tag">출처</span><div>대응 절차와 단계 구성은 교육청 관리자 안전 연수자료, 고용노동부·교육부의 중대재해 대응 안내 자료를 참고해 학교 현장에 맞게 재구성했습니다. 학생 안전사고 유형과 대응 4단계는 「학교 안전사고관리 지침」(교육부 고시 제2025-19호), 과학실 안전 내용은 광주광역시교육청 「과학실험실 내 안전사고 예방 및 발생시 주요 사항 안내」를 바탕으로 재구성했습니다. 위험성 평가 참고사례는 특정 학교를 알 수 없도록 일반화한 예시입니다.</div></div>
       <div class="ft-row"><span class="ft-tag">글꼴</span><div>Noto Sans KR · IBM Plex Mono — SIL Open Font License 1.1 · <a href="#" onclick="openOss(); return false;" style="color:inherit;text-decoration:underline;text-underline-offset:2px">라이선스 전문 보기</a></div></div>
       <div class="ft-row"><span class="ft-tag">아이콘</span><div>별도 이미지 없이 유니코드 표준 이모지 문자만 사용했습니다.</div></div>
     </div>
 
     <div class="ft-license">
       <div class="ft-lic-head">
-        <span class="ft-owner">ⓒ 2026 최창훈</span>
+        <span class="ft-owner">만든이 2026 최창훈 · <a class="ft-hub" href="https://edu-hub-alpha-ten.vercel.app/" target="_blank" rel="noopener">학교 연장통의 도구</a></span>
         <a class="ft-badge" href="https://creativecommons.org/licenses/by-nc/4.0/deed.ko" target="_blank" rel="noopener">ⓒ <b>CC BY-NC 4.0</b></a>
       </div>
       <div class="ft-terms">
@@ -554,6 +695,15 @@
 
 <!-- ══ TAB 2: 응급환자 이송 ══ -->
 <div class="tab-panel" id="tab2">
+
+  <div class="info-box blue">
+    <h4>📜 학교 안전사고관리 지침 (교육부 고시 제2025-19호)</h4>
+    <ul>
+      <li>사고 유형 3가지: <span class="mild-c">병원치료 불필요</span> · <span class="normal-c">병원치료 필요</span>(일반상해) · <span class="urgent">생명위급</span>(응급환자)</li>
+      <li>대응 4단계: <strong>상황파악·전파 → 안전조치 → 상황정리 → 보고조치(사고통지)</strong></li>
+      <li>아래에서 환자 상태를 고르면 단계별 절차와 내 역할이 나옵니다.</li>
+    </ul>
+  </div>
 
   <!-- ① 핵심 강조 박스 -->
   <div class="key-box">
@@ -570,15 +720,25 @@
         <div class="key-card-warn">※ 응급처치자는 차량 운전 금지</div>
       </div>
     </div>
+    <div class="law-note" style="margin-top:12px;">📜 <strong>병원치료가 필요한 일반상해</strong>는 보호자에게 연락해 <strong>보호자가 병원으로 이송</strong>하는 것이 원칙입니다. 보호자와 연락이 안 되는 등 부득이한 경우에만 교직원이 동행하며, 동행한 교직원은 <strong>학교장에게 보고</strong>합니다.</div>
   </div>
 
   <!-- ② 상황 분기 -->
   <div class="branch-section">
     <div class="branch-q">① 지금 환자 상태는 어떻습니까?</div>
     <div class="branch-btns">
-      <button class="branch-btn blue-btn" id="mod-btn" onclick="selectSeverity('moderate')">🔵 병원 이송 필요<br><span style="font-size:13px;font-weight:400">단순외상·단순골절·고열 등</span></button>
-      <button class="branch-btn red-btn" id="sev-btn" onclick="selectSeverity('severe')">🔴 위급 · 중한 외상<br><span style="font-size:13px;font-weight:400">의식장애·호흡곤란·심정지·다량출혈</span></button>
+      <button class="branch-btn green2-btn" id="mild-btn" onclick="selectSeverity('mild')">🟢 병원치료 불필요<br><span style="font-size:13px;font-weight:400">가벼운 찰과상·타박 등 간단한 처치</span></button>
+      <button class="branch-btn blue-btn" id="mod-btn" onclick="selectSeverity('moderate')">🔵 병원치료 필요<br><span style="font-size:13px;font-weight:400">단순외상·단순골절·고열 등</span></button>
+      <button class="branch-btn red-btn" id="sev-btn" onclick="selectSeverity('severe')">🔴 생명위급 (응급환자)<br><span style="font-size:13px;font-weight:400">의식장애·호흡곤란·심정지·다량출혈</span></button>
     </div>
+  </div>
+
+  <!-- 지침 4단계 -->
+  <div class="law-box" id="law-box">
+    <div class="law-box-title" id="law-box-title">📜 대응 4단계</div>
+    <div class="law-box-src">학교 안전사고관리 지침 제3조 (교육부 고시 제2025-19호)</div>
+    <div id="law-steps"></div>
+    <div class="law-note">※ 1단계(상황파악·전파)와 2단계(안전조치)는 현장 상황에 따라 순서를 바꿔 조치할 수 있습니다. (제3조 ④)</div>
   </div>
 
   <!-- ③ 역할 선택 -->
@@ -600,25 +760,35 @@
       <thead>
         <tr>
           <th style="width:90px">담당자</th>
-          <th><span class="urgent">● 위급·중한 외상</span></th>
-          <th><span class="normal-c">● 병원 이송 필요</span></th>
+          <th style="min-width:200px"><span class="urgent" style="color:#ffb3a7">● 생명위급</span></th>
+          <th style="min-width:200px"><span style="color:#aed6f1">● 병원치료 필요</span></th>
+          <th style="min-width:160px"><span style="color:#abebc6">● 병원치료 불필요</span></th>
         </tr>
       </thead>
       <tbody>
-        <tr><td class="role-cell">교장</td><td colspan="2">상황 총괄 / 원인분석 및 재발방지 조치</td></tr>
-        <tr><td class="role-cell">교감</td><td colspan="2">상황파악 및 지시·보고 / 위기상황 처리 필요조치 / 보건·담임 부재 시 대체인력 배정</td></tr>
+        <tr><td class="role-cell">최초발견자</td>
+          <td><strong>즉시 119 신고</strong> → 가까운 교직원에게 상황 전달</td>
+          <td colspan="2">가까운 교직원에게 상황 전달</td></tr>
+        <tr><td class="role-cell">교장</td>
+          <td colspan="2">상황 총괄 / 이송·보호자 인계 상황 파악 / <strong>교육(지원)청 보고</strong> · <strong>시·도 학교안전공제회 사고통지</strong> · 공제급여 신청 절차 안내 / 원인분석 및 재발방지 조치</td>
+          <td>보고 받고 사고 내용 확인</td></tr>
+        <tr><td class="role-cell">교감</td><td colspan="2">상황파악 및 지시·보고 / 위기상황 처리 필요조치 / 보건·담임 부재 시 대체인력 배정 / 교장의 보고·사고통지 실무 지원</td>
+          <td>상황 파악, 교장 보고 확인</td></tr>
         <tr><td class="role-cell">보건교사</td>
-          <td>응급처치 → 담임 통보 → <strong>병원 동행이송</strong> → 관리자 처치현황 보고</td>
-          <td>응급처치 → 담임 통보 → 학생 처치결과 <strong>학부모 상담</strong> → 관리자 처치현황 보고</td></tr>
+          <td>119 도착 전까지 <strong>응급처치</strong>(악화 방지) → 담임 통보 → <strong>병원 동행이송</strong> → 학교장·보호자에게 상황 전달 → 관리자 처치현황 보고</td>
+          <td>현장 간단 응급처치 → 담임 통보 → 학생 처치결과 <strong>학부모 상담</strong> → 관리자 처치현황 보고</td>
+          <td><strong>간단한 처치</strong> → 학생에게 주의사항 안내 → 담임 통보</td></tr>
         <tr><td class="role-cell">담임교사</td>
-          <td><strong>학부모 연락</strong>(이송병원으로) → 관리자 사고경위 보고 → 환자 <strong>병원이송</strong>(보호자 인계 전까지 보호자 역할 대행) → 안전공제회 보상 안내</td>
-          <td><strong>학부모 연락</strong> → 병원이송 안내 및 조치 → 필요시 <strong>병원이송</strong> → 관리자 사고경위 보고 → 안전공제회 보상 안내</td></tr>
-        <tr><td class="role-cell">생활지도<br>학년부장</td><td colspan="2">질서 및 생활지도 / 학년 수업 결손 방지 지원</td></tr>
-        <tr><td class="role-cell">이송 담당</td><td colspan="2">안전하게 병원 이송<br><span style="font-size:13px;color:#c0392b">※ 응급처치자는 차량 운전 금지 (개인차량 이송 시 동행 2명 필요)</span></td></tr>
-        <tr><td class="role-cell">행정담당</td><td colspan="2">보상 및 제반 서류 작성 협조 / 병원 이송교사 출장처리 및 비용청구 처리</td></tr>
+          <td><strong>학부모 연락</strong>(이송병원으로) → 관리자 사고경위 보고 → 이송 상황·치료 경과를 학교장·보호자에게 전달 → <strong>보호자 인계 후 복귀</strong> → 공제급여 신청 안내</td>
+          <td><strong>학부모 연락</strong> → <strong>보호자 이송</strong>(원칙) 안내 → 부득이하면 교직원 <strong>동행 이송</strong>(학교장 보고) → 의사 판단에 따라 귀가 또는 보호자 인계 후 복귀 → 공제급여 신청 안내</td>
+          <td>학생 상태 관찰 · 주의사항 재안내 → 학교장(관리자)에게 보고 → 필요시 학부모 안내</td></tr>
+        <tr><td class="role-cell">생활지도<br>학년부장</td><td colspan="3">질서 및 생활지도 / 학년 수업 결손 방지 지원</td></tr>
+        <tr><td class="role-cell">이송 담당</td><td colspan="2">안전하게 병원 이송<br><span style="font-size:13px;color:#c0392b">※ 응급처치자는 차량 운전 금지 (개인차량 이송 시 동행 2명 필요)</span></td><td>—</td></tr>
+        <tr><td class="role-cell">행정담당</td><td colspan="2">공제회 사고통지·보상 등 제반 서류 작성 협조 / 병원 이송교사 출장처리 및 비용청구 처리</td><td>—</td></tr>
       </tbody>
     </table>
   </div>
+  <div style="font-size:var(--fs-xs);color:#999;margin:-8px 0 16px;">표가 잘리면 옆으로 밀어서 보세요. →</div>
   <div class="info-box blue">
     <h4>📝 응급사고 기록지 작성 (보건교사)</h4>
     <ul>
@@ -627,17 +797,17 @@
     </ul>
   </div>
   <footer class="page-footer">
-    <div class="ft-notice">※ 이 도구는 <strong>참고용</strong>입니다. 실제 상황에서는 소속 교육청·학교의 공식 매뉴얼과 지침을 우선 적용하시고, 응급 상황에서는 <strong>119 신고를 최우선</strong>으로 하세요.</div>
+    <div class="ft-notice">※ 이 사이트는 <strong>교육부·교육청의 공식 사이트가 아니며</strong>, 현직 교원이 개인적으로 만든 <strong>참고용</strong> 도구입니다. 실제 상황에서는 소속 교육청·학교의 공식 매뉴얼과 지침을 우선 적용하시고, 응급 상황에서는 <strong>119 신고를 최우선</strong>으로 하세요.</div>
 
     <div class="ft-meta">
-      <div class="ft-row"><span class="ft-tag">출처</span><div>대응 절차와 단계 구성은 교육청 관리자 안전 연수자료, 고용노동부·교육부의 중대재해 대응 안내 자료를 참고해 학교 현장에 맞게 재구성했습니다. 위험성 평가 참고사례는 특정 학교를 알 수 없도록 일반화한 예시입니다.</div></div>
+      <div class="ft-row"><span class="ft-tag">출처</span><div>대응 절차와 단계 구성은 교육청 관리자 안전 연수자료, 고용노동부·교육부의 중대재해 대응 안내 자료를 참고해 학교 현장에 맞게 재구성했습니다. 학생 안전사고 유형과 대응 4단계는 「학교 안전사고관리 지침」(교육부 고시 제2025-19호), 과학실 안전 내용은 광주광역시교육청 「과학실험실 내 안전사고 예방 및 발생시 주요 사항 안내」를 바탕으로 재구성했습니다. 위험성 평가 참고사례는 특정 학교를 알 수 없도록 일반화한 예시입니다.</div></div>
       <div class="ft-row"><span class="ft-tag">글꼴</span><div>Noto Sans KR · IBM Plex Mono — SIL Open Font License 1.1 · <a href="#" onclick="openOss(); return false;" style="color:inherit;text-decoration:underline;text-underline-offset:2px">라이선스 전문 보기</a></div></div>
       <div class="ft-row"><span class="ft-tag">아이콘</span><div>별도 이미지 없이 유니코드 표준 이모지 문자만 사용했습니다.</div></div>
     </div>
 
     <div class="ft-license">
       <div class="ft-lic-head">
-        <span class="ft-owner">ⓒ 2026 최창훈</span>
+        <span class="ft-owner">만든이 2026 최창훈 · <a class="ft-hub" href="https://edu-hub-alpha-ten.vercel.app/" target="_blank" rel="noopener">학교 연장통의 도구</a></span>
         <a class="ft-badge" href="https://creativecommons.org/licenses/by-nc/4.0/deed.ko" target="_blank" rel="noopener">ⓒ <b>CC BY-NC 4.0</b></a>
       </div>
       <div class="ft-terms">
@@ -647,6 +817,187 @@
       </div>
     </div>
   </footer>
+</div>
+
+<!-- ══ TAB 6: 과학실 안전 ══ -->
+<div class="tab-panel" id="tab6">
+  <div class="info-box red">
+    <h4>🧪 과학실 안전사고 — 꼭 기억할 두 가지</h4>
+    <ul>
+      <li>사고 발생 시 <strong>즉시 유관기관 신고 · 교육청 보고</strong></li>
+      <li>교육청 <strong>유선보고 후 24시간 이내 서면보고</strong></li>
+    </ul>
+  </div>
+
+  <div class="seg">
+    <button class="seg-btn active" id="seg-btn-a" onclick="sciSeg('a')">🚨 사고 대응</button>
+    <button class="seg-btn" id="seg-btn-b" onclick="sciSeg('b')">✅ 예방 점검</button>
+    <button class="seg-btn" id="seg-btn-c" onclick="sciSeg('c')">📌 게시물·자료</button>
+  </div>
+
+  <!-- ─── A. 사고 대응 ─── -->
+  <div class="seg-panel active" id="seg-a">
+    <div class="deadline-box">
+      <div class="deadline-title">⏰ 보고 시한 관리</div>
+      <div class="deadline-row"><label>사고 발생 시각</label><input type="datetime-local" id="sci-at" class="sci-input"><button class="deadline-now" onclick="sciNow('sci-at')">지금</button></div>
+      <div class="deadline-row"><label>교육청 유선보고 시각</label><input type="datetime-local" id="sci-call" class="sci-input"><button class="deadline-now" onclick="sciNow('sci-call')">지금</button></div>
+      <div class="deadline-result" id="sci-deadline">
+        <div class="deadline-due">유선보고 시각을 입력하면 <b>서면보고 마감 시각</b>이 계산됩니다.</div>
+      </div>
+    </div>
+
+    <div class="sec-hd"><span>📝 사고 대응 4단계</span><div class="sec-line"></div><button class="reset-mini" onclick="resetSci()">↺ 초기화</button></div>
+    <div id="sciStepList"></div>
+
+    <div class="sec-hd" style="margin-top:28px"><span>☎️ 화학사고 신고 기관</span><div class="sec-line"></div></div>
+    <div class="region-note"><span class="region-chip" data-region-chip>기본값: 광주광역시</span><button class="mini-link-btn" onclick="openSetup()">⚙️ 다른 지역으로 변경</button></div>
+    <div class="resp-table-wrap">
+      <table class="org-table">
+        <thead><tr><th>담당구역</th><th>기관명</th><th>사무실(주간)</th><th>당직실(야간)</th></tr></thead>
+        <tbody>
+          <tr><td>전국 공통</td><td><strong>화학물질안전원</strong></td><td><a class="tel" href="tel:0438304120">043-830-4120~2</a></td><td><a class="tel" href="tel:0438304120">043-830-4120~2</a></td></tr>
+          <tr><td rowspan="2">관할 지역</td><td><strong data-cfg="env_name"></strong></td><td><a class="tel" data-cfg-tel="env_day"></a></td><td><a class="tel" data-cfg-tel="env_night"></a></td></tr>
+          <tr><td><strong data-cfg="chem_name"></strong></td><td><a class="tel" data-cfg-tel="chem_day"></a></td><td><a class="tel" data-cfg-tel="chem_night"></a></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card"><h4>🏛️ 교육청 보고</h4>
+        <div class="contact-item"><div class="contact-label" data-cfg="edu_sci_name"></div><a class="contact-num tel" style="font-size:18px" data-cfg-tel="edu_sci_tel"></a></div>
+        <div class="contact-item"><div class="contact-label" data-cfg="edu_safe_name"></div><a class="contact-num tel" style="font-size:18px" data-cfg-tel="edu_safe_tel"></a></div>
+      </div>
+      <div class="contact-card"><h4>🚑 응급·화재</h4>
+        <div class="contact-item"><div class="contact-label">화재·응급·구조</div><a class="contact-num tel" href="tel:119">119</a></div>
+        <div class="contact-note">병원 이송 시 <strong>반드시 교사 1인 동행</strong></div>
+      </div>
+    </div>
+
+    <div class="sec-hd" style="margin-top:28px"><span>📄 과학실 안전사고 상황보고서</span><div class="sec-line"></div><button class="reset-mini" onclick="resetSciReport()">↺ 비우기</button></div>
+    <div style="font-size:var(--fs-sm);color:var(--gray);margin-bottom:10px;">교육청 서식(예시안)에 맞춰 개조식 보고서를 만들어 줍니다. 모르는 칸은 비워 두면 「조사 중」으로 표시됩니다.</div>
+    <div class="sci-form">
+      <h5>보고자</h5>
+      <div class="eval-row">
+        <div class="eval-field"><label>담당자 성명</label><input type="text" id="sr-person" class="sci-input" placeholder="예: 홍길동"></div>
+        <div class="eval-field"><label>연락처</label><input type="text" id="sr-tel" class="sci-input" placeholder="예: 062-000-0000"></div>
+      </div>
+      <h5>□ 사고 개요</h5>
+      <div class="eval-row">
+        <div class="eval-field"><label>장소</label><input type="text" id="sr-place" class="sci-input" placeholder="예: 본관 3층 과학실"></div>
+        <div class="eval-field"><label>대상</label><input type="text" id="sr-target" class="sci-input" placeholder="예: 5학년 2반 학생 24명"></div>
+        <div class="eval-field full"><label>원인</label><input type="text" id="sr-cause" class="sci-input" placeholder="예: 알코올램프 조작 미숙으로 인한 화재 발생"></div>
+        <div class="eval-field full"><label>상황 종료(진화·수습) 시각 <span style="font-weight:400">(선택)</span></label><input type="text" id="sr-end" class="sci-input" placeholder="예: 완전진화 11:44"></div>
+      </div>
+      <div style="font-size:var(--fs-xs);color:#999;margin-top:-6px;">※ 사고 일시는 위 「보고 시한 관리」의 사고 발생 시각을 사용합니다.</div>
+      <h5>□ 피해 상황 — 인명</h5>
+      <div class="eval-row">
+        <div class="eval-field"><label>사망 (명)</label><input type="number" min="0" id="sr-dead" class="sci-input" placeholder="0"></div>
+        <div class="eval-field"><label>부상 (명)</label><input type="number" min="0" id="sr-hurt" class="sci-input" placeholder="0"></div>
+        <div class="eval-field full"><label>부상 상태</label><input type="text" id="sr-state" class="sci-input" placeholder="예: 경미한 화상(2), 연기 흡입(1)"></div>
+        <div class="eval-field full"><label>조치 결과</label><input type="text" id="sr-result" class="sci-input" placeholder="예: 2명 귀가, 1명 입원 중"></div>
+      </div>
+      <h5>□ 피해 상황 — 시설</h5>
+      <div class="eval-row">
+        <div class="eval-field"><label>시설명</label><input type="text" id="sr-fac" class="sci-input" placeholder="예: 과학실"></div>
+        <div class="eval-field"><label>구조</label><input type="text" id="sr-struct" class="sci-input" placeholder="예: 철근콘크리트조"></div>
+        <div class="eval-field full"><label>피해 내용·정도</label><input type="text" id="sr-damage" class="sci-input" placeholder="예: 출입문 일부 소실"></div>
+        <div class="eval-field"><label>피해량</label><input type="text" id="sr-area" class="sci-input" placeholder="예: 12㎡"></div>
+        <div class="eval-field"><label>피해액 (천원)</label><input type="text" id="sr-cost" class="sci-input" placeholder="예: 1,500"></div>
+      </div>
+      <h5>□ 조치사항</h5>
+      <div class="eval-field"><textarea id="sr-actions" class="sci-input" placeholder="한 줄에 하나씩 적으세요. 예)&#10;11:20 화재 발견, 화재 경보 및 학생 대피 방송&#10;11:22 119 최초 신고 및 소화기 초동 진화 시도&#10;&#10;비워 두면 위 4단계 체크리스트의 완료 시각과 메모로 채웁니다."></textarea></div>
+      <h5>□ 향후계획</h5>
+      <div class="eval-field"><textarea id="sr-plan" class="sci-input" placeholder="예: 피해 현황을 지속적으로 모니터링&#10;재발 방지책 마련 및 학교안전공제회 보상 신청"></textarea></div>
+      <h5>붙임</h5>
+      <div class="eval-field"><input type="text" id="sr-attach" class="sci-input" placeholder="예: 피해 현황 사진 1부."></div>
+    </div>
+    <button class="report-btn" style="background:var(--purple);margin-top:0" onclick="generateSciReport()">📄 상황보고서 만들기</button>
+    <div class="report-output" id="sciReportOutput"></div>
+  </div>
+
+  <!-- ─── B. 예방 점검 ─── -->
+  <div class="seg-panel" id="seg-b">
+    <div class="info-box orange">
+      <h4>👩‍🏫 학생 안전 교육</h4>
+      <ul>
+        <li>실험 수업 전 유의사항 등 <strong>‘5분 안전교육’</strong> 실시</li>
+        <li>안전장구(보안경, 실험복 등) 반드시 착용 지도</li>
+        <li>비상사태 행동 요령 안내, 반복 지도로 숙달</li>
+        <li>실험 수업·동아리 활동 등은 담당 교사의 지도 아래 진행</li>
+        <li>사전실험으로 위험도 파악 → 위험성이 높은 실험은 <strong>교사 시범실험이나 동영상</strong>으로 대체</li>
+      </ul>
+    </div>
+
+    <div class="sec-hd"><span>📏 과학실험실 안전 수칙 10</span><div class="sec-line"></div></div>
+    <div class="rule-grid" id="sciRuleGrid"></div>
+    <button class="big-btn" onclick="openBigRules()">🔍 학생에게 크게 보여주기 (5분 안전교육용)</button>
+
+    <div class="sec-hd" style="margin-top:28px"><span>✅ 수업 과정별 점검</span><div class="sec-line"></div><button class="reset-mini" onclick="resetSciPrev()">↺ 초기화</button></div>
+    <div id="sciPrevList"></div>
+    <div style="font-size:var(--fs-xs);color:#999;">참고: 학교 화학 약품 안전관리 매뉴얼(중등용, 교육부·한국과학창의재단)</div>
+  </div>
+
+  <!-- ─── C. 게시물·자료 ─── -->
+  <div class="seg-panel" id="seg-c">
+    <div class="info-box blue">
+      <h4>📌 과학실 안전 게시물 — 학교장 게시·관리</h4>
+      <ul>
+        <li>안전사고 예방에 필요한 안내자료를 과학실 안 <strong>쉽게 알아볼 수 있는 곳</strong>에 게시하거나 갖춰 두고 관리합니다.</li>
+        <li>안전사고 대처요령 포스터에는 <strong>인근 병원 · 보건교사 · 담당교사 연락처</strong>를 적어 둡니다.</li>
+        <li>안전사고 대비 훈련은 재난 대비 훈련·민방위 훈련과 연계해 계획·실시합니다.</li>
+      </ul>
+    </div>
+    <div class="prev-group">
+      <div class="prev-head"><span class="prev-head-title">🗂️ 게시물 7종 점검</span><span class="prev-count" id="postCount">0 / 7</span><button class="reset-mini" onclick="resetSciPosts()">↺</button></div>
+      <div id="sciPostList"></div>
+    </div>
+
+    <div class="sec-hd" style="margin-top:24px"><span>🔗 게시물 참고 사이트</span><div class="sec-line"></div></div>
+    <div class="link-list">
+      <a class="link-item" href="https://www.scienceall.com/brd/board/510/L/CTGRY_CD/483/menu/289?brdCodeField=CTGRY_CD&amp;brdCodeValue=483" target="_blank" rel="noopener"><span style="font-size:24px">🔬</span><div><b>사이언스올 — [안전] 과학 실험실 안전자료</b><small>한국과학창의재단 · 안전 게시물, 실험실 안전 매뉴얼, 5분 안전 동영상</small></div><span class="arr">↗</span></a>
+      <a class="link-item" href="https://science-on.kosac.re.kr/body/archive/0160dd06132b433b9133ad6097754fa5/main.do" target="_blank" rel="noopener"><span style="font-size:24px">🧫</span><div><b>지능형 과학실 ON — 학습자료실 › 실험안전</b><small>안전관리 영상 10종 · 포스터 12종 · 리플릿 2종 · 초·중·고 안전 매뉴얼 3종</small></div><span class="arr">↗</span></a>
+    </div>
+
+    <div class="sec-hd"><span>📚 관련 지침·매뉴얼</span><div class="sec-line"></div></div>
+    <div class="region-note"><span class="region-chip">광주광역시교육청 공개자료실</span><span>다른 지역은 소속 교육청 자료실에서 같은 자료를 찾아 쓰세요.</span></div>
+    <div class="link-list">
+      <a class="link-item" href="https://www.gen.go.kr/xboard/board.php?mode=view&amp;number=414194&amp;tbnum=332&amp;sCat=0&amp;page=3&amp;keyset=&amp;searchword=" target="_blank" rel="noopener"><span style="font-size:22px">📐</span><div><b>광주광역시 과학 교구·설비 기준</b><small>부서별 공개자료실 › 미래교육기획과 › 212번</small></div><span class="arr">↗</span></a>
+      <a class="link-item" href="https://www.gen.go.kr/xboard/board.php?mode=view&amp;number=417473&amp;tbnum=332&amp;sCat=0&amp;page=1&amp;keyset=&amp;searchword=" target="_blank" rel="noopener"><span style="font-size:22px">⚗️</span><div><b>학교 화학약품 안전관리 매뉴얼 · 과학실험 안전 매뉴얼</b><small>부서별 공개자료실 › 미래교육기획과 › 공지</small></div><span class="arr">↗</span></a>
+      <a class="link-item" href="https://www.gen.go.kr/xboard/board.php?mode=view&amp;number=424634&amp;tbnum=332&amp;sCat=0&amp;page=3&amp;keyset=&amp;searchword=" target="_blank" rel="noopener"><span style="font-size:22px">🐸</span><div><b>초·중·고 동물 해부실습 가이드라인</b><small>농림축산식품부, 2021</small></div><span class="arr">↗</span></a>
+      <a class="link-item" href="https://www.gen.go.kr/xboard/board.php?mode=view&amp;number=424634&amp;tbnum=332&amp;sCat=0&amp;page=3&amp;keyset=&amp;searchword=" target="_blank" rel="noopener"><span style="font-size:22px">🧬</span><div><b>초·중·고 학교현장 LMO 안전관리 가이드라인</b><small>과학기술정보통신부, 2021 · 미래교육기획과 203번</small></div><span class="arr">↗</span></a>
+      <a class="link-item" href="https://www.gen.go.kr/xboard/board.php?mode=view&amp;number=424634&amp;tbnum=332&amp;sCat=0&amp;page=3&amp;keyset=&amp;searchword=" target="_blank" rel="noopener"><span style="font-size:22px">🖨️</span><div><b>교육기관 3D프린팅 설치·운용 가이드라인</b><small>교육부</small></div><span class="arr">↗</span></a>
+    </div>
+  </div>
+
+<footer class="page-footer">
+    <div class="ft-notice">※ 이 사이트는 <strong>교육부·교육청의 공식 사이트가 아니며</strong>, 현직 교원이 개인적으로 만든 <strong>참고용</strong> 도구입니다. 실제 상황에서는 소속 교육청·학교의 공식 매뉴얼과 지침을 우선 적용하시고, 응급 상황에서는 <strong>119 신고를 최우선</strong>으로 하세요.</div>
+
+    <div class="ft-meta">
+      <div class="ft-row"><span class="ft-tag">출처</span><div>대응 절차와 단계 구성은 교육청 관리자 안전 연수자료, 고용노동부·교육부의 중대재해 대응 안내 자료를 참고해 학교 현장에 맞게 재구성했습니다. 학생 안전사고 유형과 대응 4단계는 「학교 안전사고관리 지침」(교육부 고시 제2025-19호), 과학실 안전 내용은 광주광역시교육청 「과학실험실 내 안전사고 예방 및 발생시 주요 사항 안내」를 바탕으로 재구성했습니다. 위험성 평가 참고사례는 특정 학교를 알 수 없도록 일반화한 예시입니다.</div></div>
+      <div class="ft-row"><span class="ft-tag">글꼴</span><div>Noto Sans KR · IBM Plex Mono — SIL Open Font License 1.1 · <a href="#" onclick="openOss(); return false;" style="color:inherit;text-decoration:underline;text-underline-offset:2px">라이선스 전문 보기</a></div></div>
+      <div class="ft-row"><span class="ft-tag">아이콘</span><div>별도 이미지 없이 유니코드 표준 이모지 문자만 사용했습니다.</div></div>
+    </div>
+
+    <div class="ft-license">
+      <div class="ft-lic-head">
+        <span class="ft-owner">만든이 2026 최창훈 · <a class="ft-hub" href="https://edu-hub-alpha-ten.vercel.app/" target="_blank" rel="noopener">학교 연장통의 도구</a></span>
+        <a class="ft-badge" href="https://creativecommons.org/licenses/by-nc/4.0/deed.ko" target="_blank" rel="noopener">ⓒ <b>CC BY-NC 4.0</b></a>
+      </div>
+      <div class="ft-terms">
+        <span class="ft-term"><span class="ft-ok">✓</span> 출처 표시 후 복제·배포·수정</span>
+        <span class="ft-term"><span class="ft-ok">✓</span> 학교·교육기관 자유 사용</span>
+        <span class="ft-term"><span class="ft-no">✕</span> <strong>상업적 이용 불가</strong></span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- 안전수칙 크게 보기 -->
+<div class="big-rules" id="bigRules">
+  <button class="big-close" onclick="closeBigRules()">✕ 닫기</button>
+  <div class="big-rules-inner">
+    <h2>🧪 과학실험실 안전 수칙 10</h2>
+    <ol id="bigRuleList"></ol>
+  </div>
 </div>
 
 <!-- ══ TAB 3: 중대산업재해 ══ -->
@@ -672,17 +1023,17 @@
   <div class="step-card"><div class="step-num orange">B</div><div class="step-body2"><div class="step-title2">작업중지 후 즉시 위험구역 이탈</div><div class="step-desc2"><strong style="color:var(--red)">급박한 위험 시 모든 근로자에게 작업중지권 있음</strong><br>관리자(기관장·학교장)에게 즉시 보고</div></div></div>
   <div class="step-card"><div class="step-num blue">C</div><div class="step-body2"><div class="step-title2">긴급상황 전파 및 교직원 대피</div><div class="step-desc2">방송시설 이용 긴급상황 전파 → 학생·교직원 대피<br>교육활동 즉시 중지 후 비상대피 → 응급기관 긴급신고</div></div></div>
   <footer class="page-footer">
-    <div class="ft-notice">※ 이 도구는 <strong>참고용</strong>입니다. 실제 상황에서는 소속 교육청·학교의 공식 매뉴얼과 지침을 우선 적용하시고, 응급 상황에서는 <strong>119 신고를 최우선</strong>으로 하세요.</div>
+    <div class="ft-notice">※ 이 사이트는 <strong>교육부·교육청의 공식 사이트가 아니며</strong>, 현직 교원이 개인적으로 만든 <strong>참고용</strong> 도구입니다. 실제 상황에서는 소속 교육청·학교의 공식 매뉴얼과 지침을 우선 적용하시고, 응급 상황에서는 <strong>119 신고를 최우선</strong>으로 하세요.</div>
 
     <div class="ft-meta">
-      <div class="ft-row"><span class="ft-tag">출처</span><div>대응 절차와 단계 구성은 교육청 관리자 안전 연수자료, 고용노동부·교육부의 중대재해 대응 안내 자료를 참고해 학교 현장에 맞게 재구성했습니다. 위험성 평가 참고사례는 특정 학교를 알 수 없도록 일반화한 예시입니다.</div></div>
+      <div class="ft-row"><span class="ft-tag">출처</span><div>대응 절차와 단계 구성은 교육청 관리자 안전 연수자료, 고용노동부·교육부의 중대재해 대응 안내 자료를 참고해 학교 현장에 맞게 재구성했습니다. 학생 안전사고 유형과 대응 4단계는 「학교 안전사고관리 지침」(교육부 고시 제2025-19호), 과학실 안전 내용은 광주광역시교육청 「과학실험실 내 안전사고 예방 및 발생시 주요 사항 안내」를 바탕으로 재구성했습니다. 위험성 평가 참고사례는 특정 학교를 알 수 없도록 일반화한 예시입니다.</div></div>
       <div class="ft-row"><span class="ft-tag">글꼴</span><div>Noto Sans KR · IBM Plex Mono — SIL Open Font License 1.1 · <a href="#" onclick="openOss(); return false;" style="color:inherit;text-decoration:underline;text-underline-offset:2px">라이선스 전문 보기</a></div></div>
       <div class="ft-row"><span class="ft-tag">아이콘</span><div>별도 이미지 없이 유니코드 표준 이모지 문자만 사용했습니다.</div></div>
     </div>
 
     <div class="ft-license">
       <div class="ft-lic-head">
-        <span class="ft-owner">ⓒ 2026 최창훈</span>
+        <span class="ft-owner">만든이 2026 최창훈 · <a class="ft-hub" href="https://edu-hub-alpha-ten.vercel.app/" target="_blank" rel="noopener">학교 연장통의 도구</a></span>
         <a class="ft-badge" href="https://creativecommons.org/licenses/by-nc/4.0/deed.ko" target="_blank" rel="noopener">ⓒ <b>CC BY-NC 4.0</b></a>
       </div>
       <div class="ft-terms">
@@ -762,17 +1113,17 @@
     <div style="font-size:var(--fs-sm);color:#555;">중대재해예방·산업안전보건 → 안전보건 자료실 → 교육자료</div>
   </div>
   <footer class="page-footer">
-    <div class="ft-notice">※ 이 도구는 <strong>참고용</strong>입니다. 실제 상황에서는 소속 교육청·학교의 공식 매뉴얼과 지침을 우선 적용하시고, 응급 상황에서는 <strong>119 신고를 최우선</strong>으로 하세요.</div>
+    <div class="ft-notice">※ 이 사이트는 <strong>교육부·교육청의 공식 사이트가 아니며</strong>, 현직 교원이 개인적으로 만든 <strong>참고용</strong> 도구입니다. 실제 상황에서는 소속 교육청·학교의 공식 매뉴얼과 지침을 우선 적용하시고, 응급 상황에서는 <strong>119 신고를 최우선</strong>으로 하세요.</div>
 
     <div class="ft-meta">
-      <div class="ft-row"><span class="ft-tag">출처</span><div>대응 절차와 단계 구성은 교육청 관리자 안전 연수자료, 고용노동부·교육부의 중대재해 대응 안내 자료를 참고해 학교 현장에 맞게 재구성했습니다. 위험성 평가 참고사례는 특정 학교를 알 수 없도록 일반화한 예시입니다.</div></div>
+      <div class="ft-row"><span class="ft-tag">출처</span><div>대응 절차와 단계 구성은 교육청 관리자 안전 연수자료, 고용노동부·교육부의 중대재해 대응 안내 자료를 참고해 학교 현장에 맞게 재구성했습니다. 학생 안전사고 유형과 대응 4단계는 「학교 안전사고관리 지침」(교육부 고시 제2025-19호), 과학실 안전 내용은 광주광역시교육청 「과학실험실 내 안전사고 예방 및 발생시 주요 사항 안내」를 바탕으로 재구성했습니다. 위험성 평가 참고사례는 특정 학교를 알 수 없도록 일반화한 예시입니다.</div></div>
       <div class="ft-row"><span class="ft-tag">글꼴</span><div>Noto Sans KR · IBM Plex Mono — SIL Open Font License 1.1 · <a href="#" onclick="openOss(); return false;" style="color:inherit;text-decoration:underline;text-underline-offset:2px">라이선스 전문 보기</a></div></div>
       <div class="ft-row"><span class="ft-tag">아이콘</span><div>별도 이미지 없이 유니코드 표준 이모지 문자만 사용했습니다.</div></div>
     </div>
 
     <div class="ft-license">
       <div class="ft-lic-head">
-        <span class="ft-owner">ⓒ 2026 최창훈</span>
+        <span class="ft-owner">만든이 2026 최창훈 · <a class="ft-hub" href="https://edu-hub-alpha-ten.vercel.app/" target="_blank" rel="noopener">학교 연장통의 도구</a></span>
         <a class="ft-badge" href="https://creativecommons.org/licenses/by-nc/4.0/deed.ko" target="_blank" rel="noopener">ⓒ <b>CC BY-NC 4.0</b></a>
       </div>
       <div class="ft-terms">
@@ -800,31 +1151,44 @@
       </div>
       <button class="contact-save-btn" style="margin-top:8px;" onclick="openSetup()">번호 설정하기</button>
     </div>
+    <div class="contact-card"><h4>🏛️ 교육청 학생 안전사고 보고</h4>
+      <div class="contact-item"><div class="contact-label"><span data-cfg="edu_sci_name"></span> (과학실 사고)</div><a class="contact-num tel" style="font-size:18px" data-cfg-tel="edu_sci_tel"></a></div>
+      <div class="contact-item"><div class="contact-label" data-cfg="edu_safe_name"></div><a class="contact-num tel" style="font-size:18px" data-cfg-tel="edu_safe_tel"></a></div>
+    </div>
+    <div class="contact-card"><h4>🧪 화학사고 신고</h4>
+      <div class="contact-item"><div class="contact-label">화학물질안전원 (전국 공통)</div><a class="contact-num tel" style="font-size:18px" href="tel:0438304120">043-830-4120</a></div>
+      <div class="contact-item"><div class="contact-label"><span data-cfg="env_name"></span> · 주간 / 야간</div><div style="font-size:var(--fs-sm)"><a class="tel" data-cfg-tel="env_day"></a> / <a class="tel" data-cfg-tel="env_night"></a></div></div>
+      <div class="contact-item"><div class="contact-label"><span data-cfg="chem_name"></span> · 주간 / 야간</div><div style="font-size:var(--fs-sm)"><a class="tel" data-cfg-tel="chem_day"></a> / <a class="tel" data-cfg-tel="chem_night"></a></div></div>
+    </div>
   </div>
+  <div class="region-note"><span class="region-chip" data-region-chip>기본값: 광주광역시</span><span>교육청 부서·화학사고 기관은 지역마다 다릅니다.</span><button class="mini-link-btn" onclick="openSetup()">⚙️ 설정에서 변경</button></div>
   <div class="sec-hd"><span>📋 보고 절차 흐름</span><div class="sec-line"></div></div>
   <div class="step-card"><div class="step-num red">①</div><div class="step-body2"><span class="step-badge badge-red">중대재해</span><div class="step-title2">교육청 보고 체계 (중대재해)</div><div class="step-desc2">학교(기관) → 교육청(산업재해예방팀) → 고용노동부<br>유선보고(즉시) 후 사고내용 서면보고</div></div></div>
   <div class="step-card"><div class="step-num blue">②</div><div class="step-body2"><span class="step-badge badge-blue">일반재해</span><div class="step-title2">교육청 보고 체계 (일반재해)</div><div class="step-desc2">유선보고 → 산재신청 전 사고보고서 제출(안전총괄과)<br>고용노동부: 발생 후 1개월 이내 산업재해조사표 제출</div></div></div>
   <div class="step-card"><div class="step-num orange">③</div><div class="step-body2"><span class="step-badge badge-orange">긴급사안</span><div class="step-title2">긴급사안 보고 체계</div><div class="step-desc2">학교 → 교육지원청 → 교육청 → 교육부 (또는 학교 → 교육청 직보)<br>사안별(성 관련, 장애학생 등) 담당부서 확인 후 보고</div></div></div>
+  <div class="step-card"><div class="step-num green">④</div><div class="step-body2"><span class="step-badge badge-green">학생 안전사고</span><div class="step-title2">병원치료 필요 · 생명위급 사고 (학교 안전사고관리 지침)</div><div class="step-desc2">학교장 → <strong>교육(지원)청 보고</strong> + <strong>시·도 학교안전공제회 사고통지</strong> → 학생·보호자에게 공제급여 신청 절차 안내<br>병원치료가 필요 없는 사고는 학교장에게 보고</div></div></div>
+  <div class="step-card"><div class="step-num" style="background:var(--purple-light);color:var(--purple)">⑤</div><div class="step-body2"><span class="step-badge" style="background:var(--purple-light);color:var(--purple)">과학실 사고</span><div class="step-title2">과학실 안전사고 보고</div><div class="step-desc2">즉시 유관기관 신고 · 교육청(<span data-cfg="edu_sci_name"></span>, <span data-cfg="edu_safe_name"></span>) <strong>유선보고</strong> → <strong>24시간 이내 서면보고</strong><br><a href="javascript:void(0)" onclick="goSciReport()" style="color:var(--purple);font-weight:700">🧪 상황보고서 만들기 →</a></div></div></div>
   <div class="sec-hd" style="margin-top:24px"><span>📄 주요 서식</span><div class="sec-line"></div></div>
-  <div style="font-size:var(--fs-sm);color:var(--gray);margin-bottom:10px;">📌 클릭하면 교육청 재난안전센터로 이동합니다.</div>
+  <div style="font-size:var(--fs-sm);color:var(--gray);margin-bottom:10px;">📌 ↗ 표시는 교육청 재난안전센터로 이동합니다. → 표시는 이 사이트 안에서 작성합니다.</div>
   <div class="form-links">
     <div class="form-link-card" style="cursor:pointer;" onclick="openSite()"><span class="form-icon">📝</span><div class="form-info"><h4>사고 보고서</h4><p>사고일시·경위·피해자 정보·사고원인·예방대책</p></div><span style="font-size:18px;color:#bbb;margin-left:auto;">↗</span></div>
     <div class="form-link-card" style="cursor:pointer;" onclick="openSite()"><span class="form-icon">📊</span><div class="form-info"><h4>산업재해조사표</h4><p>교육청 제출 (산업안전보건법 시행규칙 별지 30호)</p></div><span style="font-size:18px;color:#bbb;margin-left:auto;">↗</span></div>
     <div class="form-link-card" style="cursor:pointer;" onclick="openSite()"><span class="form-icon">🩺</span><div class="form-info"><h4>응급사고 기록지</h4><p>6하원칙 기반 · 보건교사 작성</p></div><span style="font-size:18px;color:#bbb;margin-left:auto;">↗</span></div>
     <div class="form-link-card" style="cursor:pointer;" onclick="openSite()"><span class="form-icon">⚖️</span><div class="form-info"><h4>위험성평가표</h4><p>교육청 재난안전센터 자료실</p></div><span style="font-size:18px;color:#bbb;margin-left:auto;">↗</span></div>
+    <div class="form-link-card" style="cursor:pointer;border-color:#d2b4de;" onclick="goSciReport()"><span class="form-icon">🧪</span><div class="form-info"><h4>과학실 안전사고 상황보고</h4><p>이 사이트에서 바로 작성 · 24시간 이내 서면보고</p></div><span style="font-size:18px;color:#bbb;margin-left:auto;">→</span></div>
   </div>
   <footer class="page-footer">
-    <div class="ft-notice">※ 이 도구는 <strong>참고용</strong>입니다. 실제 상황에서는 소속 교육청·학교의 공식 매뉴얼과 지침을 우선 적용하시고, 응급 상황에서는 <strong>119 신고를 최우선</strong>으로 하세요.</div>
+    <div class="ft-notice">※ 이 사이트는 <strong>교육부·교육청의 공식 사이트가 아니며</strong>, 현직 교원이 개인적으로 만든 <strong>참고용</strong> 도구입니다. 실제 상황에서는 소속 교육청·학교의 공식 매뉴얼과 지침을 우선 적용하시고, 응급 상황에서는 <strong>119 신고를 최우선</strong>으로 하세요.</div>
 
     <div class="ft-meta">
-      <div class="ft-row"><span class="ft-tag">출처</span><div>대응 절차와 단계 구성은 교육청 관리자 안전 연수자료, 고용노동부·교육부의 중대재해 대응 안내 자료를 참고해 학교 현장에 맞게 재구성했습니다. 위험성 평가 참고사례는 특정 학교를 알 수 없도록 일반화한 예시입니다.</div></div>
+      <div class="ft-row"><span class="ft-tag">출처</span><div>대응 절차와 단계 구성은 교육청 관리자 안전 연수자료, 고용노동부·교육부의 중대재해 대응 안내 자료를 참고해 학교 현장에 맞게 재구성했습니다. 학생 안전사고 유형과 대응 4단계는 「학교 안전사고관리 지침」(교육부 고시 제2025-19호), 과학실 안전 내용은 광주광역시교육청 「과학실험실 내 안전사고 예방 및 발생시 주요 사항 안내」를 바탕으로 재구성했습니다. 위험성 평가 참고사례는 특정 학교를 알 수 없도록 일반화한 예시입니다.</div></div>
       <div class="ft-row"><span class="ft-tag">글꼴</span><div>Noto Sans KR · IBM Plex Mono — SIL Open Font License 1.1 · <a href="#" onclick="openOss(); return false;" style="color:inherit;text-decoration:underline;text-underline-offset:2px">라이선스 전문 보기</a></div></div>
       <div class="ft-row"><span class="ft-tag">아이콘</span><div>별도 이미지 없이 유니코드 표준 이모지 문자만 사용했습니다.</div></div>
     </div>
 
     <div class="ft-license">
       <div class="ft-lic-head">
-        <span class="ft-owner">ⓒ 2026 최창훈</span>
+        <span class="ft-owner">만든이 2026 최창훈 · <a class="ft-hub" href="https://edu-hub-alpha-ten.vercel.app/" target="_blank" rel="noopener">학교 연장통의 도구</a></span>
         <a class="ft-badge" href="https://creativecommons.org/licenses/by-nc/4.0/deed.ko" target="_blank" rel="noopener">ⓒ <b>CC BY-NC 4.0</b></a>
       </div>
       <div class="ft-terms">
@@ -839,8 +1203,30 @@
 </div><!-- /main -->
 
 <script>
+// ══ 지역별 연락처 — 기본값은 광주광역시, 설정에서 변경 ══
+const CFG_DEFAULTS={
+  edu_sci_name:'미래시민교육과', edu_sci_tel:'062-380-4506',
+  edu_safe_name:'안전총괄과',   edu_safe_tel:'062-380-4119',
+  env_name:'영산강유역환경청',  env_day:'062-410-5231', env_night:'062-410-5115',
+  chem_name:'여수화학재난합동방재센터', chem_day:'010-9568-7119', chem_night:'061-690-1633'
+};
+const CFG_KEYS=Object.keys(CFG_DEFAULTS);
+function getCfg(k){ try{ return localStorage.getItem('cfg_'+k)||CFG_DEFAULTS[k]; }catch(e){ return CFG_DEFAULTS[k]; } }
+function isRegionCustom(){ try{ return CFG_KEYS.some(k=>localStorage.getItem('cfg_'+k)); }catch(e){ return false; } }
+function applyRegionCfg(){
+  document.querySelectorAll('[data-cfg]').forEach(el=>{ el.textContent=getCfg(el.dataset.cfg); });
+  document.querySelectorAll('[data-cfg-tel]').forEach(el=>{
+    const v=getCfg(el.dataset.cfgTel);
+    el.textContent=v;
+    el.setAttribute('href','tel:'+v.replace(/[^0-9+]/g,''));
+  });
+  const custom=isRegionCustom();
+  document.querySelectorAll('[data-region-chip]').forEach(el=>{ el.textContent=custom?'우리 지역으로 설정됨':'기본값: 광주광역시'; });
+}
+
 // ══ 설정 저장/불러오기 ══
 function loadConfig(){
+  applyRegionCfg();
   const name=localStorage.getItem('school_name')||'';
   const edu=localStorage.getItem('school_edu')||'';
   const site=localStorage.getItem('school_site')||'https://safe.jge.go.kr/';
@@ -863,6 +1249,10 @@ window.openSetup=function(){
   document.getElementById('cfg-name').value=localStorage.getItem('school_name')||'';
   document.getElementById('cfg-edu').value=localStorage.getItem('school_edu')||'';
   document.getElementById('cfg-site').value=localStorage.getItem('school_site')||'';
+  CFG_KEYS.forEach(k=>{
+    const el=document.getElementById('cfg-'+k);
+    if(el){ el.value=getCfg(k); el.placeholder=CFG_DEFAULTS[k]; }
+  });
   document.getElementById('setupModal').classList.add('show');
 };
 window.closeSetup=function(){
@@ -875,6 +1265,14 @@ window.saveSetup=function(){
   if(name) localStorage.setItem('school_name',name);
   if(edu)  localStorage.setItem('school_edu',edu);
   localStorage.setItem('school_site', site||'https://safe.jge.go.kr/');
+  CFG_KEYS.forEach(k=>{
+    const el=document.getElementById('cfg-'+k);
+    if(!el) return;
+    const v=el.value.trim();
+    // 비워 두거나 광주 기본값과 같으면 저장하지 않음 → 기본값 사용
+    if(!v||v===CFG_DEFAULTS[k]) localStorage.removeItem('cfg_'+k);
+    else localStorage.setItem('cfg_'+k,v);
+  });
   closeSetup();
   loadConfig();
 };
@@ -1000,30 +1398,75 @@ window.copyReport1=function(){
 };
 
 // ══ TAB 2: 응급이송 분기 ══
+// 학교 안전사고관리 지침(교육부 고시 제2025-19호) 제3조 — 유형별 4단계
+const SEV_LABEL={mild:'🟢 병원치료 불필요',moderate:'🔵 병원치료 필요',severe:'🔴 생명위급'};
+const lawSteps={
+  mild:[
+    ['상황파악·전파','최초발견자는 가까운 교직원에게 상황을 전달합니다.'],
+    ['안전조치','교직원은 간단한 처치를 합니다.'],
+    ['상황정리','환자에게 주의사항을 안내합니다.'],
+    ['보고조치(사고통지)','학교장에게 보고합니다.']
+  ],
+  moderate:[
+    ['상황파악·전파','최초발견자는 가까운 교직원에게 상황을 전달합니다.'],
+    ['안전조치','현장에서 할 수 있는 간단한 응급처치 후, 병원 치료가 필요하면 <strong>보호자에게 연락해 병원으로 이송</strong>합니다. 보호자와 연락이 안 되는 등 부득이한 경우 <strong>교직원이 동행</strong>해 이송할 수 있으며, 동행한 교직원은 학교장에게 보고합니다.'],
+    ['상황정리','학교장은 환자 이송과 보호자 인계 상황을 파악합니다. 병원에 동행한 교직원은 <strong>의사 판단에 따라</strong> 학생 스스로 귀가하게 하거나 보호자에게 인계한 뒤 복귀합니다.'],
+    ['보고조치(사고통지)','학교장은 <strong>교육(지원)청에 보고</strong>하고 <strong>시·도 학교안전공제회에 사고통지</strong>하며, 학생 등에게 <strong>공제급여 신청 절차</strong>를 안내합니다.']
+  ],
+  severe:[
+    ['상황파악·전파','최초발견자는 <strong>즉시 119에 신고한 뒤</strong> 가까운 교직원에게 상황을 전달합니다.'],
+    ['안전조치','119구조대 도착 전까지 상태 악화를 막기 위해 적절한 <strong>응급처치</strong>를 합니다. 119구조대가 병원으로 이송하면 동행한 교직원은 <strong>학교장과 보호자에게 상황을 전달</strong>합니다.'],
+    ['상황정리','동행한 교직원은 이송 상황과 치료 경과를 학교장과 보호자에게 전달하고, <strong>보호자에게 환자를 인계한 뒤 복귀</strong>합니다.'],
+    ['보고조치(사고통지)','학교장은 <strong>교육(지원)청에 보고</strong>하고 <strong>시·도 학교안전공제회에 사고통지</strong>하며, 학생 등에게 <strong>공제급여 신청 절차</strong>를 안내합니다.']
+  ]
+};
+function renderLawSteps(sev){
+  const box=document.getElementById('law-box');
+  const cls={mild:'snb-green',moderate:'snb-blue',severe:'snb-red'}[sev];
+  document.getElementById('law-box-title').textContent='📜 '+SEV_LABEL[sev]+' — 대응 4단계';
+  document.getElementById('law-steps').innerHTML=lawSteps[sev].map((s,i)=>`
+    <div class="law-step"><div class="law-step-num ${cls}">${i+1}</div>
+      <div><div class="law-step-name">${s[0]}</div><div class="law-step-desc">${s[1]}</div></div></div>`).join('');
+  box.classList.add('show');
+}
+const ROLES=['보건교사','담임교사','교장','교감','생활지도부장','행정담당'];
 const roleTasks={
   severe:{
-    '보건교사':['119 호출 및 응급처치 즉시 실시','담임교사에게 통보','환자와 함께 병원 동행 이송','관리자에게 처치 현황 보고'],
-    '담임교사':['학부모 연락 — 이송 병원으로 오도록 안내','관리자에게 사고경위 보고','보호자 인계 전까지 보호자 역할 대행','안전공제회 보상 안내'],
-    '교감':['상황 파악 및 필요 지시','보건교사·담임교사 부재 시 대체인력 즉시 배정','관리자(교장)에게 보고'],
+    '보건교사':['119 신고 여부 확인 — 안 됐으면 즉시 신고','119 도착 전까지 응급처치 (상태 악화 방지)','담임교사에게 통보','119 이송 시 병원 동행 → 학교장·보호자에게 상황 전달','관리자에게 처치 현황 보고'],
+    '담임교사':['학부모 연락 — 이송 병원으로 오도록 안내','관리자에게 사고경위 보고','이송 상황·치료 경과를 학교장과 보호자에게 전달','보호자 인계 전까지 보호자 역할 대행 → 인계 후 복귀','학교안전공제회 공제급여 신청 절차 안내'],
+    '교장':['상황 총괄','환자 이송 및 보호자 인계 상황 파악','교육(지원)청 보고','시·도 학교안전공제회 사고통지','원인분석 및 재발방지 조치'],
+    '교감':['상황 파악 및 필요 지시','보건교사·담임교사 부재 시 대체인력 즉시 배정','관리자(교장)에게 보고','교육청 보고·공제회 사고통지 실무 지원'],
     '생활지도부장':['현장 질서 및 생활지도','학년 수업 결손 방지 지원'],
-    '행정담당':['병원 이송교사 출장처리','추후 보상 및 서류 작성 협조'],
+    '행정담당':['병원 이송교사 출장처리','공제회 사고통지·보상 서류 작성 협조'],
   },
   moderate:{
-    '보건교사':['응급처치 실시','담임교사에게 통보','학생 처치결과 학부모 상담','관리자에게 처치 현황 보고'],
-    '담임교사':['학부모 연락 및 병원이송 안내','필요시 직접 병원 이송','관리자에게 사고경위 보고','안전공제회 보상 안내'],
-    '교감':['상황 파악 및 지시','필요시 대체인력 배정'],
+    '보건교사':['현장에서 간단한 응급처치 실시','담임교사에게 통보','학생 처치결과 학부모 상담','관리자에게 처치 현황 보고'],
+    '담임교사':['학부모 연락 — 보호자가 병원으로 이송하도록 안내 (원칙)','보호자 연락 불가 등 부득이하면 교직원이 동행 이송 → 학교장에게 보고','동행 시: 의사 판단에 따라 학생 스스로 귀가 또는 보호자 인계 후 복귀','관리자에게 사고경위 보고','학교안전공제회 공제급여 신청 절차 안내'],
+    '교장':['환자 이송 및 보호자 인계 상황 파악','교육(지원)청 보고','시·도 학교안전공제회 사고통지','학생·보호자에게 공제급여 신청 절차 안내 (담임 통해)'],
+    '교감':['상황 파악 및 지시','필요시 대체인력 배정','교육청 보고·공제회 사고통지 실무 지원'],
     '생활지도부장':['질서 및 생활지도 유지'],
-    '행정담당':['추후 보상 및 서류 작성 협조'],
+    '행정담당':['동행 교직원 출장처리','공제회 사고통지·보상 서류 작성 협조'],
+  },
+  mild:{
+    '보건교사':['간단한 처치 실시','학생에게 주의사항 안내','담임교사에게 처치 내용 통보','상태가 나빠지면 🔵 병원치료 필요 절차로 전환'],
+    '담임교사':['학생 상태 관찰 및 주의사항 다시 안내','학교장(관리자)에게 보고','필요시 학부모에게 처치 내용 안내'],
+    '교장':['보고 받고 사고 내용 확인','같은 사고가 반복되면 재발방지 조치'],
+    '교감':['상황 파악, 교장 보고 확인'],
+    '생활지도부장':['현장 질서 유지 및 재발 방지 지도'],
+    '행정담당':['별도 행정 조치 없음 (병원치료로 바뀌면 공제회 사고통지 협조)'],
   }
 };
 let selSev=null;
 window.selectSeverity=function(sev){
+  if(!lawSteps[sev]) return;
   selSev=sev;
   document.getElementById('sev-btn').className='branch-btn red-btn'+(sev==='severe'?' sel-red':'');
   document.getElementById('mod-btn').className='branch-btn blue-btn'+(sev==='moderate'?' sel-blue':'');
+  document.getElementById('mild-btn').className='branch-btn green2-btn'+(sev==='mild'?' sel-green2':'');
+  renderLawSteps(sev);
   const rb=document.getElementById('role-btns');
   rb.innerHTML='';
-  ['보건교사','담임교사','교감','생활지도부장','행정담당'].forEach(r=>{
+  ROLES.forEach(r=>{
     const b=document.createElement('button');
     b.className='branch-btn green-btn';b.textContent=r;
     b.onclick=()=>selectRole(r);
@@ -1037,7 +1480,7 @@ window.selectRole=function(role){
     b.className='branch-btn green-btn'+(b.textContent===role?' sel-green':'');
   });
   const t2=roleTasks[selSev][role]||[];
-  const sevLabel=selSev==='severe'?'🔴 위급·중한 외상':'🔵 병원 이송 필요';
+  const sevLabel=SEV_LABEL[selSev];
   document.getElementById('my-tasks-title').textContent='['+sevLabel+'] '+role+' — 지금 해야 할 일';
   document.getElementById('my-tasks-list').innerHTML=t2.map((t,i)=>`
     <div class="my-task-item"><span class="my-task-num">${i+1}</span><span>${t}</span></div>`).join('');
@@ -1169,6 +1612,7 @@ window.printReportOutput=function(elementId){
     <div class="print-meta">인쇄 일시: ${printedAt}</div>
   </div>
   <div class="report-card">${rowsHtml}</div>
+  <div class="print-footer">이 보고서는 개인 제작 비공식 도구(학교 안전 대응 지원 시스템)로 작성한 초안입니다. 제출 전 소속 기관 공식 서식과 대조해 주세요.</div>
 </body></html>`);
   win.document.close();
   win.focus();
@@ -1182,6 +1626,12 @@ const refCases=[
   // ── 우수사례 ──
   {place:'교내 계단',icon:'🪜',kind:'good',hazard:'끝단 논슬립 패드 설치로 미끄러짐·넘어짐 예방',freq:1,sev:1,score:1,action:'현행 유지'},
   {place:'식생활관',icon:'🍽️',kind:'good',hazard:'전기판넬 앞 감전주의 표지 부착으로 감전 위험 예방',freq:1,sev:1,score:1,action:'현행 유지'},
+  {place:'과학실',icon:'🧪',kind:'good',hazard:'안전수칙·대처요령(인근 병원·보건교사 연락처 기재)·대피도 게시, 구급약품·소화기 위치 표시',freq:1,sev:1,score:1,action:'현행 유지'},
+  // ── 과학실 위험요인 ──
+  {place:'과학실',icon:'🧪',kind:'risk',hazard:'알코올램프 연료를 채운 채 보관하여 화재 위험',freq:2,sev:3,score:6,action:'수업 후 연료 제거·별도 보관, 종료 점검'},
+  {place:'과학실',icon:'🧪',kind:'risk',hazard:'수업 후 가스밸브·전열 플러그 개폐 미확인',freq:2,sev:3,score:6,action:'수업 후 점검표 운영, 마지막 퇴실 교사 확인'},
+  {place:'과학실',icon:'🧪',kind:'risk',hazard:'폐시약·오염물을 일반 쓰레기통에 버려 반응·화재 위험',freq:2,sev:3,score:6,action:'오·폐기물 처리 규정에 따라 분리 처리, 당일 수거'},
+  {place:'과학준비실',icon:'⚗️',kind:'risk',hazard:'조제 시약에 레이블(시약명·제조일자·MSDS) 미부착으로 오사용',freq:2,sev:2,score:4,action:'레이블 부착, MSDS 최신화'},
   // ── 교직원 위험요인 ──
   {place:'영어교실·음악실',icon:'🎵',kind:'risk',hazard:'선반 상단 물건 이동 시 의자 사용으로 균형상실·넘어짐',freq:2,sev:2,score:4,action:'의자 철거, 발판형 사다리 비치'},
   {place:'교직원협의실',icon:'🏫',kind:'risk',hazard:'전선 늘어짐으로 걸려 넘어짐',freq:2,sev:2,score:4,action:'전선 정리정돈 후 몰딩화'},
@@ -1338,10 +1788,213 @@ function renderEvalList(){
 }
 window.delEval=function(idx){evalItems.splice(idx,1);renderEvalList();};
 
+// ══ TAB 6: 과학실 안전 ══
+// 출처: 광주광역시교육청 「과학실험실 내 안전사고 예방 및 발생시 주요 사항 안내」
+const sciSteps=[
+  {num:'1',cls:'snb-red',rep:'사고 인지 및 교사 전파',title:'안전사고 발생',sub:'학생: 당황하지 말고 즉시 교사에게 알림',
+   details:'<ul><li>사고가 나면 당황하지 말고 <strong>큰 소리로 교사에게 알리도록</strong> 지도</li><li>교사는 실험 중 실험실에 상주하며 사고 발생에 주의</li></ul>'},
+  {num:'2',cls:'snb-red',rep:'응급조치(현장 파악·알림·처치)',title:'응급조치 (Check · Call · Care)',sub:'현장 파악 → 알림 → 처치 및 도움',
+   details:`<div class="ccc-grid">
+     <div class="ccc-card"><b>① 현장 상황 파악 (Check)</b><ul><li>환자 수, 환자 상태</li><li>주변 위험 요소</li><li>학생 대피 조치</li></ul></div>
+     <div class="ccc-card"><b>② 알림 (Call)</b><ul><li>관리자·보건교사에게 보고 후 <strong>의료기관 이송 여부</strong> 결정</li><li>필요시 119 등 유관기관 협조 요청</li><li>학생 보호자 연락</li></ul></div>
+     <div class="ccc-card"><b>③ 처치 및 도움 (Care)</b><ul><li>구급대가 올 때까지·병원 도착까지 환자 돌봄</li><li>병원 이송 시 <strong>반드시 교사 1인 동행</strong></li></ul></div>
+   </div>`},
+  {num:'3',cls:'snb-blue',rep:'원인 파악 및 상황 기록',title:'원인파악 및 상황보고',sub:'유선보고 → 24시간 이내 서면보고',
+   details:`<ul><li>사고 원인 및 피해 상황 파악</li><li>보건 일지 작성 등 상황 기록 후 교육청 보고</li>
+     <li>보고처: <span data-cfg="edu_sci_name"></span> <a class="tel" data-cfg-tel="edu_sci_tel"></a> · <span data-cfg="edu_safe_name"></span> <a class="tel" data-cfg-tel="edu_safe_tel"></a></li>
+     <li><strong>유선보고 후 24시간 이내 서면보고</strong> — 아래 「상황보고서」로 작성</li></ul>`},
+  {num:'4',cls:'snb-green',rep:'후속조치',title:'후속조치',sub:'복구 · 재발 방지 · 공제회 보상 · 학생 지원',
+   details:`<ul><li>사고 복구 계획 수립 및 시행</li><li>사고 원인에 따른 재발 방지책 마련</li>
+     <li>학교안전공제회 보상 신청 처리 — 신청서에 <strong>교사 안전교육 및 긴급조치 내용</strong> 기록</li>
+     <li>사고 학생에 대한 지속적인 관심 및 향후 지원 대책 마련</li><li>사안의 경중에 따라 학교 관계자가 가정이나 병원 방문</li></ul>`}
+];
+const sciRules=['과학실험실에서는 선생님의 지시에 따른다.','비상구와 안전설비의 위치를 알아둔다.','음식물을 먹거나 화학물질을 맛보지 않는다.','실험 중 장난을 치거나 자리를 비우지 않는다.','실험 기구와 약품을 밖으로 가져가지 않는다.','실험기구는 정확한 사용법을 숙지한 후 사용한다.','유리기구, 전기기구, 열원 사용 시 주의한다.','사고가 발생하면 큰 소리로 알린다.','실험 전·후에 실험대 주변을 정리정돈한다.','안전 장구를 착용하고 발이 노출되지 않는 신발을 신으며 긴 머리는 묶는다.'];
+const sciPrev=[
+  {key:'before',title:'📘 수업 전',items:['구급약품과 소화기의 위치 및 사용법을 지도한다.','시약이나 장비를 다룰 때의 주의사항 지도를 철저히 한다.','사전 실험을 실시하여 발생할 수 있는 사고를 미연에 방지한다.','실험 종류에 따라 실험복, 마스크, 보안경 등 착용을 지도한다.','학생은 교사의 지시 없이 독단적인 실험을 하지 않도록 지도한다.','임의로 시약을 가져다 학생들끼리 실험을 하지 않도록 주의를 준다.','교사의 지시 없이 함부로 시약의 맛을 보거나 냄새를 맡지 않도록 지도한다.','교사는 실험 중에는 실험실에 상주하고, 안전사고 발생에 주의를 기울인다.']},
+  {key:'during',title:'🔥 수업 중',items:['교사가 교실을 이탈하는 일이 없도록 한다.','폐기물은 안내된 처리 방법에 따라 처리한다.','유독한 물질을 다룰 때 입으로 피펫을 빨지 않도록 한다.','대부분의 시약은 유독하므로 함부로 맛보지 않도록 한다.','연료나 화기를 다룰 때는 주변에 탈 수 있는 물질이나 열원이 없도록 한다.','시험관을 가열할 때는 입구 부분이 사람을 향하지 않도록 한다.','시약 조제 후 보관 시 시약명, 제조일자, MSDS 정보를 기록한 레이블을 붙인다.','학생들이 자리를 이탈하여 돌아다니거나 잡담, 장난을 하지 않도록 지도한다.','시약을 맨손으로 만지거나 시약병을 실험실 내에서 들고 돌아다니지 않도록 한다.','시약을 덜어낼 때는 반드시 레이블을 확인하고 쓰고 남은 것은 원래 시약병에 넣지 않도록 지도한다.']},
+  {key:'after',title:'🔒 수업 후',items:['실험실 안전 점검 및 잠금 장치를 확인한다.','쓰레기통의 쓰레기는 당일 수거하여 버린다.','전기 공급원, 전열 플러그, 가스 밸브의 개폐 여부를 확인한다.','실험이 끝나면 시약, 기구 등을 원래의 위치에 정리 정돈한다.','알코올램프의 연료와 야외 가스레인지의 연료를 제거하고 보관했는지 점검한다.','폐시약이나 오염된 물건은 오·폐기물 처리 규정에 맞게 처리했는지 확인한다.','쓰레기통에 화재 유발이나 반응 가능 물질이 버려져 있는지 확인한다.','교사는 모든 점검을 마치고 마지막으로 문단속을 확인하면서 나간다.']}
+];
+const sciPosts=['과학실 안전수칙','안전사고 대처요령 (인근 병원·보건교사·담당교사 연락처 기재)','응급상황 처리과정','안전사고 비상연락망','응급상황 대피도','과학실 안전 점검표','물질안전보건자료(MSDS) — 「산업안전보건법」 제110조제1항'];
+const SR_FIELDS=['sr-person','sr-tel','sr-place','sr-target','sr-cause','sr-end','sr-dead','sr-hurt','sr-state','sr-result','sr-fac','sr-struct','sr-damage','sr-area','sr-cost','sr-actions','sr-plan','sr-attach'];
+let sciSegCur='a';
+
+// 4단계 체크리스트
+(function(){
+  const box=document.getElementById('sciStepList');
+  sciSteps.forEach((s,i)=>{
+    const d=document.createElement('div');
+    d.className='incident-step';d.id='sst-'+i;
+    d.innerHTML=`<div class="incident-step-head" onclick="toggleSStep(${i})">
+      <input class="step-check" type="checkbox" id="sschk-${i}" onclick="event.stopPropagation();markSStep(${i})">
+      <div class="step-num-badge ${s.cls}">${s.num}</div>
+      <div class="step-head-info"><div class="step-head-title">${s.title}</div><div class="step-head-sub">${s.sub}</div></div>
+      <span class="step-time-badge" id="sstime-${i}" style="background:var(--gray-light);color:var(--gray)">미완료</span>
+    </div>
+    <div class="step-body-detail" id="ssdet-${i}" style="padding-left:18px">
+      ${s.details}
+      <textarea class="step-memo" id="ssmemo-${i}" placeholder="메모 (담당자, 조치 내용, 특이사항 등) — 상황보고서 조치사항에 들어갑니다"></textarea>
+    </div>`;
+    box.appendChild(d);
+  });
+  // 안전수칙
+  document.getElementById('sciRuleGrid').innerHTML=sciRules.map((r,i)=>`<div class="rule-item"><span class="rule-no">${i+1}</span><span>${r}</span></div>`).join('');
+  document.getElementById('bigRuleList').innerHTML=sciRules.map(r=>`<li>${r}</li>`).join('');
+  // 수업 과정별 점검
+  document.getElementById('sciPrevList').innerHTML=sciPrev.map(g=>`
+    <div class="prev-group">
+      <div class="prev-head"><span class="prev-head-title">${g.title}</span><span class="prev-count" id="pc-${g.key}">0 / ${g.items.length}</span></div>
+      ${g.items.map((it,i)=>`<label class="chk-row" id="pr-${g.key}-${i}"><input type="checkbox" id="pv-${g.key}-${i}" onchange="onPrevChk()"><span>${it}</span></label>`).join('')}
+    </div>`).join('');
+  // 게시물 7종
+  document.getElementById('sciPostList').innerHTML=sciPosts.map((p,i)=>`<label class="chk-row" id="psr-${i}"><input type="checkbox" id="ps-${i}" onchange="onPostChk()"><span>${i+1}. ${p}</span></label>`).join('');
+  applyRegionCfg();
+})();
+
+window.toggleSStep=i=>document.getElementById('ssdet-'+i).classList.toggle('show');
+function setSStepBadge(i,done,text){
+  const tb=document.getElementById('sstime-'+i);
+  tb.textContent=done?text:'미완료';
+  tb.style.background=done?'var(--green-light)':'var(--gray-light)';
+  tb.style.color=done?'var(--green)':'var(--gray)';
+  document.getElementById('sst-'+i).classList.toggle('done-step',done);
+}
+window.markSStep=function(i){
+  const chk=document.getElementById('sschk-'+i);
+  const now=new Date();
+  setSStepBadge(i,chk.checked,'완료 '+now.toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit',hour12:false}));
+  if(chk.checked) document.getElementById('ssdet-'+i).classList.add('show');
+};
+
+// 세그먼트
+window.sciSeg=function(k){
+  sciSegCur=k;
+  ['a','b','c'].forEach(x=>{
+    document.getElementById('seg-'+x).classList.toggle('active',x===k);
+    document.getElementById('seg-btn-'+x).classList.toggle('active',x===k);
+  });
+};
+window.goSciReport=function(){
+  goTab('tab6'); sciSeg('a');
+  setTimeout(()=>{ const el=document.getElementById('sr-person'); if(el) el.closest('.sci-form').scrollIntoView({behavior:'smooth',block:'start'}); },250);
+};
+
+// 점검표
+function updatePrevCounts(){
+  sciPrev.forEach(g=>{
+    let n=0;
+    g.items.forEach((it,i)=>{ const c=document.getElementById(`pv-${g.key}-${i}`).checked; if(c) n++; document.getElementById(`pr-${g.key}-${i}`).classList.toggle('on',c); });
+    const el=document.getElementById('pc-'+g.key);
+    el.textContent=n+' / '+g.items.length; el.classList.toggle('full',n===g.items.length);
+  });
+  let n=0;
+  sciPosts.forEach((p,i)=>{ const c=document.getElementById('ps-'+i).checked; if(c) n++; document.getElementById('psr-'+i).classList.toggle('on',c); });
+  const pc=document.getElementById('postCount');
+  pc.textContent=n+' / '+sciPosts.length; pc.classList.toggle('full',n===sciPosts.length);
+}
+window.onPrevChk=function(){ updatePrevCounts(); scheduleSave(); };
+window.onPostChk=function(){ updatePrevCounts(); scheduleSave(); };
+
+// 안전수칙 크게 보기
+window.openBigRules=function(){ document.getElementById('bigRules').classList.add('show'); document.body.style.overflow='hidden'; };
+window.closeBigRules=function(){ document.getElementById('bigRules').classList.remove('show'); document.body.style.overflow=''; };
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeBigRules(); });
+
+// 보고 시한
+function toLocalInput(d){ return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())+'T'+pad(d.getHours())+':'+pad(d.getMinutes()); }
+const WEEK=['일','월','화','수','목','금','토'];
+function kDate(d,withTime){ let s=`${d.getFullYear()}. ${d.getMonth()+1}. ${d.getDate()}.(${WEEK[d.getDay()]})`; if(withTime) s+=` ${pad(d.getHours())}:${pad(d.getMinutes())}`; return s; }
+function kShort(d){ return `‘${String(d.getFullYear()).slice(2)}. ${d.getMonth()+1}. ${d.getDate()}.`; }
+window.sciNow=function(id){ document.getElementById(id).value=toLocalInput(new Date()); updateDeadline(); scheduleSave(); };
+function updateDeadline(){
+  const v=document.getElementById('sci-call').value;
+  const box=document.getElementById('sci-deadline');
+  if(!v){ box.innerHTML='<div class="deadline-due">유선보고 시각을 입력하면 <b>서면보고 마감 시각</b>이 계산됩니다.</div>'; return; }
+  const call=new Date(v), due=new Date(call.getTime()+24*3600*1000);
+  let left=Math.floor((due-Date.now())/1000);
+  const over=left<0; left=Math.abs(left);
+  const h=Math.floor(left/3600),m=Math.floor((left%3600)/60),s=left%60;
+  box.innerHTML=`<div class="deadline-due">서면보고 마감 <b>${kDate(due,true)}</b></div>
+    <div class="deadline-left ${over?'over':''}">${over?'⚠️ 마감 지남 +':'남은 시간 '}${pad(h)}:${pad(m)}:${pad(s)}</div>`;
+}
+document.getElementById('sci-call').addEventListener('change',updateDeadline);
+setInterval(()=>{ if(document.getElementById('sci-call').value) updateDeadline(); },1000);
+
+// 상황보고서
+function sv(id){ return (document.getElementById(id).value||'').trim(); }
+function orTBD(v){ return v||'조사 중'; }
+window.generateSciReport=function(){
+  const schoolName=localStorage.getItem('school_name')||'(학교명 미설정)';
+  const atV=document.getElementById('sci-at').value, callV=document.getElementById('sci-call').value;
+  const at=atV?new Date(atV):null, call=callV?new Date(callV):null;
+  const base=at||new Date();
+  const now=new Date();
+  const person=[sv('sr-person'),sv('sr-tel')].filter(Boolean).join(' / ');
+  const L=[];
+  L.push(`${kDate(now,true)} / ${schoolName}${person?' / '+person:''}`);
+  L.push('');
+  L.push('□ 사고 개요');
+  L.push(` ㅇ 일시: ${at?kDate(at,true)+'경':'조사 중'}${sv('sr-end')?' ['+sv('sr-end')+']':''}`);
+  L.push(` ㅇ 장소: ${orTBD(sv('sr-place'))}`);
+  L.push(` ㅇ 대상: ${orTBD(sv('sr-target'))}`);
+  L.push(` ㅇ 원인: ${orTBD(sv('sr-cause'))}`);
+  L.push('□ 피해 상황');
+  const dead=parseInt(sv('sr-dead'))||0, hurt=parseInt(sv('sr-hurt'))||0;
+  L.push(` ㅇ 인명피해: ${dead+hurt}명(사망 ${dead}명, 부상 ${hurt}명)`);
+  if(sv('sr-state')) L.push(`   - 상태: ${sv('sr-state')}`);
+  if(sv('sr-result')) L.push(`   - 조치 결과: ${sv('sr-result')}`);
+  L.push(` ㅇ 시설피해: ${orTBD(sv('sr-area'))}, ${sv('sr-cost')?sv('sr-cost')+'천원':'피해액 조사 중'}`);
+  L.push(`   - 시설명: ${orTBD(sv('sr-fac'))}${sv('sr-struct')?' ('+sv('sr-struct')+')':''}`);
+  L.push(`   - 피해 내용: ${orTBD(sv('sr-damage'))}`);
+  L.push('□ 조치사항');
+  let acts=sv('sr-actions').split('\n').map(x=>x.trim()).filter(Boolean);
+  if(acts.length){
+    acts.forEach(a=>{
+      const m=a.match(/^(\d{1,2}:\d{2})\s*[:\-·]?\s*(.*)$/);
+      L.push(m?` ㅇ ${kShort(base)} ${m[1]} : ${m[2]}`:` ㅇ ${a.replace(/^ㅇ\s*/,'')}`);
+    });
+  }else{
+    const auto=[];
+    if(at) auto.push([at,'사고 발생']);
+    sciSteps.forEach((s,i)=>{
+      if(!document.getElementById('sschk-'+i).checked) return;
+      const t=(document.getElementById('sstime-'+i).textContent.match(/(\d{1,2}):(\d{2})/)||[]);
+      const memo=sv('ssmemo-'+i);
+      const d=new Date(base); if(t[1]){ d.setHours(+t[1],+t[2],0,0); }
+      auto.push([d, s.rep+' 완료'+(memo?' — '+memo:'')]);
+    });
+    if(call) auto.push([call,`교육청(${getCfg('edu_sci_name')}) 유선보고`]);
+    auto.sort((a,b)=>a[0]-b[0]);
+    if(auto.length) auto.forEach(([d,t])=>L.push(` ㅇ ${kShort(d)} ${pad(d.getHours())}:${pad(d.getMinutes())} : ${t}`));
+    else L.push(' ㅇ 조사 중');
+  }
+  L.push('□ 향후계획');
+  const plans=sv('sr-plan').split('\n').map(x=>x.trim()).filter(Boolean);
+  (plans.length?plans:['피해 현황을 지속적으로 모니터링']).forEach(p=>L.push(` ㅇ ${p.replace(/^ㅇ\s*/,'')}`));
+  if(sv('sr-attach')){ L.push(''); L.push(`붙임: ${sv('sr-attach')}`); }
+  const text=L.join('\n');
+  const out=document.getElementById('sciReportOutput');
+  out.innerHTML=`<h3>📄 과학실 내 안전사고 발생 상황 보고</h3>
+    <div class="sci-report-text" style="white-space:pre-wrap;line-height:1.85;">${text.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</div>
+    <div style="font-size:var(--fs-xs);color:#999;margin-top:10px;line-height:1.6;">※ 육하원칙(누가·언제·어디서·무엇을·어떻게·왜)에 따라 개조식으로 작성 · 참고 자료가 많으면 별도 제출<br>※ 서식은 예시(안)이므로 사안에 따라 고쳐 쓸 수 있습니다 · <strong>유선보고 후 24시간 이내 서면보고</strong></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <button class="copy-btn" onclick="copySciReport()">📋 내용 복사 (공문 붙여넣기용)</button>
+      <button class="copy-btn" style="background:var(--blue)" onclick="printReportOutput('sciReportOutput')">🖨️ 보고서 인쇄</button>
+    </div>`;
+  out.dataset.text=text;
+  out.classList.add('show');
+  out.scrollIntoView({behavior:'smooth',block:'start'});
+};
+window.copySciReport=function(){
+  const text=document.getElementById('sciReportOutput').dataset.text||'';
+  const done=()=>showToast('보고서 내용을 복사했습니다');
+  if(navigator.clipboard&&window.isSecureContext){ navigator.clipboard.writeText(text).then(done,fallback); } else fallback();
+  function fallback(){ const t=document.createElement('textarea'); t.value=text; document.body.appendChild(t); t.select(); try{document.execCommand('copy');done();}catch(e){alert('복사에 실패했습니다. 직접 선택해 복사해 주세요.');} t.remove(); }
+};
+
 // ══════════════════════════════════════════════════════════════
 //  뒤로가기 · 새로고침 대응 (탭 히스토리 + 작업내용 자동 저장)
 // ══════════════════════════════════════════════════════════════
-const TABS=['tab0','tab1','tab2','tab3','tab4','tab5'];
+const TABS=['tab0','tab1','tab2','tab6','tab3','tab4','tab5'];
 const STORE_KEY='school_safety_state_v1';
 let currentTab='tab0';
 let selRole=null;
@@ -1368,6 +2021,9 @@ const _switchTabOrig=switchTab;
 switchTab=function(id,btn,push){
   _switchTabOrig(id,btn);
   currentTab=id;
+  // 탭이 많아 가로 스크롤될 때 현재 탭이 보이도록
+  const ab=document.querySelector('.tab-btn.active');
+  if(ab&&ab.scrollIntoView){ try{ ab.scrollIntoView({block:'nearest',inline:'center'}); }catch(e){} }
   if(push!==false) pushTab(id);
   scheduleSave();
 };
@@ -1415,7 +2071,19 @@ function saveState(){
       sev:selSev,
       role:selRole,
       evals:evalItems,
-      form4:{place:val('ef-place'),hazard:val('ef-hazard'),freq:val('ef-freq'),sev:val('ef-severity'),action:val('ef-action')}
+      form4:{place:val('ef-place'),hazard:val('ef-hazard'),freq:val('ef-freq'),sev:val('ef-severity'),action:val('ef-action')},
+      sci:{
+        seg:sciSegCur, at:val('sci-at'), call:val('sci-call'),
+        steps:sciSteps.map((sx,i)=>({
+          d:document.getElementById('sschk-'+i).checked,
+          time:document.getElementById('sstime-'+i).textContent,
+          memo:document.getElementById('ssmemo-'+i).value,
+          open:document.getElementById('ssdet-'+i).classList.contains('show')
+        })),
+        prev:sciPrev.map(g=>g.items.map((it,i)=>document.getElementById(`pv-${g.key}-${i}`).checked)),
+        posts:sciPosts.map((p,i)=>document.getElementById('ps-'+i).checked),
+        form:SR_FIELDS.reduce((o,id)=>{o[id]=val(id);return o;},{})
+      }
     };
     localStorage.setItem(STORE_KEY,JSON.stringify(st));
   }catch(e){}
@@ -1476,6 +2144,28 @@ function restoreState(){
     calcScore();
   }
 
+  // 과학실
+  if(st.sci){
+    const sc=st.sci;
+    if(sc.seg) sciSeg(sc.seg);
+    if(sc.at){ document.getElementById('sci-at').value=sc.at; touched=true; }
+    if(sc.call){ document.getElementById('sci-call').value=sc.call; touched=true; }
+    updateDeadline();
+    (sc.steps||[]).forEach((c,i)=>{
+      const chk=document.getElementById('sschk-'+i);
+      if(!chk) return;
+      chk.checked=!!c.d;
+      setSStepBadge(i,!!c.d,c.time||'');
+      document.getElementById('ssmemo-'+i).value=c.memo||'';
+      if(c.open) document.getElementById('ssdet-'+i).classList.add('show');
+      if(c.d||c.memo) touched=true;
+    });
+    (sc.prev||[]).forEach((arr,gi)=>{ const g=sciPrev[gi]; if(!g) return; (arr||[]).forEach((v,i)=>{ const el=document.getElementById(`pv-${g.key}-${i}`); if(el){ el.checked=!!v; if(v) touched=true; } }); });
+    (sc.posts||[]).forEach((v,i)=>{ const el=document.getElementById('ps-'+i); if(el){ el.checked=!!v; if(v) touched=true; } });
+    updatePrevCounts();
+    Object.keys(sc.form||{}).forEach(id=>{ const el=document.getElementById(id); if(el&&sc.form[id]){ el.value=sc.form[id]; touched=true; } });
+  }
+
   // 타이머 — 저장 이후 흐른 시간까지 반영
   const gap=st.savedAt?Math.floor((Date.now()-st.savedAt)/1000):0;
   if(st.t1&&(st.t1.sec||st.t1.run)){
@@ -1504,17 +2194,17 @@ function wrap(name,after){
   if(typeof f!=='function') return;
   window[name]=function(){ const r=f.apply(this,arguments); if(after) after.apply(this,arguments); scheduleSave(); return r; };
 }
-['updateProg','markIStep','toggleDetail','toggleIStep','addEvalItem','delEval',
+['updateProg','markIStep','toggleDetail','toggleIStep','addEvalItem','delEval','markSStep','toggleSStep','sciSeg','sciNow',
  't1Start','t1Stop','t1Reset','timerStart','timerStop','timerReset'].forEach(n=>wrap(n));
 wrap('selectSeverity',function(){selRole=null;});
 wrap('selectRole',function(role){selRole=role;});
 
 // 메모·입력값은 입력할 때마다 저장
 document.addEventListener('input',function(e){
-  if(e.target&&e.target.matches&&e.target.matches('.task-memo,.step-memo,#ef-place,#ef-hazard,#ef-action')) scheduleSave();
+  if(e.target&&e.target.matches&&e.target.matches('.task-memo,.step-memo,.sci-input,#ef-place,#ef-hazard,#ef-action')) scheduleSave();
 });
 document.addEventListener('change',function(e){
-  if(e.target&&e.target.matches&&e.target.matches('#ef-freq,#ef-severity')) scheduleSave();
+  if(e.target&&e.target.matches&&e.target.matches('#ef-freq,#ef-severity,.sci-input')) scheduleSave();
 });
 // 타이머 작동 중에는 주기적으로, 창을 닫거나 새로고침할 때는 즉시 저장
 setInterval(function(){ if(t1Interval||timerInterval) saveState(); },5000);
@@ -1557,13 +2247,44 @@ window.resetChecklist3=function(){
   showToast('체크리스트를 초기화했습니다');
 };
 
+window.resetSci=function(){
+  if(!confirm('과학실 사고 대응 기록을 초기화합니다.\n\n· 사고 발생·유선보고 시각\n· 4단계 체크와 메모\n· 생성된 상황보고서 화면\n\n(상황보고서 입력칸은 「비우기」로 따로 지웁니다)\n\n계속할까요?')) return;
+  document.getElementById('sci-at').value=''; document.getElementById('sci-call').value='';
+  sciSteps.forEach((sx,i)=>{
+    document.getElementById('sschk-'+i).checked=false;
+    setSStepBadge(i,false,'');
+    document.getElementById('ssmemo-'+i).value='';
+    document.getElementById('ssdet-'+i).classList.remove('show');
+  });
+  updateDeadline();
+  const ro=document.getElementById('sciReportOutput'); ro.classList.remove('show'); ro.innerHTML='';
+  saveState(); showToast('과학실 사고 대응 기록을 초기화했습니다');
+};
+window.resetSciReport=function(){
+  if(!confirm('상황보고서 입력칸을 모두 비웁니다. 계속할까요?')) return;
+  SR_FIELDS.forEach(id=>{ document.getElementById(id).value=''; });
+  const ro=document.getElementById('sciReportOutput'); ro.classList.remove('show'); ro.innerHTML='';
+  saveState(); showToast('입력칸을 비웠습니다');
+};
+window.resetSciPrev=function(){
+  if(!confirm('수업 전·중·후 점검 체크를 모두 해제합니다. 계속할까요?')) return;
+  sciPrev.forEach(g=>g.items.forEach((it,i)=>{ document.getElementById(`pv-${g.key}-${i}`).checked=false; }));
+  updatePrevCounts(); saveState(); showToast('점검표를 초기화했습니다');
+};
+window.resetSciPosts=function(){
+  if(!confirm('게시물 7종 점검 체크를 모두 해제합니다. 계속할까요?')) return;
+  sciPosts.forEach((p,i)=>{ document.getElementById('ps-'+i).checked=false; });
+  updatePrevCounts(); saveState(); showToast('게시물 점검을 초기화했습니다');
+};
+
 // ── 우리 학교 설정 초기화 ──
 window.resetConfig=function(){
-  if(!confirm('우리 학교 설정 내용을 모두 지웁니다.\n\n· 학교 이름\n· 교육청 산업재해예방팀 전화번호\n· 교육청 재난안전센터 사이트 주소(기본값으로 복원)\n\n(체크리스트·메모 등 작업 기록은 그대로 유지됩니다)\n\n계속할까요?')) return;
+  if(!confirm('우리 학교 설정 내용을 모두 지웁니다.\n\n· 학교 이름\n· 교육청 산업재해예방팀 전화번호\n· 교육청 재난안전센터 사이트 주소(기본값으로 복원)\n· 과학실·화학사고 연락처(광주 기본값으로 복원)\n\n(체크리스트·메모 등 작업 기록은 그대로 유지됩니다)\n\n계속할까요?')) return;
   try{
     localStorage.removeItem('school_name');
     localStorage.removeItem('school_edu');
     localStorage.removeItem('school_site');
+    CFG_KEYS.forEach(k=>localStorage.removeItem('cfg_'+k));
   }catch(e){}
   const n=document.getElementById('cfg-name'); if(n) n.value='';
   const e2=document.getElementById('cfg-edu'); if(e2) e2.value='';
