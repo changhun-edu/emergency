@@ -3535,16 +3535,27 @@ window.resetConfig=function(){
 // ── 시작 시 복원 + 히스토리 초기화 ──
 (function initApp(){
   const saved=restoreState();
+  // 바로가기 주소: ?ft=food(사고 유형 카드 열기) · ?ft=food&seg=b(그 유형으로 보고·안내 문구) · ?q=식중독(검색창 열기)
+  let P=null; try{ P=new URLSearchParams(location.search); }catch(e){}
+  const linkFt=P&&P.get('ft'), linkSeg=P&&P.get('seg'), linkQ=P&&(P.get('q')||'').trim();
+  const ftOk=!!linkFt&&FT_TYPES.some(t=>t.key===linkFt);
   let start=(location.hash||'').replace('#','');
+  if(ftOk) start='tab7';
   if(TABS.indexOf(start)<0) start=(saved&&TABS.indexOf(saved.tab)>=0)?saved.tab:'tab0';
+  const base=location.href.split('#')[0].split('?')[0];   // 바로가기 주소의 ?… 는 지워 둡니다
   try{
-    history.replaceState({guard:true},'',location.href.split('#')[0]);
+    history.replaceState({guard:true},'',base);
     history.pushState({tab:start},'','#'+start);
   }catch(e){
     try{ history.replaceState({guard:true},''); history.pushState({tab:start},''); }catch(e2){}
   }
   switchTab(start,null,false);
-  if(saved&&saved._touched) showToast('이전 작업 내용을 그대로 불러왔습니다');
+  if(ftOk){
+    if(linkSeg==='b') ftUseType(linkFt);
+    else { ftSeg('a'); ftSelect(linkFt,true); flashTo('ftDetailCard',300); }
+  } else if(linkQ){
+    setTimeout(()=>openSearch(linkQ),60);
+  } else if(saved&&saved._touched) showToast('이전 작업 내용을 그대로 불러왔습니다');
 })();
 </script>
 
