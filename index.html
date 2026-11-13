@@ -624,6 +624,109 @@
   .ft-src span.q{text-indent:-.45em;}
   .ft-src-note{margin-top:8px;font-size:11.5px;color:#9aa1a8;}
   @media(max-width:520px){.ft-src li{flex-direction:column;gap:0;}.ft-src b{width:auto;}}
+  /* ── 사이트 검색 ── */
+  .header-right{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+  .header-search{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.35);color:white;height:34px;padding:0 12px;border-radius:20px;font-size:var(--fs-sm);font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;display:flex;align-items:center;gap:5px;transition:background .15s;white-space:nowrap;}
+  .header-search:hover{background:rgba(255,255,255,0.28);}
+  @media(max-width:560px){.header-search .lbl{display:none;}.header-search{padding:0 10px;font-size:16px;}}
+  .home-search{display:flex;align-items:center;gap:11px;width:100%;background:white;border:2px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:10px;cursor:text;box-shadow:var(--shadow);font-family:'Noto Sans KR',sans-serif;font-size:var(--fs-base);color:#9aa1a8;text-align:left;transition:border-color .15s,box-shadow .15s;}
+  .home-search:hover{border-color:var(--red);box-shadow:var(--shadow-lg);}
+  .home-search .ico{font-size:20px;}
+  .home-search kbd,.srch-kbd{margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:12px;border:1px solid var(--border);border-bottom-width:2px;border-radius:5px;padding:0 7px;color:#888;background:#f7f7f7;}
+  @media(max-width:560px){.home-search kbd{display:none;}}
+  .home-chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:22px;}
+  .srch-chip{background:white;border:1px solid var(--border);border-radius:20px;padding:5px 12px;font-size:13px;font-weight:600;color:var(--gray);cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all .15s;}
+  .srch-chip:hover{border-color:var(--teal);color:var(--teal-dark);background:var(--teal-light);}
+  .srch{display:none;position:fixed;inset:0;z-index:250;background:rgba(20,30,40,.55);align-items:flex-start;justify-content:center;padding:64px 16px 16px;}
+  .srch.open{display:flex;animation:fadeIn .15s ease;}
+  .srch-panel{background:var(--bg);width:100%;max-width:640px;max-height:calc(100vh - 84px);border-radius:16px;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.3);}
+  .srch-top{display:flex;align-items:center;gap:10px;padding:10px 12px 10px 16px;background:white;border-bottom:1px solid var(--border);}
+  .srch-top .ico{font-size:20px;}
+  .srch-top input{flex:1;min-width:0;border:none;font-size:18px;font-family:'Noto Sans KR',sans-serif;outline:none;padding:8px 0;color:var(--text);background:transparent;}
+  .srch-count{font-size:var(--fs-xs);color:#999;font-weight:700;white-space:nowrap;}
+  .srch-x{border:1px solid var(--border);background:white;border-radius:8px;padding:6px 11px;font-size:var(--fs-sm);font-weight:700;color:var(--gray);cursor:pointer;font-family:'Noto Sans KR',sans-serif;white-space:nowrap;}
+  .srch-body{overflow-y:auto;padding:6px 14px 20px;overscroll-behavior:contain;}
+  .srch-sec{font-size:var(--fs-xs);font-weight:900;color:#888;margin:14px 0 7px;display:flex;align-items:center;gap:8px;}
+  .srch-clear{border:none;background:none;color:#aaa;font-size:var(--fs-xs);cursor:pointer;text-decoration:underline;font-family:inherit;}
+  .srch-chips{display:flex;gap:6px;flex-wrap:wrap;}
+  .srch-tabs{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px;}
+  .srch-tab{display:flex;align-items:center;gap:8px;background:white;border:1px solid var(--border);border-left:4px solid;border-radius:0;padding:10px 12px;font-size:var(--fs-sm);font-weight:700;color:var(--text);cursor:pointer;font-family:'Noto Sans KR',sans-serif;text-align:left;}
+  .srch-tab:hover{background:#f7f9fb;}
+  .srch-tip{margin-top:16px;font-size:var(--fs-xs);color:#999;}
+  .srch-item{background:white;border:1px solid var(--border);border-left:4px solid;padding:11px 13px;margin-bottom:7px;cursor:pointer;transition:background .1s,box-shadow .1s;}
+  .srch-item.active{background:#fffef4;box-shadow:0 0 0 2px rgba(17,122,101,.35);}
+  .srch-item-top{display:flex;align-items:center;gap:8px;}
+  .srch-ico{font-size:19px;flex-shrink:0;}
+  .srch-title{font-weight:700;font-size:var(--fs-base);line-height:1.4;flex:1;min-width:0;}
+  .srch-badge{flex-shrink:0;font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;}
+  .srch-badge.red{background:#fdecea;color:var(--red-dark);} .srch-badge.ora{background:var(--orange-light);color:#a04000;}
+  .srch-path{font-size:11.5px;color:#9aa1a8;margin:2px 0 0 27px;}
+  .srch-snip{font-size:var(--fs-sm);color:#555;margin:5px 0 0 27px;line-height:1.55;}
+  .srch-acts{display:flex;gap:6px;margin:9px 0 0 27px;flex-wrap:wrap;}
+  .srch-act{background:var(--teal);color:white;border:1px solid var(--teal);border-radius:8px;padding:6px 12px;font-size:var(--fs-xs);font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;}
+  .srch-act.ghost{background:white;color:var(--teal-dark);}
+  .srch mark,.srch-snip mark{background:#fff09a;color:inherit;padding:0 1px;border-radius:2px;}
+  .srch-empty{background:white;border:2px dashed var(--border);border-radius:14px;padding:18px;margin-top:12px;text-align:center;}
+  .srch-empty-title{font-weight:900;font-size:var(--fs-base);}
+  .srch-empty-sub{font-size:var(--fs-sm);color:#888;margin:4px 0 12px;}
+  .srch-empty-acts{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+  .srch-empty-btn{display:flex;align-items:center;justify-content:center;padding:11px 8px;border-radius:10px;border:1px solid var(--border);background:#f7f9fb;font-weight:700;font-size:var(--fs-sm);color:var(--text);cursor:pointer;text-decoration:none;font-family:'Noto Sans KR',sans-serif;}
+  .srch-empty-btn.red{background:var(--red-dark);color:white;border-color:var(--red-dark);}
+  @media(max-width:600px){.srch{padding:0;}.srch-panel{max-height:100vh;height:100%;border-radius:0;max-width:none;}.srch-kbd{display:none;}}
+  @keyframes srchFlash{0%,100%{box-shadow:0 0 0 0 rgba(241,196,15,0);}15%,70%{box-shadow:0 0 0 5px rgba(241,196,15,.85);}}
+  .srch-flash{animation:srchFlash 1.7s ease;position:relative;z-index:1;}
+  @media(max-width:480px){.header-icon{display:none;}.header-title{font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}.header-school{font-size:13px;padding:5px 10px;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}}
+  /* ── 모바일 탭 메뉴: 줄인 이름 + 더 있음 표시 ── */
+  .header-school{color:white;}
+  .tl-short{display:none;}
+  @media(max-width:560px){.tl-full{display:none;}.tl-short{display:inline;}}
+  @media(min-width:561px){.tab-btn.ds .tl-full{display:none;}.tab-btn.ds .tl-short{display:inline;}.tab-btn{padding:15px 6px 12px;}}
+  .tab-fade{position:absolute;top:0;bottom:2px;width:40px;border:none;padding:0;opacity:0;pointer-events:none;transition:opacity .2s;display:flex;align-items:center;font-size:24px;font-weight:900;color:var(--red-dark);cursor:pointer;font-family:'Noto Sans KR',sans-serif;z-index:2;}
+  .tab-fade.r{right:0;justify-content:flex-end;padding-right:6px;background:linear-gradient(to left,#fff 50%,rgba(255,255,255,0));}
+  .tab-fade.l{left:0;justify-content:flex-start;padding-left:6px;background:linear-gradient(to right,#fff 50%,rgba(255,255,255,0));}
+  .tab-fade.show{opacity:1;pointer-events:auto;}
+  /* ── 보고·안내: 미리보기 먼저 ── */
+  .ft-typebar{display:flex;align-items:center;gap:10px;background:white;border:1px solid var(--border);border-radius:12px;padding:10px 14px;margin-bottom:16px;box-shadow:var(--shadow);scroll-margin-top:130px;}
+  .ft-typebar label{font-size:var(--fs-sm);font-weight:900;color:var(--teal-dark);white-space:nowrap;}
+  .ft-typebar select{flex:1;min-width:0;padding:9px 10px;border:1px solid var(--border);border-radius:8px;font-size:var(--fs-base);font-family:'Noto Sans KR',sans-serif;background:#fafafa;}
+  .ft-pv-q{font-size:var(--fs-base);font-weight:900;margin-bottom:8px;}
+  .ft-pv-q small{font-size:var(--fs-xs);font-weight:500;color:#888;margin-left:4px;}
+  .ft-mchips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
+  .ft-mchip{display:inline-flex;align-items:center;gap:6px;background:white;border:1.5px solid var(--border);border-radius:22px;padding:6px 12px 6px 6px;font-size:var(--fs-sm);font-weight:700;color:var(--text);cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all .15s;}
+  .ft-mchip:hover{border-color:var(--teal);}
+  .ft-mchip .n{width:22px;height:22px;border-radius:50%;background:var(--teal-light);color:var(--teal-dark);display:inline-flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;}
+  .ft-mchip .b{font-size:11px;font-weight:700;color:#a04000;background:var(--orange-light);border-radius:10px;padding:0 6px;}
+  .ft-mchip .ok{font-size:12px;color:var(--green);}
+  .ft-mchip.on{background:var(--teal);border-color:var(--teal);color:white;}
+  .ft-mchip.on .n{background:white;color:var(--teal-dark);}
+  .ft-mchip.on .b{background:rgba(255,255,255,.22);color:white;}
+  .ft-mchip.on .ok{color:white;}
+  .ft-pv{border:2px solid var(--teal);margin-bottom:6px;}
+  .ft-bubble.ft-live{white-space:normal;min-height:0;cursor:default;line-height:1.95;}
+  .ft-blank{display:inline;border:1.5px dashed #e0a339;background:#fff4d6;color:#8a5a00;border-radius:6px;padding:0 7px;margin:0 1px;font-size:14px;font-weight:700;font-family:'Noto Sans KR',sans-serif;cursor:pointer;line-height:1.6;}
+  .ft-blank:hover{background:#ffe7a8;}
+  .ft-blank::before{content:'✎ ';font-weight:400;}
+  .ft-pv-prog{display:flex;align-items:center;gap:10px;padding:10px 16px 0;font-size:var(--fs-xs);color:var(--gray);}
+  .ft-pv-prog b{color:var(--teal-dark);}
+  .ft-pv-prog .bar{flex:1;height:7px;background:var(--gray-light);border-radius:4px;overflow:hidden;}
+  .ft-pv-prog .bar i{display:block;height:100%;background:var(--teal);border-radius:4px;transition:width .25s;}
+  .ft-pv-prog .all{color:var(--green);font-weight:700;}
+  .ft-pv-note{padding:10px 16px 0;font-size:var(--fs-xs);color:#a04000;}
+  .ft-copy small{font-weight:500;opacity:.85;}
+  .ft-edit{background:white;color:var(--teal-dark);border:1.5px solid var(--teal);border-radius:8px;padding:9px 14px;font-weight:700;font-size:var(--fs-sm);cursor:pointer;font-family:'Noto Sans KR',sans-serif;white-space:nowrap;}
+  .ft-pv-tip{padding:0 16px 13px;font-size:var(--fs-xs);color:#888;line-height:1.55;}
+  .tag-edit{background:#fff4d6;color:#8a5a00;}
+  .ft-fill-note{font-size:var(--fs-sm);color:var(--gray);margin-bottom:10px;line-height:1.6;}
+  .ft-key{display:inline-block;font-size:11px;font-weight:700;padding:0 7px;border-radius:10px;}
+  .ft-key.need,.ft-fstat.need{background:#fff4d6;color:#8a5a00;}
+  .ft-fstat{display:inline-block;margin-left:6px;font-size:11px;font-weight:700;padding:0 7px;border-radius:10px;vertical-align:1px;}
+  .ft-fstat.done{background:var(--green-light);color:var(--green);}
+  .ft-fstat.opt{background:var(--gray-light);color:var(--gray);}
+  .ft-fstat.unused{background:none;color:#b0b6bb;font-weight:500;}
+  .eval-field.ft-f-need input,.eval-field.ft-f-need textarea{border:1.5px solid #e0a339;background:#fffbf0;}
+  .eval-field.ft-f-done input,.eval-field.ft-f-done textarea{border-color:#82c9a5;}
+  .eval-field.ft-f-unused{opacity:.55;}
+  .eval-field.ft-f-unused:focus-within{opacity:1;}
 </style>
 </head>
 <body>
@@ -675,6 +778,20 @@
 
 <div id="toast"></div>
 
+<!-- 사이트 검색 -->
+<div class="srch" id="srch" role="dialog" aria-modal="true" aria-label="사이트 검색">
+  <div class="srch-panel">
+    <div class="srch-top">
+      <span class="ico">🔍</span>
+      <input type="search" id="srchInput" placeholder="무엇을 찾으세요? 예) 식중독, 실종, 공제회" autocomplete="off" enterkeyhint="search">
+      <span class="srch-count" id="srchCount"></span>
+      <span class="srch-kbd">Esc</span>
+      <button class="srch-x" onclick="closeSearch()" aria-label="검색 닫기">닫기</button>
+    </div>
+    <div class="srch-body" id="srchBody"></div>
+  </div>
+</div>
+
 <header>
  <div class="container header-inner">
   <div class="header-left">
@@ -684,7 +801,10 @@
       <div class="header-sub">긴급사안 · 응급환자 · 체험학습 · 과학실 · 중대산업재해</div>
     </div>
   </div>
-  <button class="header-school" id="headerSchoolBtn" onclick="openSetup()">⚙️ 학교 설정</button>
+  <div class="header-right">
+    <button class="header-search" onclick="openSearch()" aria-label="검색">🔍<span class="lbl">검색</span></button>
+    <button class="header-school" id="headerSchoolBtn" onclick="openSetup()">⚙️ 학교 설정</button>
+  </div>
  </div>
 </header>
 
@@ -692,13 +812,15 @@
  <div class="container tab-nav-inner">
   <button class="tab-btn active" onclick="switchTab('tab0',this)"><span class="tab-icon">🏠</span>홈</button>
   <button class="tab-btn" onclick="switchTab('tab1',this)"><span class="tab-icon">🚨</span>긴급사안</button>
-  <button class="tab-btn" onclick="switchTab('tab2',this)"><span class="tab-icon">🚑</span>응급환자 이송</button>
+  <button class="tab-btn ds" onclick="switchTab('tab2',this)"><span class="tab-icon">🚑</span><span class="tl-full">응급환자 이송</span><span class="tl-short">응급이송</span></button>
   <button class="tab-btn" onclick="switchTab('tab7',this)"><span class="tab-icon">🚌</span>체험학습</button>
-  <button class="tab-btn" onclick="switchTab('tab6',this)"><span class="tab-icon">🧪</span>과학실 안전</button>
-  <button class="tab-btn" onclick="switchTab('tab3',this)"><span class="tab-icon">⚠️</span>중대산업재해</button>
-  <button class="tab-btn" onclick="switchTab('tab4',this)"><span class="tab-icon">📋</span>위험성 평가</button>
-  <button class="tab-btn" onclick="switchTab('tab5',this)"><span class="tab-icon">📞</span>비상연락망</button>
+  <button class="tab-btn" onclick="switchTab('tab6',this)"><span class="tab-icon">🧪</span><span class="tl-full">과학실 안전</span><span class="tl-short">과학실</span></button>
+  <button class="tab-btn ds" onclick="switchTab('tab3',this)"><span class="tab-icon">⚠️</span><span class="tl-full">중대산업재해</span><span class="tl-short">중대재해</span></button>
+  <button class="tab-btn" onclick="switchTab('tab4',this)"><span class="tab-icon">📋</span><span class="tl-full">위험성 평가</span><span class="tl-short">위험성평가</span></button>
+  <button class="tab-btn ds" onclick="switchTab('tab5',this)"><span class="tab-icon">📞</span><span class="tl-full">비상연락망</span><span class="tl-short">연락망</span></button>
  </div>
+ <button class="tab-fade l" id="tabFadeL" onclick="tabNudge(-1)" aria-label="왼쪽 탭 더 보기" tabindex="-1">‹</button>
+ <button class="tab-fade r" id="tabFadeR" onclick="tabNudge(1)" aria-label="오른쪽 탭 더 보기" tabindex="-1">›</button>
 </nav>
 
 <div class="container main">
@@ -712,6 +834,9 @@
     </div>
     <button class="setup-btn" onclick="openSetup()">⚙️ 학교 설정</button>
   </div>
+
+  <button class="home-search" onclick="openSearch()"><span class="ico">🔍</span><span>무엇을 찾으세요? 예) 식중독, 실종, 공제회</span><kbd>/</kbd></button>
+  <div class="home-chips" id="homeChips"></div>
 
   <div class="unofficial-note">ℹ️ <strong>개인 제작 비공식 사이트</strong> — 교육부·교육청이 운영하는 공식 사이트가 아닙니다. 공개된 지침·안내 자료를 바탕으로 현직 교원이 만든 참고용 도구이며, 실제 업무는 소속 교육청·학교의 공식 지침을 따르세요.</div>
 
@@ -1086,24 +1211,27 @@
       <div class="ft-rule-card"><span class="ico">🔒</span><div><b>개인정보 최소화</b>전체 안내에는 학생 이름 빼기</div></div>
     </div>
 
-    <div class="sec-hd"><span>📝 상황 입력</span><div class="sec-line"></div><button class="reset-mini" onclick="resetFtForm()">↺ 비우기</button></div>
-    <div style="font-size:var(--fs-sm);color:var(--gray);margin-bottom:10px;">아는 칸만 채우세요. 빈칸은 ○○로 남아 나중에 고쳐 쓸 수 있습니다. 만든 문구도 바로 고칠 수 있습니다.</div>
+    <div class="ft-typebar" id="ftTypeBar"><label for="ftf-type">사고 유형</label><select id="ftf-type" class="ft-input" onchange="ftTypeChanged()"></select></div>
+
+    <div class="ft-pv-q">어떤 문구가 필요하세요? <small>빈칸이 있어도 바로 복사할 수 있어요</small></div>
+    <div class="ft-mchips" id="ftMsgChips"></div>
+    <div class="ft-msg ft-pv" id="ftPreview"></div>
+
+    <div class="sec-hd" style="margin-top:26px"><span>✍️ 빈칸 채우기</span><div class="sec-line"></div><button class="reset-mini" onclick="resetFtForm()">↺ 비우기</button></div>
+    <div class="ft-fill-note">채우는 즉시 위 문구에 들어갑니다. <span class="ft-key need">필요</span> 표시가 지금 고른 문구에 들어갈 칸이에요. 아는 칸만 채워도 됩니다.</div>
     <div class="sci-form">
       <div class="eval-row">
-        <div class="eval-field"><label>사고 유형</label><select id="ftf-type" class="ft-input" onchange="ftTypeChanged()"></select></div>
         <div class="eval-field"><label>발생 시각</label><div class="ft-time-row"><input type="datetime-local" id="ftf-at" class="ft-input"><button class="ft-now-btn" onclick="ftNow()">지금</button></div></div>
-        <div class="eval-field"><label>체험학습명</label><input type="text" id="ftf-trip" class="ft-input" placeholder="예: 4학년 현장체험학습(○○과학관)"></div>
         <div class="eval-field"><label>장소</label><input type="text" id="ftf-place" class="ft-input" placeholder="예: ○○휴게소 주차장"></div>
         <div class="eval-field"><label>대상 학생</label><input type="text" id="ftf-who" class="ft-input" placeholder="예: 4학년 2반 김○○ / 4학년 학생 5명"></div>
         <div class="eval-field"><label>작성자 (소속·이름)</label><input type="text" id="ftf-writer" class="ft-input" placeholder="예: 4학년 2반 담임 홍길동"></div>
-        <div class="eval-field full"><label>무슨 일이 있었나 <span style="font-weight:400">(유형을 고르면 기본 문장이 들어갑니다)</span></label><input type="text" id="ftf-what" class="ft-input" placeholder="예: 버스에서 내리다 넘어져 무릎을 다쳤습니다"></div>
         <div class="eval-field full"><label>지금 상태</label><input type="text" id="ftf-state" class="ft-input" placeholder="예: 의식은 분명하고 무릎 찰과상·통증이 있습니다"></div>
-        <div class="eval-field full"><label>조치한 것 · 이송 병원 <span style="font-weight:400">(한 줄에 하나, 앞에 시각을 쓰면 보고서에 시각순으로 들어갑니다)</span></label><textarea id="ftf-act" class="ft-input" placeholder="예)&#10;11:22 응급처치(지혈·냉찜질)&#10;11:40 담임 동행하여 ○○병원 응급실로 이동 중"></textarea></div>
-        <div class="eval-field full"><label>전체 보호자 안내에 덧붙일 말 <span style="font-weight:400">(선택 — 일정 변경, 귀교 예정 시각 등)</span></label><input type="text" id="ftf-extra" class="ft-input" placeholder="예: 남은 일정은 취소하고 15시 30분경 학교에 도착할 예정입니다"></div>
+        <div class="eval-field full"><label>조치·이송 병원 <span style="font-weight:400">(한 줄에 하나, 앞에 시각을 쓰면 1보에 시각순으로)</span></label><textarea id="ftf-act" class="ft-input" placeholder="예)&#10;11:22 응급처치(지혈·냉찜질)&#10;11:40 담임 동행하여 ○○병원 응급실로 이동 중"></textarea></div>
+        <div class="eval-field full"><label>무슨 일이 있었나 <span style="font-weight:400">(사고 유형의 기본 문장 — 고쳐 쓰세요)</span></label><input type="text" id="ftf-what" class="ft-input" placeholder="예: 버스에서 내리다 넘어져 무릎을 다쳤습니다"></div>
+        <div class="eval-field"><label>체험학습명</label><input type="text" id="ftf-trip" class="ft-input" placeholder="예: 4학년 현장체험학습(○○과학관)"></div>
+        <div class="eval-field"><label>전체 안내에 덧붙일 말</label><input type="text" id="ftf-extra" class="ft-input" placeholder="예: 15시 30분경 학교 도착 예정"></div>
       </div>
     </div>
-    <button class="report-btn" style="background:var(--teal);margin-top:0" onclick="ftGenerate()">💬 보고·안내 문구 5종 만들기</button>
-    <div class="ft-msgs" id="ftMsgs"></div>
   </div>
 
   <!-- ─── C. 출발 전 준비 ─── -->
@@ -2544,7 +2672,7 @@ window.ftTStart=function(){
   if(!ftTStartTime){
     ftTStartTime=new Date();
     document.getElementById('ftTimerSub').textContent='시작: '+ftTStartTime.toLocaleTimeString('ko-KR');
-    const at=document.getElementById('ftf-at'); if(!at.value) at.value=toLocalInput(ftTStartTime);
+    const at=document.getElementById('ftf-at'); if(!at.value){ at.value=toLocalInput(ftTStartTime); ftRender(); }
   }
   ftTInterval=setInterval(()=>{ ftTSeconds++; ftTShow(); },1000);
 };
@@ -2553,24 +2681,38 @@ window.ftTReset=function(){ clearInterval(ftTInterval); ftTInterval=null; ftTSec
 
 // 문구 입력
 const FT_FIELDS=['ftf-type','ftf-at','ftf-trip','ftf-place','ftf-who','ftf-writer','ftf-what','ftf-state','ftf-act','ftf-extra'];
+const FTF_LABEL={at:'발생 시각',trip:'체험학습명',place:'장소',who:'대상 학생',writer:'작성자',what:'무슨 일',state:'지금 상태',act:'조치·이송 병원',extra:'덧붙일 말'};
+const FT_MSG_DEF=[
+  {no:1,short:'관리자 보고',title:'관리자(교장·교감) 즉시 보고',to:'문자·메신저 — 전화 보고 직후 기록용',tag:['tag-now','즉시'],need:['at','place','who','state','act','writer'],opt:['trip','what'],
+   tip:'전화로 먼저 알린 뒤, 기록을 남기려고 보내는 문자입니다.'},
+  {no:2,short:'보호자 통화',title:'보호자 통화 — 말할 순서',to:'해당 학생 보호자 · 전화',tag:['tag-call','30분 내'],need:['writer','state','at','place','act'],opt:['what'],cls:'script',
+   tip:'상태 → 사실 → 조치 → 요청 순서로 말하면 보호자가 덜 놀랍니다.'},
+  {no:3,short:'보호자 문자',title:'보호자 문자',to:'해당 학생 보호자 · 통화 후 남기기 / 통화가 안 될 때',tag:['tag-call','30분 내'],need:['who','writer','at','place','state'],opt:['what','act'],
+   tip:'통화가 안 되면 문자를 먼저 보내고 계속 전화를 시도하세요.'},
+  {no:4,short:'교육청 1보',title:'교육(지원)청 1보',to:'유선보고 후 서면 — 공문·메신저 붙여넣기',tag:['tag-doc','당일'],need:['at','place','trip','who','state','act'],opt:['writer','what'],cls:'doc',
+   tip:'개조식 초안입니다. 모르는 칸은 복사할 때 「조사 중」으로 들어갑니다. 소속 교육청 서식이 있으면 그 서식에 옮겨 쓰세요.'},
+  {no:5,short:'전체 안내',title:'전체 보호자 안내',to:'참가 학생 전체 보호자 · 문자',tag:['tag-doc','당일'],need:['at','place'],opt:['trip','extra','what'],
+   tip:'학생 이름·자세한 병명은 넣지 마세요. 관리자 확인 후 보내세요.'}
+];
+let ftMsgSel=3, ftEdited={};
 function ftType(){ return FT_TYPES.find(x=>x.key===document.getElementById('ftf-type').value)||FT_TYPES[0]; }
 window.ftTypeChanged=function(){
   const w=document.getElementById('ftf-what');
   const cur=w.value.trim();
   if(!cur||FT_TYPES.some(x=>x.ev===cur)) w.value=ftType().ev;
+  ftRender();
 };
 window.ftUseType=function(key){
   document.getElementById('ftf-type').value=key;
   ftTypeChanged();
   ftSeg('b');
-  setTimeout(()=>document.getElementById('ftf-type').closest('.sci-form').scrollIntoView({behavior:'smooth',block:'start'}),80);
+  setTimeout(()=>document.getElementById('ftTypeBar').scrollIntoView({behavior:'smooth',block:'start'}),80);
   scheduleSave();
 };
-window.ftNow=function(){ document.getElementById('ftf-at').value=toLocalInput(new Date()); scheduleSave(); };
+window.ftNow=function(){ document.getElementById('ftf-at').value=toLocalInput(new Date()); ftRender(); scheduleSave(); };
 
-// 문구 만들기
+// 문구 만들기 — 빈칸을 남긴 채로 실시간 미리보기
 function fv(id){ return (document.getElementById(id).value||'').trim(); }
-function ph(v,p){ return v||p||'○○'; }
 function sentence(s){ s=(s||'').trim().replace(/[.。\s]+$/,''); return s?s+'.':''; }
 function ftHM(d){ return `${d.getHours()}시 ${pad(d.getMinutes())}분`; }
 function ftActLines(){
@@ -2579,103 +2721,126 @@ function ftActLines(){
     return m?{t:+m[1]*60+(+m[2]),hm:`${m[1]}:${m[2]}`,txt:m[3]}:{t:null,hm:'',txt:x.replace(/^ㅇ\s*/,'')};
   });
 }
-window.ftGenerate=function(){
+function ftParts(no){
   const t=ftType();
   const school=localStorage.getItem('school_name')||'○○학교';
+  const B=(k,alt)=>({b:k,alt});
+  const X=(k,fn,alt)=>{ const v=fv('ftf-'+k); return v?(fn?fn(v):v):B(k,alt); };
   const atV=fv('ftf-at'); const at=atV?new Date(atV):null; const now=new Date();
-  const sameDay=at&&at.toDateString()===now.toDateString();
-  const when=at?(sameDay?'오늘 ':`${at.getMonth()+1}월 ${at.getDate()}일 `)+ftHM(at)+'경':'오늘 ○시 ○분경';
-  const trip=fv('ftf-trip'), place=ph(fv('ftf-place')), who=ph(fv('ftf-who'),'○학년 ○반 ○○○'), writer=ph(fv('ftf-writer'),'담임 ○○○');
+  const WHEN=at?((at.toDateString()===now.toDateString()?'오늘 ':`${at.getMonth()+1}월 ${at.getDate()}일 `)+ftHM(at)+'경'):B('at');
+  const trip=fv('ftf-trip');
   const what=sentence(fv('ftf-what')||t.ev);
-  const state=fv('ftf-state'), extra=fv('ftf-extra');
   const acts=ftActLines();
-  const actPlain=acts.length?acts.map(a=>a.txt).join(', '):'';
-  const msgs=[];
+  const actPlain=acts.length?sentence(acts.map(a=>a.txt).join(', ')):null;
+  const extra=fv('ftf-extra');
+  if(no===1) return ['[체험학습 사고 보고] ',trip||'현장체험학습','\nㅇ 일시: ',WHEN,'\nㅇ 장소: ',X('place'),'\nㅇ 대상: ',X('who'),'\nㅇ 유형: '+t.name,'\nㅇ 내용: '+what,
+    '\nㅇ 현재 상태: ',X('state',sentence),'\nㅇ 조치: ',actPlain||B('act'),'\n추가 상황은 확인되는 대로 바로 보고드리겠습니다.\n- ',X('writer')];
+  if(no===2) return ['① 신분 밝히기 — "안녕하세요, '+school+' ',X('writer'),'입니다. 놀라지 마시고 들어 주세요."',
+    '\n② 지금 상태부터 — "',X('state',sentence),'"',
+    '\n③ 있었던 일 — "',WHEN,' ',X('place'),'에서 '+what+'"',
+    '\n④ 조치한 것 — "',actPlain||B('act'),'"',
+    '\n⑤ 부탁드릴 것 — "(병원 이름·주소)로 와 주실 수 있을까요? 연락받으실 번호도 알려 주세요."',
+    '\n⑥ 마무리 — "새로 확인되는 내용은 바로 연락드리겠습니다."',
+    '\n\n※ 모르는 것은 "확인해서 바로 알려 드리겠습니다." — 원인·과실은 말하지 않습니다.'];
+  if(no===3) return ['['+school+'] ',X('who'),' 보호자님, ',X('writer'),'입니다.\n',WHEN,' ',X('place'),'에서 '+what,
+    '\n현재 ',X('state',sentence),actPlain?'\n'+actPlain:'',
+    '\n새로 확인되는 내용은 바로 연락드리겠습니다. 통화 가능하실 때 이 번호로 전화 부탁드립니다.'];
+  if(no===4){
+    const writer=fv('ftf-writer');
+    const P=[`${kDate(now,true)} / ${school}${writer?' / '+writer:''}\n\n□ 사고 개요\n ㅇ 일시: `,at?kDate(at,true)+'경':B('at','조사 중'),
+      '\n ㅇ 장소: ',X('place',null,'조사 중'),'\n ㅇ 행사: ',X('trip',null,'조사 중'),'\n ㅇ 대상: ',X('who',null,'조사 중'),
+      '\n ㅇ 유형: '+t.name+'\n ㅇ 내용: '+what+'\n□ 피해 상황\n ㅇ ',X('state',sentence,'조사 중'),'\n□ 조치사항'];
+    const base=at||now, rows=[];
+    if(at) rows.push({t:at.getHours()*60+at.getMinutes(),hm:`${pad(at.getHours())}:${pad(at.getMinutes())}`,txt:'사고 발생'});
+    acts.forEach(a=>rows.push(a));
+    const timed=rows.filter(r=>r.t!==null).sort((a,b)=>a.t-b.t), untimed=rows.filter(r=>r.t===null);
+    if(!acts.length){ timed.forEach(r=>P.push(`\n ㅇ ${kShort(base)} ${r.hm} : ${r.txt}`)); P.push('\n ㅇ ',B('act','조사 중')); }
+    else { timed.forEach(r=>{ const [h,m]=r.hm.split(':'); P.push(`\n ㅇ ${kShort(base)} ${pad(+h)}:${m} : ${r.txt}`); }); untimed.forEach(r=>P.push(`\n ㅇ ${r.txt}`)); }
+    P.push('\n□ 향후계획'); t.plan.forEach(p=>P.push('\n ㅇ '+p));
+    return P;
+  }
+  return ['['+school+'] '+(trip||'현장체험학습')+' 안내\n',WHEN,' ',X('place'),'에서 '+sentence(t.all),
+    '\n'+(extra?sentence(extra):'학생들은 선생님들과 함께 있으며, 이후 일정과 귀교 시각은 다시 안내드리겠습니다.'),
+    '\n관련 학생의 보호자께는 개별로 연락드렸습니다.\n확인되지 않은 내용이 퍼지지 않도록 학교 안내를 기다려 주시기 바랍니다.'];
+}
+function ftPartsText(parts){ return parts.map(p=>typeof p==='string'?p:(p.alt||'('+FTF_LABEL[p.b]+')')).join(''); }
+function ftPartsHTML(parts){
+  return parts.map(p=>typeof p==='string'?ftEsc(p).replace(/\n/g,'<br>')
+    :`<button class="ft-blank" onclick="ftGoField('${p.b}')" title="눌러서 입력칸으로 이동">${FTF_LABEL[p.b]}</button>`).join('');
+}
+function ftBlanks(parts){ const s=[]; parts.forEach(p=>{ if(typeof p!=='string'&&!s.includes(p.b)) s.push(p.b); }); return s; }
+function ftMsgText(no){ return ftEdited[no]!=null?ftEdited[no]:ftPartsText(ftParts(no)); }
 
-  // ① 관리자 즉시 보고
-  msgs.push({no:1,title:'관리자(교장·교감) 즉시 보고',to:'문자·메신저 — 전화 보고 직후 기록용',tag:['tag-now','즉시'],cls:'',
-    text:[`[체험학습 사고 보고] ${trip||'현장체험학습'}`,
-      `ㅇ 일시: ${when}`,`ㅇ 장소: ${place}`,`ㅇ 대상: ${who}`,`ㅇ 유형: ${t.name}`,
-      `ㅇ 내용: ${what}`,`ㅇ 현재 상태: ${state?sentence(state):'확인 중입니다.'}`,
-      `ㅇ 조치: ${actPlain?sentence(actPlain):'확인 중입니다.'}`,
-      '추가 상황은 확인되는 대로 바로 보고드리겠습니다.',`- ${writer}`].join('\n'),
-    tip:'전화로 먼저 알린 뒤, 기록을 남기려고 보내는 문자입니다.'});
-
-  // ② 보호자 통화
-  msgs.push({no:2,title:'보호자 통화 — 말할 순서',to:'해당 학생 보호자 · 전화',tag:['tag-call','30분 내'],cls:'script',
-    text:[`① 신분 밝히기 — "안녕하세요, ${school} ${writer}입니다. 놀라지 마시고 들어 주세요."`,
-      `② 지금 상태부터 — "${state?sentence(state):'지금 ○○이는 (상태)입니다.'}"`,
-      `③ 있었던 일 — "${when} ${place}에서 ${what}"`,
-      `④ 조치한 것 — "${actPlain?sentence(actPlain):'(응급처치·이송 등 조치한 내용)'}"`,
-      `⑤ 부탁드릴 것 — "(병원 이름·주소)로 와 주실 수 있을까요? 연락받으실 번호도 알려 주세요."`,
-      `⑥ 마무리 — "새로 확인되는 내용은 바로 연락드리겠습니다."`,
-      '',`※ 모르는 것은 "확인해서 바로 알려 드리겠습니다." — 원인·과실은 말하지 않습니다.`].join('\n'),
-    tip:'상태 → 사실 → 조치 → 요청 순서로 말하면 보호자가 덜 놀랍니다.'});
-
-  // ③ 보호자 문자
-  msgs.push({no:3,title:'보호자 문자',to:'해당 학생 보호자 · 통화 후 남기기 / 통화가 안 될 때',tag:['tag-call','30분 내'],cls:'',
-    text:[`[${school}] ${who} 보호자님, ${writer}입니다.`,
-      `${when} ${place}에서 ${what}`,
-      state?`현재 ${sentence(state)}`:'현재 상태는 확인하는 대로 바로 알려 드리겠습니다.',
-      actPlain?sentence(actPlain):'',
-      '새로 확인되는 내용은 바로 연락드리겠습니다. 통화 가능하실 때 이 번호로 전화 부탁드립니다.'].filter(Boolean).join('\n'),
-    tip:'통화가 안 되면 문자를 먼저 보내고 계속 전화를 시도하세요.'});
-
-  // ④ 교육(지원)청 1보
-  const L=[];
-  L.push(`${kDate(now,true)} / ${school}${writer!=='담임 ○○○'?' / '+writer:''}`);
-  L.push('');
-  L.push('□ 사고 개요');
-  L.push(` ㅇ 일시: ${at?kDate(at,true)+'경':'조사 중'}`);
-  L.push(` ㅇ 장소: ${fv('ftf-place')||'조사 중'}`);
-  L.push(` ㅇ 행사: ${trip||'조사 중'}`);
-  L.push(` ㅇ 대상: ${fv('ftf-who')||'조사 중'}`);
-  L.push(` ㅇ 유형: ${t.name}`);
-  L.push(` ㅇ 내용: ${what}`);
-  L.push('□ 피해 상황');
-  L.push(` ㅇ ${state?sentence(state):'조사 중'}`);
-  L.push('□ 조치사항');
-  const base=at||now;
-  const rows=[];
-  if(at) rows.push({t:at.getHours()*60+at.getMinutes(),hm:`${pad(at.getHours())}:${pad(at.getMinutes())}`,txt:'사고 발생'});
-  acts.forEach(a=>rows.push(a));
-  const timed=rows.filter(r=>r.t!==null).sort((a,b)=>a.t-b.t), untimed=rows.filter(r=>r.t===null);
-  if(timed.length||untimed.length){
-    timed.forEach(r=>{ const [h,m]=r.hm.split(':'); L.push(` ㅇ ${kShort(base)} ${pad(+h)}:${m} : ${r.txt}`); });
-    untimed.forEach(r=>L.push(` ㅇ ${r.txt}`));
-  } else L.push(' ㅇ 조사 중');
-  L.push('□ 향후계획');
-  t.plan.forEach(p=>L.push(` ㅇ ${p}`));
-  msgs.push({no:4,title:'교육(지원)청 1보',to:'유선보고 후 서면 — 공문·메신저 붙여넣기',tag:['tag-doc','당일'],cls:'doc',text:L.join('\n'),
-    tip:'개조식 초안입니다. 육하원칙으로 고치고, 소속 교육청 서식이 있으면 그 서식에 옮겨 쓰세요.'+(t.key==='food'?' 식중독 의심은 관할 보건소에도 즉시 신고합니다.':'')+(t.key==='water'?' 물놀이 사고는 경미해도 즉시 보고합니다.':'')});
-
-  // ⑤ 전체 보호자 안내
-  msgs.push({no:5,title:'전체 보호자 안내',to:'참가 학생 전체 보호자 · 문자',tag:t.optAll?['tag-opt','필요할 때만']:['tag-doc','당일'],cls:'',
-    text:[`[${school}] ${trip||'현장체험학습'} 안내`,
-      `${when} ${place}에서 ${sentence(t.all)}`,
-      extra?sentence(extra):'학생들은 선생님들과 함께 있으며, 이후 일정과 귀교 시각은 다시 안내드리겠습니다.',
-      '관련 학생의 보호자께는 개별로 연락드렸습니다.',
-      '확인되지 않은 내용이 퍼지지 않도록 학교 안내를 기다려 주시기 바랍니다.'].join('\n'),
-    tip:t.optAll?'일부 학생에게만 생긴 일은 보통 개별 연락으로 충분합니다. 소문이 돌거나 일정이 바뀔 때만 보내세요.':'학생 이름·자세한 병명은 넣지 마세요. 관리자 확인 후 보내세요.'});
-
-  document.getElementById('ftMsgs').innerHTML=`<div class="sec-hd"><span>📤 만들어진 문구 (눌러서 고칠 수 있어요)</span><div class="sec-line"></div></div>`+
-    msgs.map(m=>`<div class="ft-msg">
-      <div class="ft-msg-head"><span class="ft-msg-no">${m.no}</span><div><div class="ft-msg-title">${m.title}</div><div class="ft-msg-to">${m.to}</div></div><span class="ft-msg-tag ${m.tag[0]}">${m.tag[1]}</span></div>
-      <div class="ft-msg-body"><textarea class="ft-bubble ${m.cls}" id="ftm-${m.no}" spellcheck="false">${ftEsc(m.text)}</textarea></div>
-      <div class="ft-msg-foot"><button class="ft-copy" onclick="ftCopy(${m.no})">📋 복사</button><span class="ft-msg-tip">${m.tip}</span></div>
-    </div>`).join('');
-  document.querySelectorAll('#ftMsgs .ft-bubble').forEach(ftFit);
-  document.getElementById('ftMsgs').scrollIntoView({behavior:'smooth',block:'start'});
-  showToast('문구 5종을 만들었습니다');
+function ftRenderChips(){
+  document.getElementById('ftMsgChips').innerHTML=FT_MSG_DEF.map(m=>{
+    const bl=ftEdited[m.no]!=null?0:ftBlanks(ftParts(m.no)).length;
+    return `<button class="ft-mchip${m.no===ftMsgSel?' on':''}" onclick="ftPickMsg(${m.no})"><span class="n">${m.no}</span>${m.short}${bl?`<span class="b">빈칸 ${bl}</span>`:'<span class="ok">✓</span>'}</button>`;
+  }).join('');
+}
+function ftRenderFields(){
+  const m=FT_MSG_DEF.find(x=>x.no===ftMsgSel);
+  Object.keys(FTF_LABEL).forEach(k=>{
+    const el=document.getElementById('ftf-'+k); if(!el) return;
+    const box=el.closest('.eval-field');
+    let st=box.querySelector('.ft-fstat');
+    if(!st){ st=document.createElement('span'); st.className='ft-fstat'; box.querySelector('label').appendChild(st); }
+    const filled=!!fv('ftf-'+k)||(k==='what');
+    const need=m.need.includes(k), opt=m.opt.includes(k);
+    box.classList.remove('ft-f-need','ft-f-done','ft-f-unused');
+    if(need&&!filled){ box.classList.add('ft-f-need'); st.textContent='필요'; st.className='ft-fstat need'; }
+    else if((need||opt)&&filled&&fv('ftf-'+k)){ box.classList.add('ft-f-done'); st.textContent='✓ 들어감'; st.className='ft-fstat done'; }
+    else if(opt){ st.textContent='선택'; st.className='ft-fstat opt'; }
+    else { box.classList.add('ft-f-unused'); st.textContent='이 문구엔 안 쓰여요'; st.className='ft-fstat unused'; }
+  });
+}
+window.ftRender=function(){
+  if(!document.getElementById('ftPreview')) return;
+  const m=FT_MSG_DEF.find(x=>x.no===ftMsgSel);
+  const parts=ftParts(m.no), blanks=ftBlanks(parts), edited=ftEdited[m.no]!=null;
+  const filledNeed=m.need.filter(k=>fv('ftf-'+k)).length, pct=Math.round(filledNeed/m.need.length*100);
+  const pv=document.getElementById('ftPreview');
+  const hadFocus=document.activeElement&&document.activeElement.id==='ftEditBox';
+  pv.innerHTML=`
+    <div class="ft-msg-head"><span class="ft-msg-no">${m.no}</span><div><div class="ft-msg-title">${m.title}</div><div class="ft-msg-to">${m.to}</div></div>
+      ${edited?'<span class="ft-msg-tag tag-edit">✏️ 직접 고침</span>':`<span class="ft-msg-tag ${m.tag[0]}">${m.tag[1]}</span>`}</div>
+    <div class="ft-msg-body">${edited
+      ?`<textarea class="ft-bubble ${m.cls||''}" id="ftEditBox" spellcheck="false" oninput="ftEditInput(this)">${ftEsc(ftEdited[m.no])}</textarea>`
+      :`<div class="ft-bubble ft-live ${m.cls||''}">${ftPartsHTML(parts)}</div>`}</div>
+    ${edited?'<div class="ft-pv-note">직접 고친 문구는 아래 입력칸이 바뀌어도 그대로 둡니다.</div>'
+      :`<div class="ft-pv-prog"><span>필요한 칸 <b>${filledNeed}/${m.need.length}</b></span><div class="bar"><i style="width:${pct}%"></i></div>${blanks.length?'':'<span class="all">모두 채움 ✓</span>'}</div>`}
+    <div class="ft-msg-foot">
+      <button class="ft-copy" onclick="ftCopy()">📋 복사${!edited&&blanks.length?` <small>(빈칸 ${blanks.length}곳 남음)</small>`:''}</button>
+      ${edited?'<button class="ft-edit" onclick="ftUnedit()">↺ 입력값으로 다시 채우기</button>':'<button class="ft-edit" onclick="ftStartEdit()">✏️ 직접 고치기</button>'}
+    </div>
+    <div class="ft-pv-tip">${!edited&&blanks.length?'💡 노란 빈칸을 누르면 아래 입력칸으로 이동해요. ':''}${m.tip}</div>`;
+  if(hadFocus){ const b=document.getElementById('ftEditBox'); b.focus(); b.setSelectionRange(b.value.length,b.value.length); }
+  const box=document.getElementById('ftEditBox'); if(box) ftFit(box);
+  ftRenderChips(); ftRenderFields();
+};
+window.ftPickMsg=function(no){ ftMsgSel=no; ftRender(); scheduleSave(); };
+window.ftStartEdit=function(){ ftEdited[ftMsgSel]=ftPartsText(ftParts(ftMsgSel)); ftRender(); const b=document.getElementById('ftEditBox'); if(b){ b.focus(); } scheduleSave(); };
+window.ftUnedit=function(){ if(!confirm('직접 고친 내용을 버리고 입력값으로 다시 채울까요?')) return; delete ftEdited[ftMsgSel]; ftRender(); scheduleSave(); };
+window.ftEditInput=function(el){ ftEdited[ftMsgSel]=el.value; ftFit(el); scheduleSave(); };
+window.ftGoField=function(k){
+  const el=document.getElementById('ftf-'+k); if(!el) return;
+  const box=el.closest('.eval-field');
+  box.scrollIntoView({behavior:'smooth',block:'center'});
+  box.classList.remove('srch-flash'); void box.offsetWidth; box.classList.add('srch-flash');
+  setTimeout(()=>box.classList.remove('srch-flash'),1800);
+  setTimeout(()=>{ try{ el.focus({preventScroll:true}); }catch(e){ el.focus(); } },380);
 };
 function ftFit(el){ el.style.height='auto'; el.style.height=(el.scrollHeight+4)+'px'; }
-document.addEventListener('input',e=>{ if(e.target.classList&&e.target.classList.contains('ft-bubble')) ftFit(e.target); });
-window.ftCopy=function(no){
-  const text=document.getElementById('ftm-'+no).value;
-  const done=()=>showToast('복사했습니다 — 붙여넣어 쓰세요');
+window.ftCopy=function(){
+  const parts=ftParts(ftMsgSel), edited=ftEdited[ftMsgSel]!=null;
+  const text=ftMsgText(ftMsgSel);
+  const bl=edited?[]:ftBlanks(parts).filter(k=>!parts.some(p=>typeof p!=='string'&&p.b===k&&p.alt));
+  const tbd=edited?[]:ftBlanks(parts).filter(k=>!bl.includes(k));
+  const done=()=>showToast(bl.length?`복사했습니다 — 빈칸 ${bl.length}곳(${bl.map(k=>FTF_LABEL[k]).join('·')})은 붙여넣은 뒤 채워 주세요`:tbd.length?`복사했습니다 — 모르는 칸 ${tbd.length}곳은 「조사 중」으로 넣었어요`:'복사했습니다 — 붙여넣어 쓰세요');
   if(navigator.clipboard&&window.isSecureContext){ navigator.clipboard.writeText(text).then(done,fallback); } else fallback();
   function fallback(){ const t=document.createElement('textarea'); t.value=text; document.body.appendChild(t); t.select(); try{document.execCommand('copy');done();}catch(e){alert('복사에 실패했습니다. 직접 선택해 복사해 주세요.');} t.remove(); }
 };
+document.addEventListener('input',e=>{ if(e.target.classList&&e.target.classList.contains('ft-input')) ftRender(); });
+document.addEventListener('change',e=>{ if(e.target&&e.target.id==='ftf-at') ftRender(); });
 
 // 출발 전 점검
 function updateFtPrep(){
@@ -2756,7 +2921,7 @@ td.tel{font-family:ui-monospace,monospace;font-weight:700;width:110px;}
 window.resetFtForm=function(){
   if(!confirm('문구 만들기 입력칸과 만들어진 문구를 모두 비웁니다. 계속할까요?')) return;
   FT_FIELDS.forEach(id=>{ const el=document.getElementById(id); if(id==='ftf-type') el.selectedIndex=0; else el.value=''; });
-  document.getElementById('ftMsgs').innerHTML='';
+  ftEdited={}; ftTypeChanged();
   saveState(); showToast('입력칸을 비웠습니다');
 };
 window.resetFtPrep=function(){
@@ -2765,6 +2930,277 @@ window.resetFtPrep=function(){
   updateFtPrep(); saveState(); showToast('점검표를 초기화했습니다');
 };
 renderFtContacts();
+ftTypeChanged();
+
+// ══ 사이트 검색 ══
+const SRCH_TABS={
+  tab0:{name:'홈',icon:'🏠',color:'#566573',kw:'홈 처음 메인 긴급연락처'},
+  tab1:{name:'긴급사안',icon:'🚨',color:'#c0392b',kw:'긴급사안 자해 자살 자살시도 폭력 범죄 중대피해 가해자 분리 언론 경위조사 9단계'},
+  tab2:{name:'응급환자 이송',icon:'🚑',color:'#2980b9',kw:'응급 응급환자 이송 병원 119 보건교사 학부모연락 공제회 공제급여 사고통지 3분류 4단계 학교안전사고관리지침 다침 부상'},
+  tab7:{name:'체험학습',icon:'🚌',color:'#117a65',kw:'체험학습 현장체험학습 수학여행 수련활동 소풍 견학 인솔 버스 숙박'},
+  tab6:{name:'과학실 안전',icon:'🧪',color:'#6c3483',kw:'과학실 실험 실험실 화학 약품 시약 알코올램프 msds 24시간 서면보고 화학사고'},
+  tab3:{name:'중대산업재해',icon:'⚠️',color:'#e67e22',kw:'중대재해 중대산업재해 산업재해 산재 교직원 근로자 작업중지 고용노동부 산업재해조사표 조리실무사'},
+  tab4:{name:'위험성 평가',icon:'📋',color:'#1e8449',kw:'위험성평가 위험요인 순회점검 빈도 강도 개선 우수사례'},
+  tab5:{name:'비상연락망',icon:'📞',color:'#566573',kw:'비상연락망 연락처 전화번호 보고절차 서식 양식'}
+};
+const SRCH_FT_SYN={
+  traffic:'교통 교통사고 버스 차량 차 접촉 충돌 추돌 휴게소 주차장 고속도로 블랙박스',
+  missing:'실종 미아 길잃음 길잃어 안보임 연락두절 사라짐 없어짐 이탈 112',
+  water:'물놀이 익수 물에빠짐 빠짐 계곡 바다 수영 수영장 구명조끼 심폐소생술 cpr aed 생존수영',
+  allergy:'알레르기 알러지 아나필락시스 쇼크 벌 벌쏘임 땅콩 견과 두드러기 에피펜 에피네프린 호흡곤란 숨',
+  food:'식중독 배탈 구토 토함 설사 복통 배아픔 집단 보건소 보존식 음식 역학조사',
+  heat:'폭염 온열 온열질환 열사병 일사병 더위 더움 어지러움 어지럼 탈수 열',
+  fire:'화재 불 대피 지진 연기 숙소 비상구 비상벨 소방',
+  injury:'부상 다침 넘어짐 낙상 골절 출혈 피 찰과상 머리 타박 삠 응급처치',
+  conflict:'다툼 싸움 폭행 폭력 학교폭력 학폭 이탈 일탈 무단이탈 야간 가출'
+};
+const SRCH_POPULAR=['식중독','교통사고','실종','119','공제회','24시간 보고','위험성 평가'];
+const CHO='ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ';
+function srchNz(s){ return String(s||'').toLowerCase().replace(/<[^>]+>/g,'').replace(/[·・,\/()「」『』—–→>:]/g,'|').replace(/[\s.\-"'“”‘’~+!?※▶]/g,''); }
+function srchCho(s){ let r=''; for(const ch of s){ const c=ch.charCodeAt(0); r+=(c>=0xAC00&&c<=0xD7A3)?CHO[Math.floor((c-0xAC00)/588)]:ch; } return r; }
+function srchStrip(s){ return String(s||'').replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim(); }
+function srchEl(t){ return typeof t==='function'?t():(document.getElementById(t)||document.querySelector(t)); }
+function flashTo(t,delay){
+  setTimeout(()=>{
+    const el=srchEl(t); if(!el) return;
+    const r=el.getBoundingClientRect();
+    if(r.height>window.innerHeight*0.55) window.scrollTo({top:window.scrollY+r.top-132,behavior:'smooth'});
+    else el.scrollIntoView({behavior:'smooth',block:'center'});
+    el.classList.remove('srch-flash'); void el.offsetWidth; el.classList.add('srch-flash');
+    setTimeout(()=>el.classList.remove('srch-flash'),1800);
+  },delay==null?260:delay);
+}
+
+let SRCH_INDEX=null;
+function buildSearchIndex(){
+  const E=[];
+  const add=o=>{ o.kw=o.kw||''; o.body=srchStrip(o.body||''); o.preview=srchStrip(o.preview||o.body); E.push(o); };
+  // 탭
+  Object.keys(SRCH_TABS).forEach(id=>{ const m=SRCH_TABS[id];
+    add({tab:id,icon:m.icon,title:m.name,path:'탭 열기',kw:m.kw,body:'',preview:m.name+' 화면으로 이동합니다.',isTab:true,go:()=>goTab(id)}); });
+  // 홈
+  add({tab:'tab0',icon:'📞',title:'긴급 연락처 (119·112·교육청)',path:'홈',kw:'119 112 화재 구조 범죄 신고 전화 산재팀 화학사고',body:'화재·구조 119, 범죄·폭력 112, 교육청 산업재해예방팀, 화학물질안전원',go:()=>{goTab('tab0');flashTo('.home-contacts');}});
+  add({tab:'tab0',icon:'⚙️',title:'우리 학교 설정',path:'홈 › 설정',kw:'설정 학교이름 학교명 연락처 입력 전화번호 지역 변경 초기화',body:'학교 이름, 교육청 연락처, 과학실·화학사고 연락처, 체험학습 비상 연락처를 입력합니다.',go:()=>openSetup()});
+  // 체험학습 — 사고 유형
+  FT_TYPES.forEach(t=>add({tab:'tab7',icon:t.icon,title:t.name,path:'체험학습 › 사고 대응',lvl:t.level,kw:SRCH_FT_SYN[t.key]||'',
+    body:[t.sub,...t.now,...t.tl.map(x=>x[1]),...t.dos,...t.donts].join(' '),preview:t.now.join(' / '),
+    go:()=>{goTab('tab7');ftSeg('a');ftSelect(t.key,true);flashTo('ftDetailCard',300);},
+    acts:[{label:'💬 문구 만들기',fn:()=>{goTab('tab7');ftUseType(t.key);}}]}));
+  add({tab:'tab7',icon:'💬',title:'보고·안내 문구 만들기',path:'체험학습 › 보고·안내',kw:'문구 문자 학부모 보호자 안내 통화 교육청 1보 관리자 보고 복사 가정통신 사안보고',body:'관리자 즉시 보고, 보호자 통화 순서, 보호자 문자, 교육(지원)청 1보, 전체 보호자 안내 문구 5종을 만들어 복사합니다.',go:()=>{goFtSeg('b');flashTo('ftPreview');}});
+  add({tab:'tab7',icon:'⏱',title:'체험학습 사고 경과시간 타이머',path:'체험학습 › 사고 대응',kw:'타이머 경과 시간 발생시각',body:'사고 발생 후 경과 시간을 재고, 발생 시각을 문구 만들기에 넣습니다.',go:()=>{goFtSeg('a');flashTo('#ft-seg-a .timer-box');}});
+  add({tab:'tab7',icon:'📞',title:'체험학습 비상 연락처',path:'체험학습 › 출발 전 준비',kw:'연락처 인솔책임자 여행사 차량업체 기사 숙소 인근병원 전화',body:'인솔 책임자·교감·보건교사·차량업체·여행사·숙소·인근 병원 연락처',go:()=>{goFtSeg('c');flashTo('ftContacts');}});
+  FT_PREP.forEach(g=>add({tab:'tab7',icon:'✅',title:'체험학습 점검 — '+srchStrip(g.title).replace(/^\S+\s/,''),path:'체험학습 › 출발 전 준비',kw:'점검 점검표 체크리스트 준비 사전답사 구급가방 좌석표 음주측정 인원점검 단체사진',body:g.items.join(' '),preview:g.items.slice(0,2).join(' / '),go:()=>{goFtSeg('c');flashTo('ftpc-'+g.key,300);}}));
+  add({tab:'tab7',icon:'🧒',title:'학생 5분 안전교육 (체험학습 안전 약속)',path:'체험학습 › 출발 전 준비',kw:'안전교육 학생 약속 수칙 크게보여주기 사전교육',body:FT_RULES.join(' '),go:()=>{goFtSeg('c');flashTo('ftRuleGrid');}});
+  add({tab:'tab7',icon:'🖨️',title:'인솔교사 포켓카드 인쇄',path:'체험학습 › 출발 전 준비',kw:'포켓카드 인쇄 출력 종이 카드 a4 통신두절',body:'연락처·공통 5원칙·사고 유형 9가지를 A4 한 장으로 인쇄합니다.',go:()=>{goFtSeg('c');flashTo('.ft-print-card');}});
+  // 긴급사안
+  tasks.forEach((t,i)=>add({tab:'tab1',icon:'🚨',title:t.title,path:'긴급사안 › 대응 절차 체크리스트',kw:t.role,body:t.details.join(' '),
+    go:()=>{goTab('tab1');document.getElementById('det-'+i).classList.add('show');flashTo('ti-'+i);}}));
+  add({tab:'tab1',icon:'📄',title:'긴급사안 대응 보고서 자동 생성',path:'긴급사안',kw:'보고서 인쇄 경과시간 타이머',body:'체크리스트 완료 시각과 메모로 대응 보고서를 만들어 인쇄합니다.',go:()=>{goTab('tab1');flashTo('#tab1 .report-btn');}});
+  // 응급환자 이송
+  [['severe','🔴','생명위급 (응급환자)','의식장애 의식없음 호흡곤란 심정지 다량출혈 119 응급처치 심폐소생술 cpr 위급'],
+   ['moderate','🔵','병원치료 필요 (일반상해)','단순외상 골절 고열 보호자이송 병원 동행'],
+   ['mild','🟢','병원치료 불필요','찰과상 타박 간단한처치 보건실 가벼운']].forEach(([k,ic,nm,kw])=>
+    add({tab:'tab2',icon:ic,title:nm+' — 대응 4단계',path:'응급환자 이송',lvl:k==='severe'?'red':'',kw,body:lawSteps[k].map(x=>x[0]+' '+x[1]).join(' '),preview:lawSteps[k].map(x=>x[0]).join(' → '),
+      go:()=>{goTab('tab2');selectSeverity(k);flashTo('law-box');}}));
+  add({tab:'tab2',icon:'⭐',title:'누가 학부모에게 연락하고, 누가 병원에 데려가나',path:'응급환자 이송 › 핵심',kw:'학부모연락 보호자 병원동행 동행 담임 보건교사 운전 응급처치자',body:'학부모 연락은 담임교사, 병원 이송 동행은 보건교사(위급 시)·담임교사. 응급처치자는 차량 운전 금지.',go:()=>{goTab('tab2');flashTo('#tab2 .key-box');}});
+  add({tab:'tab2',icon:'📊',title:'전체 역할 분담표',path:'응급환자 이송',kw:'역할 분담 교장 교감 보건교사 담임 생활지도 행정 이송담당 출장 비용',body:'최초발견자·교장·교감·보건교사·담임교사·이송 담당·행정담당의 사고 유형별 역할',go:()=>{goTab('tab2');flashTo('#tab2 .resp-table-wrap');}});
+  add({tab:'tab2',icon:'📝',title:'응급사고 기록지 작성',path:'응급환자 이송',kw:'기록지 6하원칙 육하원칙 기록 보건교사',body:'사건 날짜·시간·장소·사고현황·환자상태·응급처치 내용을 6하원칙으로 기록',go:()=>{goTab('tab2');flashTo(()=>document.querySelectorAll('#tab2 .info-box.blue')[1]);}});
+  add({tab:'tab2',icon:'🛡️',title:'학교안전공제회 사고통지·공제급여',path:'응급환자 이송 › 보고조치',kw:'공제회 학교안전공제회 공제급여 보상 치료비 사고통지 보험',body:'병원치료가 필요하거나 생명위급 사고는 학교장이 교육(지원)청에 보고하고 시·도 학교안전공제회에 사고통지하며, 공제급여 신청 절차를 안내합니다.',go:()=>{goTab('tab2');selectSeverity('moderate');flashTo('law-box');}});
+  // 과학실
+  sciSteps.forEach((s,i)=>add({tab:'tab6',icon:'🧪',title:'과학실 사고 '+s.num+'단계 — '+s.title,path:'과학실 안전 › 사고 대응',kw:s.rep+' 과학실 사고',body:s.sub+' '+s.details,
+    go:()=>{goTab('tab6');sciSeg('a');document.getElementById('ssdet-'+i).classList.add('show');flashTo('sst-'+i);}}));
+  add({tab:'tab6',icon:'⏰',title:'과학실 사고 보고 시한 (24시간 서면보고)',path:'과학실 안전 › 사고 대응',kw:'24시간 서면보고 유선보고 마감 시한 보고기한',body:'교육청 유선보고 후 24시간 이내 서면보고 — 마감 시각과 남은 시간을 계산합니다.',go:()=>{goTab('tab6');sciSeg('a');flashTo('#seg-a .deadline-box');}});
+  add({tab:'tab6',icon:'📄',title:'과학실 안전사고 상황보고서 만들기',path:'과학실 안전 › 사고 대응',kw:'상황보고서 보고서 서면보고 공문 개조식',body:'교육청 서식(예시안)에 맞춰 개조식 상황보고서를 만들고 복사·인쇄합니다.',go:()=>{goSciReport();flashTo('#seg-a .sci-form',450);}});
+  add({tab:'tab6',icon:'☎️',title:'화학사고 신고 기관',path:'과학실 안전 › 사고 대응',kw:'화학물질안전원 환경청 유역환경청 방재센터 화학재난 유출 누출 신고',body:'화학물질안전원(전국 공통), 관할 유역(지방)환경청, 지역 화학재난 합동방재센터',go:()=>{goTab('tab6');sciSeg('a');flashTo(()=>document.querySelector('#seg-a .org-table').closest('.resp-table-wrap'));}});
+  add({tab:'tab6',icon:'📏',title:'과학실험실 안전 수칙 10',path:'과학실 안전 › 예방 점검',kw:'안전수칙 수칙 5분안전교육 크게보여주기',body:sciRules.join(' '),go:()=>{goTab('tab6');sciSeg('b');flashTo('sciRuleGrid');}});
+  add({tab:'tab6',icon:'✅',title:'과학 수업 전·중·후 점검',path:'과학실 안전 › 예방 점검',kw:'점검 점검표 수업전 수업중 수업후 가스밸브 연료',body:sciPrev.map(g=>g.items.join(' ')).join(' '),go:()=>{goTab('tab6');sciSeg('b');flashTo('sciPrevList');}});
+  add({tab:'tab6',icon:'🗂️',title:'과학실 게시물 7종 점검',path:'과학실 안전 › 게시물·자료',kw:'게시물 포스터 대피도 비상연락망 msds 물질안전보건자료',body:sciPosts.join(' '),go:()=>{goTab('tab6');sciSeg('c');flashTo('#seg-c .prev-group');}});
+  // 중대산업재해
+  incidentSteps.forEach((s,i)=>add({tab:'tab3',icon:'⚠️',title:s.num+'. '+s.title,path:'중대산업재해 › 비상조치 체크리스트',kw:s.sub,body:s.details.join(' '),
+    go:()=>{goTab('tab3');document.getElementById('isdet-'+i).classList.add('show');flashTo('ist-'+i);}}));
+  add({tab:'tab3',icon:'⚡',title:'급박한 위험 발생 시 (작업중지권)',path:'중대산업재해',kw:'작업중지권 작업중지 급박한위험 대피 위험구역',body:'최초발견자 전파·위험요인 제거 → 작업중지 후 위험구역 이탈 → 긴급상황 전파 및 대피',go:()=>{goTab('tab3');flashTo('#tab3 .step-card');}});
+  // 위험성 평가
+  add({tab:'tab4',icon:'📅',title:'위험성 평가 종류와 시기',path:'위험성 평가',kw:'최초평가 정기평가 수시평가 시기 3월 연1회',body:'최초 평가(1개월 이내), 정기 평가(연 1회), 수시 평가(중대재해·작업방법 변경·설비 도입 시)',go:()=>{goTab('tab4');flashTo('#tab4 .risk-kind-grid');}});
+  add({tab:'tab4',icon:'✏️',title:'우리 학교 위험성 평가 입력',path:'위험성 평가',kw:'입력 기록 위험성점수 빈도 강도 감소대책',body:'장소·위험요인·빈도·강도를 입력하면 위험성 점수를 계산합니다.',go:()=>{goTab('tab4');flashTo('#tab4 .eval-form');}});
+  [['good','⭐ 우수사례'],['risk','⚠️ 위험요인']].forEach(([kind,lab])=>{
+    groupByPlace(refCases.filter(r=>r.kind===kind)).forEach((g,gi)=>{
+      const uid=`ref-${kind}-${gi}`;
+      add({tab:'tab4',icon:g.icon,title:g.place+' — '+lab.replace(/^\S+\s/,''),path:'위험성 평가 › 순회점검 '+lab.replace(/^\S+\s/,''),kw:g.place,
+        body:g.items.map(it=>it.hazard+' '+it.action).join(' '),preview:g.items.map(it=>it.hazard).join(' / '),
+        go:()=>{goTab('tab4');const w=document.getElementById(uid);if(w&&!w.classList.contains('show'))toggleRef(uid);flashTo(()=>document.getElementById(uid).parentElement);}});
+    });
+  });
+  // 비상연락망
+  add({tab:'tab5',icon:'📞',title:'기관 비상 연락처',path:'비상연락망',kw:'연락처 전화번호 119 112 교육부 민원 산업재해예방팀 화학사고',body:'응급·사고 신고, 교육청 산업재해예방팀, 학생 안전사고 보고, 화학사고 신고 연락처',go:()=>{goTab('tab5');flashTo('#tab5 .contact-grid');}});
+  document.querySelectorAll('#tab5 .step-card').forEach((c,i)=>{
+    const ti=c.querySelector('.step-title2'), ds=c.querySelector('.step-desc2'), bd=c.querySelector('.step-badge');
+    add({tab:'tab5',icon:'📋',title:'보고 절차 — '+(ti?ti.textContent:''),path:'비상연락망 › 보고 절차 흐름',kw:(bd?bd.textContent:'')+' 보고 보고체계 절차',body:ds?ds.textContent:'',
+      go:()=>{goTab('tab5');flashTo(()=>document.querySelectorAll('#tab5 .step-card')[i]);}});
+  });
+  add({tab:'tab5',icon:'📄',title:'주요 서식',path:'비상연락망',kw:'서식 양식 사고보고서 산업재해조사표 응급사고기록지 위험성평가표 다운로드',body:'사고 보고서, 산업재해조사표, 응급사고 기록지, 위험성평가표, 과학실·체험학습 보고 문구',go:()=>{goTab('tab5');flashTo('#tab5 .form-links');}});
+  E.forEach(e=>{ e._t=srchNz(e.title); e._k=srchNz(e.kw); e._b=srchNz(e.body); e._ct=srchCho(e._t); e._ck=srchCho(e._k); });
+  return E;
+}
+
+function srchTerms(q){ return q.split(/\s+/).map(x=>x.trim()).filter(Boolean); }
+function srchScore(e,raw){
+  const q=srchNz(raw); if(!q) return 0;
+  if(/^[ㄱ-ㅎ]+$/.test(q)){ if(e._ct.replace(/\|/g,'').includes(q)) return 80+(e._ct.startsWith(q)?10:0); return 0; }
+  if(e._t.includes(q)) return 100+(e._t.startsWith(q)?20:0);
+  if(e._k.includes(q)) return 60;
+  if(e._b.includes(q)) return 30;
+  return 0;
+}
+function srchSearch(query){
+  if(!SRCH_INDEX) SRCH_INDEX=buildSearchIndex();
+  const terms=srchTerms(query); if(!terms.length) return [];
+  const out=[];
+  SRCH_INDEX.forEach(e=>{
+    let sum=0;
+    for(const t of terms){ const s=srchScore(e,t); if(!s) return; sum+=s; }
+    if(e.isTab) sum-=15;
+    if(e.lvl==='red') sum+=5; else if(e.lvl==='orange') sum+=3;
+    out.push({e,s:sum});
+  });
+  out.sort((a,b)=>b.s-a.s);
+  return out.slice(0,40);
+}
+function srchHL(text,terms){
+  let h=ftEsc(text);
+  terms.filter(t=>!/^[ㄱ-ㅎ]+$/.test(t)).forEach(t=>{
+    const re=new RegExp(ftEsc(t).replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi');
+    h=h.replace(re,m=>`<mark>${m}</mark>`);
+  });
+  return h;
+}
+function srchSnip(e,terms){
+  const plain=terms.filter(t=>!/^[ㄱ-ㅎ]+$/.test(t));
+  for(const t of plain){
+    const seg=e.preview.split(' / ').find(x=>x.toLowerCase().includes(t.toLowerCase()));
+    if(seg&&e.preview.includes(' / ')) return seg.length>110?seg.slice(0,110)+'…':seg;
+  }
+  for(const src of [e.preview,e.body]){
+    const low=src.toLowerCase();
+    for(const t of plain){
+      const i=low.indexOf(t.toLowerCase());
+      if(i>=0){ const st=Math.max(0,i-28), en=Math.min(src.length,i+t.length+60); return (st>0?'…':'')+src.slice(st,en)+(en<src.length?'…':''); }
+    }
+  }
+  return e.preview.length>90?e.preview.slice(0,90)+'…':e.preview;
+}
+
+// 최근 검색
+function srchRecent(){ try{ return JSON.parse(localStorage.getItem('srch_recent')||'[]'); }catch(e){ return []; } }
+function srchPushRecent(q){ q=q.trim(); if(!q) return; try{ const r=srchRecent().filter(x=>x!==q); r.unshift(q); localStorage.setItem('srch_recent',JSON.stringify(r.slice(0,6))); }catch(e){} }
+window.clearSrchRecent=function(){ try{ localStorage.removeItem('srch_recent'); }catch(e){} srchRender(); };
+
+let srchList=[], srchActive=0;
+function srchChip(q){ return `<button class="srch-chip" onclick="srchSet('${ftEsc(q).replace(/'/g,'&#39;')}')">${ftEsc(q)}</button>`; }
+window.srchSet=function(q){ const i=document.getElementById('srchInput'); i.value=q; srchRender(); i.focus(); };
+function srchRender(){
+  const q=document.getElementById('srchInput').value;
+  const body=document.getElementById('srchBody');
+  const cnt=document.getElementById('srchCount');
+  if(!q.trim()){
+    cnt.textContent='';
+    srchList=[];
+    const rec=srchRecent();
+    body.innerHTML=`<div class="srch-sec">자주 찾는 키워드</div><div class="srch-chips">${SRCH_POPULAR.map(srchChip).join('')}</div>
+      ${rec.length?`<div class="srch-sec">최근 검색 <button class="srch-clear" onclick="clearSrchRecent()">지우기</button></div><div class="srch-chips">${rec.map(srchChip).join('')}</div>`:''}
+      <div class="srch-sec">바로 가기</div>
+      <div class="srch-tabs">${Object.keys(SRCH_TABS).filter(id=>id!=='tab0').map(id=>`<button class="srch-tab" style="border-left-color:${SRCH_TABS[id].color}" onclick="srchPick(-1,'${id}')"><span>${SRCH_TABS[id].icon}</span>${SRCH_TABS[id].name}</button>`).join('')}</div>
+      <div class="srch-tip">💡 비슷한 말(배탈·길 잃음·열사병)이나 초성(ㅅㅈㄷ)으로도 찾을 수 있어요.</div>`;
+    return;
+  }
+  const res=srchSearch(q), terms=srchTerms(q);
+  srchList=res.map(r=>r.e); srchActive=0;
+  cnt.textContent=res.length?res.length+'건':'';
+  if(!res.length){
+    body.innerHTML=`<div class="srch-empty"><div class="srch-empty-title">「${ftEsc(q)}」에 맞는 내용을 찾지 못했어요</div>
+      <div class="srch-empty-sub">급한 상황이라면 아래부터 확인하세요.</div>
+      <div class="srch-empty-acts">
+        <a class="srch-empty-btn red" href="tel:119">🚨 119 신고</a>
+        <button class="srch-empty-btn" onclick="srchPick(-1,'ftAll')">🚌 체험학습 사고 유형 9가지</button>
+        <button class="srch-empty-btn" onclick="srchPick(-1,'tab2')">🚑 응급환자 이송</button>
+        <button class="srch-empty-btn" onclick="srchPick(-1,'tab1')">🚨 긴급사안 체크리스트</button>
+      </div></div>
+      <div class="srch-sec">이런 키워드는 어떠세요?</div><div class="srch-chips">${SRCH_POPULAR.map(srchChip).join('')}</div>`;
+    return;
+  }
+  // 탭별로 묶기(가장 높은 점수 순)
+  const groups=[], gmap={};
+  res.forEach((r,idx)=>{ const id=r.e.tab; if(!gmap[id]){ gmap[id]={id,items:[]}; groups.push(gmap[id]); } gmap[id].items.push({e:r.e,idx}); });
+  body.innerHTML=groups.map(g=>`<div class="srch-sec"><span style="color:${SRCH_TABS[g.id].color}">${SRCH_TABS[g.id].icon} ${SRCH_TABS[g.id].name}</span></div>`+
+    g.items.map(({e,idx})=>`<div class="srch-item${idx===0?' active':''}" id="srchi-${idx}" style="border-left-color:${SRCH_TABS[e.tab].color}" onclick="srchPick(${idx})" onmousemove="srchSetActive(${idx},true)">
+      <div class="srch-item-top"><span class="srch-ico">${e.icon}</span><span class="srch-title">${srchHL(e.title,terms)}</span>${e.lvl==='red'?'<span class="srch-badge red">생명 위급</span>':e.lvl==='orange'?'<span class="srch-badge ora">여러 명 피해</span>':''}</div>
+      <div class="srch-path">${ftEsc(e.path)}</div>
+      ${e.isTab?'':`<div class="srch-snip">${srchHL(srchSnip(e,terms),terms)}</div>`}
+      ${e.acts?`<div class="srch-acts">${e.acts.map((a,ai)=>`<button class="srch-act" onclick="event.stopPropagation();srchPick(${idx},null,${ai})">${a.label}</button>`).join('')}<button class="srch-act ghost" onclick="event.stopPropagation();srchPick(${idx})">→ 대처 보기</button></div>`:''}
+    </div>`).join('')).join('');
+  body.scrollTop=0;
+}
+window.srchSetActive=function(i,noScroll){
+  if(!srchList.length) return;
+  srchActive=Math.max(0,Math.min(srchList.length-1,i));
+  document.querySelectorAll('#srchBody .srch-item').forEach(el=>el.classList.toggle('active',el.id==='srchi-'+srchActive));
+  if(!noScroll){ const el=document.getElementById('srchi-'+srchActive); if(el) el.scrollIntoView({block:'nearest'}); }
+};
+
+// 열고 닫기
+window.openSearch=function(q){
+  const ov=document.getElementById('srch');
+  if(!ov.classList.contains('open')){
+    ov.classList.add('open'); document.body.style.overflow='hidden';
+    try{ if(!(history.state&&history.state.search)) history.pushState({tab:currentTab,search:true},'','#'+currentTab); }catch(e){}
+  }
+  const inp=document.getElementById('srchInput');
+  inp.value=q||'';
+  srchRender();
+  setTimeout(()=>inp.focus(),30);
+};
+function srchHide(){ document.getElementById('srch').classList.remove('open'); document.body.style.overflow=''; }
+window.closeSearch=function(){
+  srchHide();
+  try{ if(history.state&&history.state.search) history.back(); }catch(e){}
+};
+window.srchPick=function(idx,special,actIdx){
+  const q=document.getElementById('srchInput').value;
+  let fn=null;
+  if(special==='ftAll') fn=()=>{ goFtSeg('a'); flashTo('ftTiles'); };
+  else if(special) fn=()=>goTab(special);
+  else{ const e=srchList[idx]; if(!e) return; fn=(actIdx!=null&&e.acts)?e.acts[actIdx].fn:e.go; srchPushRecent(q); }
+  srchHide();
+  try{ if(history.state&&history.state.search) history.replaceState({tab:currentTab},'','#'+currentTab); }catch(e){}
+  setTimeout(fn,20);
+};
+window.addEventListener('popstate',function(){ if(document.getElementById('srch').classList.contains('open')) srchHide(); });
+document.getElementById('srchInput').addEventListener('input',srchRender);
+document.getElementById('srchInput').addEventListener('keydown',function(e){
+  if(e.key==='ArrowDown'){ e.preventDefault(); srchSetActive(srchActive+1); }
+  else if(e.key==='ArrowUp'){ e.preventDefault(); srchSetActive(srchActive-1); }
+  else if(e.key==='Enter'){ e.preventDefault(); if(srchList.length) srchPick(srchActive); }
+});
+document.getElementById('srch').addEventListener('click',function(e){ if(e.target===this) closeSearch(); });
+document.addEventListener('keydown',function(e){
+  const ov=document.getElementById('srch');
+  if(ov.classList.contains('open')){ if(e.key==='Escape'){ e.preventDefault(); closeSearch(); } return; }
+  const tg=e.target, typing=tg&&(/^(INPUT|TEXTAREA|SELECT)$/.test(tg.tagName)||tg.isContentEditable);
+  const blocked=document.querySelector('.modal-overlay.show,#ossModal.open,.big-rules.show');
+  if(typing||blocked) return;
+  if(e.key==='/'||((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k')){ e.preventDefault(); openSearch(); }
+});
+document.getElementById('homeChips').innerHTML=SRCH_POPULAR.map(q=>`<button class="srch-chip" onclick="openSearch('${q}')">${q}</button>`).join('');
+
+// ══ 탭 메뉴: 양옆에 탭이 더 있으면 흐림·화살표 표시 ══
+(function(){
+  const n=document.querySelector('.tab-nav-inner'), L=document.getElementById('tabFadeL'), R=document.getElementById('tabFadeR');
+  function upd(){ L.classList.toggle('show',n.scrollLeft>4); R.classList.toggle('show',n.scrollLeft+n.clientWidth<n.scrollWidth-4); }
+  window.tabNudge=function(d){ n.scrollBy({left:d*Math.max(140,n.clientWidth*0.6),behavior:'smooth'}); };
+  n.addEventListener('scroll',upd,{passive:true});
+  window.addEventListener('resize',upd);
+  window.updateTabFade=upd;
+  upd(); setTimeout(upd,300); setTimeout(upd,1200);
+})();
 
 // ══════════════════════════════════════════════════════════════
 //  뒤로가기 · 새로고침 대응 (탭 히스토리 + 작업내용 자동 저장)
@@ -2861,7 +3297,7 @@ function saveState(){
         form:SR_FIELDS.reduce((o,id)=>{o[id]=val(id);return o;},{})
       },
       ft:{
-        seg:ftSegCur, sel:ftSel,
+        seg:ftSegCur, sel:ftSel, msg:ftMsgSel, edited:ftEdited,
         timer:{sec:ftTSeconds,run:!!ftTInterval,start:ftTStartTime?ftTStartTime.toISOString():null},
         form:FT_FIELDS.reduce((o,id)=>{o[id]=val(id);return o;},{}),
         prep:FT_PREP.map(g=>g.items.map((it,i)=>document.getElementById(`ftpv-${g.key}-${i}`).checked))
@@ -2956,6 +3392,9 @@ function restoreState(){
     const f=st.ft;
     if(f.seg) ftSeg(f.seg);
     Object.keys(f.form||{}).forEach(id=>{ const el=document.getElementById(id); if(el&&f.form[id]){ el.value=f.form[id]; if(id!=='ftf-type') touched=true; } });
+    if(f.msg) ftMsgSel=f.msg;
+    if(f.edited&&typeof f.edited==='object'){ ftEdited=f.edited; if(Object.keys(ftEdited).length) touched=true; }
+    ftRender();
     (f.prep||[]).forEach((arr,gi)=>{ const g=FT_PREP[gi]; if(!g) return; (arr||[]).forEach((v,i)=>{ const el=document.getElementById(`ftpv-${g.key}-${i}`); if(el){ el.checked=!!v; if(v) touched=true; } }); });
     updateFtPrep();
     if(f.sel) ftSelect(f.sel,true);
